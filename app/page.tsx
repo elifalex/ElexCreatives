@@ -105,12 +105,12 @@ export default function Home() {
                   Coming to App Store
                 </a>
                 <a
-                  href="#"
+                  href="https://play.google.com/store/apps/details?id=com.alexprv.dailyintentions"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
                 >
-                  View on Google Play
+                  Google Play
                 </a>
               </div>
             </div>
@@ -171,7 +171,7 @@ export default function Home() {
 
               <div className="flex gap-4">
                 <a
-                  href="https://apps.apple.com/app/speeddots/id6739234096"
+                  href="https://apps.apple.com/th/app/speeddots-how-fast-are-you/id6755077344?l=th"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-6 py-3 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors"
