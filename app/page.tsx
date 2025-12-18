@@ -99,10 +99,12 @@ export default function Home() {
 
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="https://apps.apple.com/us/app/dailyintentions/id6754063190"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block px-6 py-3 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors"
                 >
-                  Coming to App Store
+                  App Store
                 </a>
                 <a
                   href="https://play.google.com/store/apps/details?id=com.alexprv.dailyintentions"
