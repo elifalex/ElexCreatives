@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
@@ -71,7 +72,16 @@ export default function Home() {
         <div className="mb-24">
           <div className="grid md:grid-cols-2 gap-16">
             <div>
-              <h3 className="text-2xl font-medium text-black mb-4">DailyIntention</h3>
+              <div className="flex items-center gap-4 mb-6">
+                <Image
+                  src="/icons/DailyIntentions_appIcon_android.png"
+                  alt="DailyIntention icon"
+                  width={64}
+                  height={64}
+                  className="rounded-2xl"
+                />
+                <h3 className="text-2xl font-medium text-black">DailyIntention</h3>
+              </div>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 A manifestation app that helps you set daily intentions and track your goals.
                 Simple, focused, and designed to help you align actions with aspirations.
@@ -143,7 +153,16 @@ export default function Home() {
             </div>
 
             <div className="md:order-1">
-              <h3 className="text-2xl font-medium text-black mb-4">SpeedDots</h3>
+              <div className="flex items-center gap-4 mb-6">
+                <Image
+                  src="/icons/SpeedDots logo 1024x1024.png"
+                  alt="SpeedDots icon"
+                  width={64}
+                  height={64}
+                  className="rounded-2xl"
+                />
+                <h3 className="text-2xl font-medium text-black">SpeedDots</h3>
+              </div>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 An arcade game testing reaction speed and reflexes. Fast-paced dot-tapping gameplay
                 with multiple modes, global leaderboards, and real-time scoring.
