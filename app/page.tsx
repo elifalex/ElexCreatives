@@ -65,14 +65,91 @@ export default function Home() {
       </section>
 
       {/* Apps Section */}
-      <section id="apps" className="max-w-5xl mx-auto px-6 py-24 border-t border-gray-200">
+      <section id="apps" className="max-w-6xl mx-auto px-6 py-24 border-t border-gray-200">
         <h2 className="text-3xl font-light text-black mb-16">Apps</h2>
+
+        {/* SpeedDots */}
+        <div className="mb-24">
+          <div className="grid md:grid-cols-2 gap-20">
+            {/* Screenshot */}
+            <div className="flex items-center justify-center md:order-2">
+              <div className="w-64 h-[500px] bg-gray-100 rounded-3xl flex items-center justify-center border border-gray-200">
+                <div className="text-center px-8">
+                  <p className="text-gray-400 text-sm">Screenshot placeholder</p>
+                  <p className="text-gray-300 text-xs mt-2">Add your screenshot to<br />public/screenshots/</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="md:order-1 max-w-xl">
+              <div className="flex items-center gap-4 mb-2">
+                <Image
+                  src="/icons/SpeedDots logo 1024x1024.png"
+                  alt="SpeedDots icon"
+                  width={64}
+                  height={64}
+                  className="rounded-2xl"
+                />
+                <div>
+                  <h3 className="text-2xl font-medium text-black">SpeedDots</h3>
+                  <p className="text-sm text-gray-400">4-6 weeks</p>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+                An arcade game testing reaction speed and reflexes. Fast-paced dot-tapping gameplay
+                with multiple modes, global leaderboards, and real-time scoring.
+              </p>
+
+              <div className="mb-8">
+                <h4 className="text-sm font-medium text-black mb-3">What it does</h4>
+                <ul className="space-y-2 text-gray-600 text-base">
+                  <li>Multiple game modes</li>
+                  <li>Global leaderboards</li>
+                  <li>Real-time scoring system</li>
+                  <li>Arcade progression</li>
+                  <li>Achievement system</li>
+                </ul>
+              </div>
+
+              <div className="mb-8">
+                <h4 className="text-sm font-medium text-black mb-3">Built with</h4>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">React Native</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Expo</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">TypeScript</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firebase</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firestore</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AI-assisted coding</span>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <a
+                  href="https://apps.apple.com/th/app/speeddots-how-fast-are-you/id6755077344?l=th"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors"
+                >
+                  App Store
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.alexprv.speeddots"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+                >
+                  Google Play
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* DailyIntention */}
         <div className="mb-24">
-          <div className="grid md:grid-cols-2 gap-16">
-            <div>
-              <div className="flex items-center gap-4 mb-6">
+          <div className="grid md:grid-cols-2 gap-20">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-4 mb-2">
                 <Image
                   src="/icons/DailyIntentions_appIcon_android.png"
                   alt="DailyIntention icon"
@@ -80,16 +157,19 @@ export default function Home() {
                   height={64}
                   className="rounded-2xl"
                 />
-                <h3 className="text-2xl font-medium text-black">DailyIntention</h3>
+                <div>
+                  <h3 className="text-2xl font-medium text-black">DailyIntention</h3>
+                  <p className="text-sm text-gray-400">6-8 weeks</p>
+                </div>
               </div>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-8 leading-relaxed text-lg">
                 A manifestation app that helps you set daily intentions and track your goals.
                 Simple, focused, and designed to help you align actions with aspirations.
               </p>
 
-              <div className="mb-6">
+              <div className="mb-8">
                 <h4 className="text-sm font-medium text-black mb-3">What it does</h4>
-                <ul className="space-y-2 text-gray-600">
+                <ul className="space-y-2 text-gray-600 text-base">
                   <li>Daily intention prompts</li>
                   <li>Manifestation journal</li>
                   <li>Progress tracking</li>
@@ -97,20 +177,15 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-8">
                 <h4 className="text-sm font-medium text-black mb-3">Built with</h4>
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">React Native</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Expo</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">TypeScript</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firebase</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AI-assisted</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AI-assisted coding</span>
                 </div>
-              </div>
-
-              <div className="mb-8">
-                <h4 className="text-sm font-medium text-black mb-3">Timeline</h4>
-                <p className="text-gray-600 text-sm">6-8 weeks</p>
               </div>
 
               <div className="flex gap-4">
@@ -140,85 +215,6 @@ export default function Home() {
                   <p className="text-gray-400 text-sm">Screenshot placeholder</p>
                   <p className="text-gray-300 text-xs mt-2">Add your screenshot to<br />public/screenshots/</p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* SpeedDots */}
-        <div>
-          <div className="grid md:grid-cols-2 gap-16">
-            {/* Screenshot first on this one */}
-            <div className="flex items-center justify-center md:order-2">
-              <div className="w-64 h-[500px] bg-gray-100 rounded-3xl flex items-center justify-center border border-gray-200">
-                <div className="text-center px-8">
-                  <p className="text-gray-400 text-sm">Screenshot placeholder</p>
-                  <p className="text-gray-300 text-xs mt-2">Add your screenshot to<br />public/screenshots/</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="md:order-1">
-              <div className="flex items-center gap-4 mb-6">
-                <Image
-                  src="/icons/SpeedDots logo 1024x1024.png"
-                  alt="SpeedDots icon"
-                  width={64}
-                  height={64}
-                  className="rounded-2xl"
-                />
-                <h3 className="text-2xl font-medium text-black">SpeedDots</h3>
-              </div>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                An arcade game testing reaction speed and reflexes. Fast-paced dot-tapping gameplay
-                with multiple modes, global leaderboards, and real-time scoring.
-              </p>
-
-              <div className="mb-6">
-                <h4 className="text-sm font-medium text-black mb-3">What it does</h4>
-                <ul className="space-y-2 text-gray-600">
-                  <li>Multiple game modes</li>
-                  <li>Global leaderboards</li>
-                  <li>Real-time scoring system</li>
-                  <li>Arcade progression</li>
-                  <li>Achievement system</li>
-                </ul>
-              </div>
-
-              <div className="mb-6">
-                <h4 className="text-sm font-medium text-black mb-3">Built with</h4>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">React Native</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Expo</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">TypeScript</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firebase</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firestore</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AI-assisted</span>
-                </div>
-              </div>
-
-              <div className="mb-8">
-                <h4 className="text-sm font-medium text-black mb-3">Timeline</h4>
-                <p className="text-gray-600 text-sm">4-6 weeks</p>
-              </div>
-
-              <div className="flex gap-4">
-                <a
-                  href="https://apps.apple.com/th/app/speeddots-how-fast-are-you/id6755077344?l=th"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors"
-                >
-                  App Store
-                </a>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.alexprv.speeddots"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
-                >
-                  Google Play
-                </a>
               </div>
             </div>
           </div>
