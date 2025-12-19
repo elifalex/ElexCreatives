@@ -96,29 +96,37 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-                An arcade game testing reaction speed and reflexes. Fast-paced dot-tapping gameplay
-                with multiple modes, global leaderboards, and real-time scoring.
+                Arcade game testing reaction speed with global competition. Players tap dots as fast as possible across multiple game modes.
               </p>
 
               <div className="mb-8">
-                <h4 className="text-sm font-medium text-black mb-3">What it does</h4>
-                <ul className="space-y-2 text-gray-600 text-base">
-                  <li>Multiple game modes</li>
-                  <li>Global leaderboards</li>
-                  <li>Real-time scoring system</li>
-                  <li>Arcade progression</li>
-                  <li>Achievement system</li>
+                <h4 className="text-sm font-medium text-black mb-3">Main features</h4>
+                <ul className="space-y-1 text-gray-600">
+                  <li>• Firebase authentication</li>
+                  <li>• 5-leaderboard system (4 game modes + global player rankings)</li>
+                  <li>• AdMob rewarded video ads for extra lives</li>
+                  <li>• Real-time score synchronization</li>
+                  <li>• Multi-touch gesture handling</li>
                 </ul>
               </div>
 
               <div className="mb-8">
-                <h4 className="text-sm font-medium text-black mb-3">Built with</h4>
+                <h4 className="text-sm font-medium text-black mb-3">Key challenges tackled</h4>
+                <ul className="space-y-1 text-gray-600">
+                  <li>• Cross-leaderboard score aggregation: Player rankings update dynamically across all game modes</li>
+                  <li>• Firebase optimization: 5-minute cache refresh to prevent write conflicts and stay within free tier</li>
+                  <li>• Performance: 60fps gameplay with instant haptic feedback on multi-touch interactions</li>
+                  <li>• Scalable architecture: Built for 100-1,000 concurrent players, designed to scale to 10,000+</li>
+                </ul>
+              </div>
+
+              <div className="mb-8">
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">React Native</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Expo</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">TypeScript</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firebase</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firestore</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AdMob</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AI-assisted coding</span>
                 </div>
               </div>
@@ -163,27 +171,38 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-                A manifestation app that helps you set daily intentions and track your goals.
-                Simple, focused, and designed to help you align actions with aspirations.
+                Manifestation and intention-setting app helping users align daily actions with long-term goals through guided prompts and journaling.
               </p>
 
               <div className="mb-8">
-                <h4 className="text-sm font-medium text-black mb-3">What it does</h4>
-                <ul className="space-y-2 text-gray-600 text-base">
-                  <li>Daily intention prompts</li>
-                  <li>Manifestation journal</li>
-                  <li>Progress tracking</li>
-                  <li>Mindfulness reminders</li>
+                <h4 className="text-sm font-medium text-black mb-3">Main features</h4>
+                <ul className="space-y-1 text-gray-600">
+                  <li>• Firebase authentication with local-to-cloud data migration</li>
+                  <li>• RevenueCat subscription system (monthly/yearly plans)</li>
+                  <li>• Push notifications for daily reminders</li>
+                  <li>• Weekly streak tracking for engagement</li>
+                  <li>• Personal journal data export</li>
+                  <li>• Affiliate marketing integration</li>
                 </ul>
               </div>
 
               <div className="mb-8">
-                <h4 className="text-sm font-medium text-black mb-3">Built with</h4>
+                <h4 className="text-sm font-medium text-black mb-3">Key challenges tackled</h4>
+                <ul className="space-y-1 text-gray-600">
+                  <li>• Seamless local-to-cloud migration: Users' journal data syncs to Firebase when creating an account</li>
+                  <li>• Subscription architecture: Full RevenueCat integration for cross-platform payment handling</li>
+                  <li>• User engagement flow: Designed intuitive UI and interaction patterns to create a calm, focused experience</li>
+                  <li>• Retention mechanics: Weekly streak system and push notifications to build daily habits</li>
+                </ul>
+              </div>
+
+              <div className="mb-8">
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">React Native</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Expo</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">TypeScript</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firebase</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">RevenueCat</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AI-assisted coding</span>
                 </div>
               </div>
