@@ -97,14 +97,20 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="mb-8">
+              <div className="mb-6">
                 <h4 className="text-sm font-medium text-black mb-3">Built with</h4>
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">React Native</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Expo</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">TypeScript</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firebase</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AI-assisted</span>
                 </div>
+              </div>
+
+              <div className="mb-8">
+                <h4 className="text-sm font-medium text-black mb-3">Timeline</h4>
+                <p className="text-gray-600 text-sm">6-8 weeks</p>
               </div>
 
               <div className="flex gap-4">
@@ -179,7 +185,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="mb-8">
+              <div className="mb-6">
                 <h4 className="text-sm font-medium text-black mb-3">Built with</h4>
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">React Native</span>
@@ -187,7 +193,13 @@ export default function Home() {
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">TypeScript</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firebase</span>
                   <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firestore</span>
+                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AI-assisted</span>
                 </div>
+              </div>
+
+              <div className="mb-8">
+                <h4 className="text-sm font-medium text-black mb-3">Timeline</h4>
+                <p className="text-gray-600 text-sm">4-6 weeks</p>
               </div>
 
               <div className="flex gap-4">
