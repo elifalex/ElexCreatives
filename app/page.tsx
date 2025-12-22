@@ -243,6 +243,9 @@ export default function Home() {
             Elex Creatives
           </Link>
           <nav className="flex gap-8 text-sm">
+            <Link href="#services" className="text-gray-600 hover:text-black transition-colors">
+              Services
+            </Link>
             <Link href="#apps" className="text-gray-600 hover:text-black transition-colors">
               Apps
             </Link>
@@ -260,17 +263,111 @@ export default function Home() {
       <section className="max-w-5xl mx-auto px-6 py-24">
         <div className="max-w-2xl">
           <h1 className="text-5xl font-light text-black mb-6 leading-tight">
-            We build mobile apps.
+            Turn-key mobile applications.<br />From idea to App Store.
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed mb-8">
-            Alex and Elif. French and Turkish engineers. We design and develop React Native apps full-time.
+            We're Alex and Elif—a French-Turkish engineering duo delivering complete React Native solutions.
+            Whether you're starting from scratch or need to revamp existing code, we handle it all.
           </p>
-          <Link
-            href="#apps"
-            className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
-          >
-            View our work
-          </Link>
+          <div className="flex gap-4">
+            <Link
+              href="#services"
+              className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+            >
+              Our services
+            </Link>
+            <Link
+              href="#apps"
+              className="inline-block px-6 py-3 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors"
+            >
+              View our work
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="max-w-5xl mx-auto px-6 py-24 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50">
+        <h2 className="text-3xl font-light text-black mb-16">What we do</h2>
+
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
+          {/* Service 1: Turn-key Development */}
+          <div className="bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-3xl p-8">
+            <h3 className="text-xl font-medium text-black mb-4">Turn-key Development</h3>
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              From idea to App Store delivery. We handle the complete journey—brand identity, logo design,
+              UX/UI, and React Native development for iOS and Android.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="text-black mt-1">→</span>
+                <div>
+                  <p className="text-sm font-medium text-black">Brand Identity & Logos</p>
+                  <p className="text-xs text-gray-600">Visual identity that resonates</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-black mt-1">→</span>
+                <div>
+                  <p className="text-sm font-medium text-black">UX/UI Design</p>
+                  <p className="text-xs text-gray-600">Fluid, modern user experiences</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-black mt-1">→</span>
+                <div>
+                  <p className="text-sm font-medium text-black">React Native Development</p>
+                  <p className="text-xs text-gray-600">Clean architecture, tested code</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-black mt-1">→</span>
+                <div>
+                  <p className="text-sm font-medium text-black">App Store Launch</p>
+                  <p className="text-xs text-gray-600">Full deployment to iOS & Android</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Service 2: Code Review & Revamp */}
+          <div className="bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-3xl p-8">
+            <h3 className="text-xl font-medium text-black mb-4">Code Review & Revamp</h3>
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              Already have a React Native app? We audit your codebase, identify issues, and revamp it
+              with best practices, performance improvements, and modern architecture.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="text-black mt-1">→</span>
+                <div>
+                  <p className="text-sm font-medium text-black">Code Audit</p>
+                  <p className="text-xs text-gray-600">Deep dive into your existing codebase</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-black mt-1">→</span>
+                <div>
+                  <p className="text-sm font-medium text-black">Performance Optimization</p>
+                  <p className="text-xs text-gray-600">Faster load times, smoother interactions</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-black mt-1">→</span>
+                <div>
+                  <p className="text-sm font-medium text-black">Architecture Refactoring</p>
+                  <p className="text-xs text-gray-600">Scalable, maintainable code structure</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-black mt-1">→</span>
+                <div>
+                  <p className="text-sm font-medium text-black">Bug Fixes & Testing</p>
+                  <p className="text-xs text-gray-600">Resolve issues, add comprehensive tests</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
