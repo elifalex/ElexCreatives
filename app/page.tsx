@@ -4,6 +4,216 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
+interface AppCardProps {
+  icon: string;
+  name: string;
+  category: string;
+  timeline: string;
+  description: string;
+  features: string[];
+  challenges: string[];
+  techStack: string[];
+  appStoreUrl?: string;
+  playStoreUrl?: string;
+  screenshots: string[];
+  comingSoon?: boolean;
+}
+
+function AppCard({
+  icon,
+  name,
+  category,
+  timeline,
+  description,
+  features,
+  challenges,
+  techStack,
+  appStoreUrl,
+  playStoreUrl,
+  screenshots,
+  comingSoon
+}: AppCardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div
+      className={`bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer ${
+        isExpanded ? 'ring-2 ring-black/5' : ''
+      }`}
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
+      {/* Header */}
+      <div className="flex items-start gap-4 mb-4">
+        <Image
+          src={icon}
+          alt={`${name} icon`}
+          width={64}
+          height={64}
+          className="rounded-2xl flex-shrink-0"
+        />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-3 mb-1 flex-wrap">
+            <h3 className="text-xl font-medium text-black">{name}</h3>
+            <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+              {category}
+            </span>
+          </div>
+          <p className="text-sm text-gray-400">{timeline}</p>
+        </div>
+      </div>
+
+      {/* Description */}
+      <p className="text-gray-600 text-sm leading-relaxed mb-4">
+        {description}
+      </p>
+
+      {/* Expand indicator */}
+      <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
+        <span>{isExpanded ? '← Click to hide details' : 'Click to view details →'}</span>
+      </div>
+
+      {/* Expanded content */}
+      {isExpanded && (
+        <div className="pt-4 border-t border-gray-200/50 space-y-6" onClick={(e) => e.stopPropagation()}>
+          {/* Screenshots */}
+          {screenshots.length > 0 && (
+            <div className="flex justify-center mb-6">
+              <ScreenshotCarousel appName={name} screenshots={screenshots} />
+            </div>
+          )}
+
+          {/* Features */}
+          <div>
+            <h4 className="text-sm font-medium text-black mb-3">Main features</h4>
+            <ul className="space-y-1 text-gray-600 text-sm">
+              {features.map((feature, index) => (
+                <li key={index}>• {feature}</li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Challenges */}
+          <div>
+            <h4 className="text-sm font-medium text-black mb-3">Key challenges tackled</h4>
+            <ul className="space-y-1 text-gray-600 text-sm">
+              {challenges.map((challenge, index) => (
+                <li key={index}>• {challenge}</li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Tech Stack */}
+          <div>
+            <div className="flex flex-wrap gap-2">
+              {techStack.map((tech, index) => (
+                <span key={index} className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Store Links */}
+          <div className="flex gap-4 pt-2">
+            {comingSoon ? (
+              <div className="inline-block px-6 py-3 border border-gray-300 text-gray-400 text-sm font-medium cursor-not-allowed">
+                Coming Soon
+              </div>
+            ) : (
+              <>
+                {appStoreUrl && (
+                  <a
+                    href={appStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-6 py-3 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    App Store
+                  </a>
+                )}
+                {playStoreUrl && (
+                  <a
+                    href={playStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Google Play
+                  </a>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface ScreenshotCarouselProps {
+  appName: string;
+  screenshots: string[];
+}
+
+function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % screenshots.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+  };
+
+  return (
+    <div className="relative">
+      <div className="w-64 h-[500px] bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
+        <Image
+          src={screenshots[currentIndex]}
+          alt={`${appName} screenshot ${currentIndex + 1}`}
+          width={256}
+          height={500}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {screenshots.length > 1 && (
+        <>
+          <button
+            onClick={prevSlide}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
+            aria-label="Previous screenshot"
+          >
+            ←
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
+            aria-label="Next screenshot"
+          >
+            →
+          </button>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {screenshots.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                  index === currentIndex ? 'bg-white' : 'bg-white/40'
+                }`}
+                aria-label={`Go to screenshot ${index + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   const [formData, setFormData] = useState({
     name: "",
@@ -65,178 +275,95 @@ export default function Home() {
       </section>
 
       {/* Apps Section */}
-      <section id="apps" className="max-w-6xl mx-auto px-6 py-24 border-t border-gray-200">
+      <section id="apps" className="max-w-7xl mx-auto px-6 py-24 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50">
         <h2 className="text-3xl font-light text-black mb-16">Apps</h2>
 
-        {/* SpeedDots */}
-        <div className="mb-24">
-          <div className="grid md:grid-cols-2 gap-20">
-            {/* Screenshot */}
-            <div className="flex items-center justify-center md:order-2">
-              <div className="w-64 h-[500px] bg-gray-100 rounded-3xl flex items-center justify-center border border-gray-200">
-                <div className="text-center px-8">
-                  <p className="text-gray-400 text-sm">Screenshot placeholder</p>
-                  <p className="text-gray-300 text-xs mt-2">Add your screenshot to<br />public/screenshots/</p>
-                </div>
-              </div>
-            </div>
+        <div className="grid md:grid-cols-2 gap-8">
+          <AppCard
+            icon="/icons/SpeedDots logo 1024x1024.png"
+            name="SpeedDots"
+            category="Gaming"
+            timeline="4-6 weeks"
+            description="Arcade game testing reaction speed with global competition. Players tap dots as fast as possible across multiple game modes."
+            features={[
+              'Firebase authentication',
+              '5-leaderboard system (4 game modes + global player rankings)',
+              'AdMob rewarded video ads for extra lives',
+              'Real-time score synchronization',
+              'Multi-touch gesture handling',
+            ]}
+            challenges={[
+              'Cross-leaderboard score aggregation: Player rankings update dynamically across all game modes',
+              'Firebase optimization: 5-minute cache refresh to prevent write conflicts and stay within free tier',
+              'Performance: 60fps gameplay with instant haptic feedback on multi-touch interactions',
+              'Scalable architecture: Built for 100-1,000 concurrent players, designed to scale to 10,000+',
+            ]}
+            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'AdMob', 'AI-assisted coding']}
+            appStoreUrl="https://apps.apple.com/th/app/speeddots-how-fast-are-you/id6755077344?l=th"
+            playStoreUrl="https://play.google.com/store/apps/details?id=com.alexprv.speeddots"
+            screenshots={[]}
+          />
 
-            <div className="md:order-1 max-w-xl">
-              <div className="flex items-center gap-4 mb-2">
-                <Image
-                  src="/icons/SpeedDots logo 1024x1024.png"
-                  alt="SpeedDots icon"
-                  width={64}
-                  height={64}
-                  className="rounded-2xl"
-                />
-                <div>
-                  <h3 className="text-2xl font-medium text-black">SpeedDots</h3>
-                  <p className="text-sm text-gray-400">4-6 weeks</p>
-                </div>
-              </div>
-              <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-                Arcade game testing reaction speed with global competition. Players tap dots as fast as possible across multiple game modes.
-              </p>
+          <AppCard
+            icon="/icons/DailyIntentions_appIcon_android.png"
+            name="DailyIntention"
+            category="Wellness - Lifestyle"
+            timeline="6-8 weeks"
+            description="Manifestation and intention-setting app helping users align daily actions with long-term goals through guided prompts and journaling."
+            features={[
+              'Firebase authentication with local-to-cloud data migration',
+              'RevenueCat subscription system (monthly/yearly plans)',
+              'Push notifications for daily reminders',
+              'Weekly streak tracking for engagement',
+              'Personal journal data export',
+              'Affiliate marketing integration',
+            ]}
+            challenges={[
+              "Seamless local-to-cloud migration: Users' journal data syncs to Firebase when creating an account",
+              'Subscription architecture: Full RevenueCat integration for cross-platform payment handling',
+              'User engagement flow: Designed intuitive UI and interaction patterns to create a calm, focused experience',
+              'Retention mechanics: Weekly streak system and push notifications to build daily habits',
+            ]}
+            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat', 'AI-assisted coding']}
+            appStoreUrl="https://apps.apple.com/us/app/dailyintentions/id6754063190"
+            playStoreUrl="https://play.google.com/store/apps/details?id=com.alexprv.dailyintentions"
+            screenshots={[]}
+          />
 
-              <div className="mb-8">
-                <h4 className="text-sm font-medium text-black mb-3">Main features</h4>
-                <ul className="space-y-1 text-gray-600">
-                  <li>• Firebase authentication</li>
-                  <li>• 5-leaderboard system (4 game modes + global player rankings)</li>
-                  <li>• AdMob rewarded video ads for extra lives</li>
-                  <li>• Real-time score synchronization</li>
-                  <li>• Multi-touch gesture handling</li>
-                </ul>
-              </div>
-
-              <div className="mb-8">
-                <h4 className="text-sm font-medium text-black mb-3">Key challenges tackled</h4>
-                <ul className="space-y-1 text-gray-600">
-                  <li>• Cross-leaderboard score aggregation: Player rankings update dynamically across all game modes</li>
-                  <li>• Firebase optimization: 5-minute cache refresh to prevent write conflicts and stay within free tier</li>
-                  <li>• Performance: 60fps gameplay with instant haptic feedback on multi-touch interactions</li>
-                  <li>• Scalable architecture: Built for 100-1,000 concurrent players, designed to scale to 10,000+</li>
-                </ul>
-              </div>
-
-              <div className="mb-8">
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">React Native</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Expo</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">TypeScript</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firebase</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AdMob</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AI-assisted coding</span>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <a
-                  href="https://apps.apple.com/th/app/speeddots-how-fast-are-you/id6755077344?l=th"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors"
-                >
-                  App Store
-                </a>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.alexprv.speeddots"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
-                >
-                  Google Play
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* DailyIntention */}
-        <div className="mb-24">
-          <div className="grid md:grid-cols-2 gap-20">
-            <div className="max-w-xl">
-              <div className="flex items-center gap-4 mb-2">
-                <Image
-                  src="/icons/DailyIntentions_appIcon_android.png"
-                  alt="DailyIntention icon"
-                  width={64}
-                  height={64}
-                  className="rounded-2xl"
-                />
-                <div>
-                  <h3 className="text-2xl font-medium text-black">DailyIntention</h3>
-                  <p className="text-sm text-gray-400">6-8 weeks</p>
-                </div>
-              </div>
-              <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-                Manifestation and intention-setting app helping users align daily actions with long-term goals through guided prompts and journaling.
-              </p>
-
-              <div className="mb-8">
-                <h4 className="text-sm font-medium text-black mb-3">Main features</h4>
-                <ul className="space-y-1 text-gray-600">
-                  <li>• Firebase authentication with local-to-cloud data migration</li>
-                  <li>• RevenueCat subscription system (monthly/yearly plans)</li>
-                  <li>• Push notifications for daily reminders</li>
-                  <li>• Weekly streak tracking for engagement</li>
-                  <li>• Personal journal data export</li>
-                  <li>• Affiliate marketing integration</li>
-                </ul>
-              </div>
-
-              <div className="mb-8">
-                <h4 className="text-sm font-medium text-black mb-3">Key challenges tackled</h4>
-                <ul className="space-y-1 text-gray-600">
-                  <li>• Seamless local-to-cloud migration: Users' journal data syncs to Firebase when creating an account</li>
-                  <li>• Subscription architecture: Full RevenueCat integration for cross-platform payment handling</li>
-                  <li>• User engagement flow: Designed intuitive UI and interaction patterns to create a calm, focused experience</li>
-                  <li>• Retention mechanics: Weekly streak system and push notifications to build daily habits</li>
-                </ul>
-              </div>
-
-              <div className="mb-8">
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">React Native</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Expo</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">TypeScript</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">Firebase</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">RevenueCat</span>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs">AI-assisted coding</span>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <a
-                  href="https://apps.apple.com/us/app/dailyintentions/id6754063190"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors"
-                >
-                  App Store
-                </a>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.alexprv.dailyintentions"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
-                >
-                  Google Play
-                </a>
-              </div>
-            </div>
-
-            {/* Screenshot placeholder */}
-            <div className="flex items-center justify-center">
-              <div className="w-64 h-[500px] bg-gray-100 rounded-3xl flex items-center justify-center border border-gray-200">
-                <div className="text-center px-8">
-                  <p className="text-gray-400 text-sm">Screenshot placeholder</p>
-                  <p className="text-gray-300 text-xs mt-2">Add your screenshot to<br />public/screenshots/</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <AppCard
+            icon="/icons/Avid Icon.png"
+            name="Avid"
+            category="Productivity"
+            timeline="4-6 weeks"
+            description="Minimalistic wellness and goal tracker helping users build sustainable healthy habits through daily to-dos, meal planning, and gamification with streaks and achievement badges."
+            features={[
+              'Daily to-do tracking with calendar view',
+              'Meal planning and calorie tracking',
+              'Weekly routines that auto-populate calendar',
+              'Long-term goal setting and progress tracking',
+              'Gamification with 12+ unlockable badges and achievements',
+              'iOS home and lock screen widgets',
+              'Firebase authentication with Apple Sign In',
+              'Real-time cloud sync across devices',
+              'RevenueCat subscription with trial period',
+            ]}
+            challenges={[
+              'iOS Widget development: Building interactive native widgets with React Native using custom plugins',
+              'Complex streak logic: Date-based calculations for maintaining and resetting user streaks',
+              'Dynamic badge system: Conditional achievement unlocking based on multiple criteria (perfect weeks, task counts, goal completion)',
+              'Data persistence architecture: Syncing between local AsyncStorage and Firebase cloud storage with offline support',
+              'Apple Sign In OAuth: Integrating native Apple authentication for iOS',
+            ]}
+            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat', 'iOS Widgets', 'AI-assisted coding']}
+            screenshots={[
+              '/screenshots/avid/1.png',
+              '/screenshots/avid/2.png',
+              '/screenshots/avid/3.png',
+              '/screenshots/avid/4.png',
+              '/screenshots/avid/5.png',
+            ]}
+            comingSoon={true}
+          />
         </div>
       </section>
 
