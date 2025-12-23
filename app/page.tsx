@@ -239,8 +239,14 @@ export default function Home() {
       {/* Simple Header */}
       <header className="border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
-          <Link href="/" className="text-xl font-medium text-black">
-            Elex Creatives
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/icons/ElexCreatives Logo.png"
+              alt="Elex Creatives"
+              width={180}
+              height={40}
+              className="h-10 w-auto"
+            />
           </Link>
           <nav className="flex gap-8 text-sm">
             <Link href="#services" className="text-gray-600 hover:text-black transition-colors">
@@ -405,7 +411,13 @@ export default function Home() {
             techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'AdMob', 'AI-assisted coding']}
             appStoreUrl="https://apps.apple.com/th/app/speeddots-how-fast-are-you/id6755077344?l=th"
             playStoreUrl="https://play.google.com/store/apps/details?id=com.alexprv.speeddots"
-            screenshots={[]}
+            screenshots={[
+              '/screenshots/SpeedDots/SpeedDots - 1.png',
+              '/screenshots/SpeedDots/SpeedDots - 2.png',
+              '/screenshots/SpeedDots/SpeedDots - 3.png',
+              '/screenshots/SpeedDots/SpeedDots - 4.png',
+              '/screenshots/SpeedDots/SpeedDots - 5.png',
+            ]}
           />
 
           <AppCard
@@ -431,7 +443,13 @@ export default function Home() {
             techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat', 'AI-assisted coding']}
             appStoreUrl="https://apps.apple.com/us/app/dailyintentions/id6754063190"
             playStoreUrl="https://play.google.com/store/apps/details?id=com.alexprv.dailyintentions"
-            screenshots={[]}
+            screenshots={[
+              '/screenshots/DailyIntentions/DailyIntentions - 1.jpg',
+              '/screenshots/DailyIntentions/DailyIntentions - 2.jpg',
+              '/screenshots/DailyIntentions/DailyIntentions - 3.jpg',
+              '/screenshots/DailyIntentions/DailyIntentions - 4.jpg',
+              '/screenshots/DailyIntentions/DailyIntentions - 5.jpg',
+            ]}
           />
 
           <AppCard
