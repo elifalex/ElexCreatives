@@ -323,6 +323,13 @@ export default function Home() {
               <div className="flex items-start gap-3">
                 <span className="text-black mt-1">→</span>
                 <div>
+                  <p className="text-sm font-medium text-black">API Integrations</p>
+                  <p className="text-xs text-gray-600">OpenAI, Firebase, Google Cloud, RevenueCat, and more</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-black mt-1">→</span>
+                <div>
                   <p className="text-sm font-medium text-black">App Store Launch</p>
                   <p className="text-xs text-gray-600">Full deployment to iOS & Android</p>
                 </div>
