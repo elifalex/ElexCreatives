@@ -163,6 +163,8 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % screenshots.length);
@@ -174,10 +176,15 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
+    setIsDragging(true);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    if (!touchStart) return;
+    const currentTouch = e.targetTouches[0].clientX;
+    const diff = currentTouch - touchStart;
+    setDragOffset(diff);
+    setTouchEnd(currentTouch);
   };
 
   const handleTouchEnd = () => {
@@ -196,23 +203,33 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
 
     setTouchStart(0);
     setTouchEnd(0);
+    setIsDragging(false);
+    setDragOffset(0);
   };
 
   return (
     <div className="relative">
       <div
-        className="w-64 h-[500px] bg-gray-100 rounded-3xl overflow-hidden border border-gray-200 touch-pan-y select-none"
+        className="w-64 h-[540px] bg-gray-100 rounded-3xl overflow-hidden border border-gray-200 touch-pan-y select-none"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <Image
-          src={screenshots[currentIndex]}
-          alt={`${appName} screenshot ${currentIndex + 1}`}
-          width={256}
-          height={500}
-          className="w-full h-full object-cover pointer-events-none"
-        />
+        <div
+          className="h-full flex items-center justify-center transition-transform duration-300 ease-out p-4"
+          style={{
+            transform: isDragging ? `translateX(${dragOffset}px)` : 'translateX(0)',
+            transition: isDragging ? 'none' : 'transform 0.3s ease-out'
+          }}
+        >
+          <Image
+            src={screenshots[currentIndex]}
+            alt={`${appName} screenshot ${currentIndex + 1}`}
+            width={256}
+            height={500}
+            className="w-full h-full object-contain pointer-events-none"
+          />
+        </div>
       </div>
 
       {screenshots.length > 1 && (
@@ -279,9 +296,9 @@ export default function Home() {
             <Image
               src="/icons/ElexCreatives Logo.png"
               alt="Elex Creatives"
-              width={180}
-              height={40}
-              className="h-10 w-auto"
+              width={360}
+              height={80}
+              className="h-20 w-auto"
             />
           </Link>
           <nav className="flex gap-8 text-sm">
