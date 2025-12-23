@@ -215,8 +215,11 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
     setDragOffset(0);
   };
 
+  const imageWidth = isMobile ? 200 : 256;
+  const gap = isMobile ? 16 : 24;
+
   return (
-    <div className="relative w-full max-w-md mx-auto overflow-hidden">
+    <div className="relative w-full overflow-hidden">
       <div
         className="touch-pan-y select-none py-4"
         onTouchStart={handleTouchStart}
@@ -224,16 +227,16 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
         onTouchEnd={handleTouchEnd}
       >
         <div
-          className="flex gap-4 sm:gap-6 transition-transform duration-300 ease-out px-4 sm:px-12"
+          className="flex gap-4 sm:gap-6 transition-transform duration-300 ease-out"
           style={{
-            transform: `translateX(calc(-${currentIndex * 100}% - ${currentIndex * (isMobile ? 16 : 24)}px + ${isDragging ? dragOffset : 0}px))`,
+            transform: `translateX(calc(50% - ${imageWidth / 2}px - ${currentIndex * (imageWidth + gap)}px + ${isDragging ? dragOffset : 0}px))`,
             transition: isDragging ? 'none' : 'transform 0.3s ease-out'
           }}
         >
           {screenshots.map((screenshot, index) => (
             <div
               key={index}
-              className={`flex-shrink-0 w-[calc(100vw-2rem)] sm:w-64 max-w-[280px] transition-all duration-300 ${
+              className={`flex-shrink-0 w-[200px] sm:w-64 transition-all duration-300 ${
                 index === currentIndex ? 'opacity-100 scale-100' : 'opacity-30 scale-95'
               }`}
             >
