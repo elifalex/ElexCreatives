@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import emailjs from '@emailjs/browser';
 
 interface AppCardProps {
   icon: string;
@@ -308,19 +309,65 @@ export default function Home() {
     email: "",
     message: "",
   });
-  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [expandedApp, setExpandedApp] = useState<string | null>(null);
+  const [notification, setNotification] = useState<{show: boolean, type: 'success' | 'error', message: string}>({
+    show: false,
+    type: 'success',
+    message: ''
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus("sending");
 
-    // Replace with actual form handling
-    setTimeout(() => {
+    try {
+      // EmailJS configuration - REPLACE THESE WITH YOUR ACTUAL VALUES
+      // See EMAILJS_SETUP.md for detailed setup instructions
+      const serviceId = 'YOUR_SERVICE_ID';
+      const templateId = 'YOUR_TEMPLATE_ID';  // Template for email to elexcreatives@gmail.com
+      const autoReplyTemplateId = 'YOUR_AUTOREPLY_TEMPLATE_ID';  // Template for confirmation to user
+      const publicKey = 'YOUR_PUBLIC_KEY';
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'elexcreatives@gmail.com',
+      };
+
+      // Send email to elexcreatives@gmail.com
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      // Send auto-reply confirmation to user
+      await emailjs.send(serviceId, autoReplyTemplateId, templateParams, publicKey);
+
       setFormStatus("sent");
       setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setFormStatus("idle"), 3000);
-    }, 1000);
+      setNotification({
+        show: true,
+        type: 'success',
+        message: 'Thank you! Your message has been sent successfully. We\'ll get back to you shortly.'
+      });
+
+      setTimeout(() => {
+        setFormStatus("idle");
+        setNotification({show: false, type: 'success', message: ''});
+      }, 5000);
+    } catch (error) {
+      console.error('Email error:', error);
+      setFormStatus("error");
+      setNotification({
+        show: true,
+        type: 'error',
+        message: 'Oops! Something went wrong. Please try again or email us directly at elexcreatives@gmail.com'
+      });
+
+      setTimeout(() => {
+        setFormStatus("idle");
+        setNotification({show: false, type: 'error', message: ''});
+      }, 5000);
+    }
   };
 
   const scrollToTop = () => {
@@ -329,6 +376,22 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Notification Toast */}
+      {notification.show && (
+        <div className={`fixed top-24 right-4 z-50 max-w-md p-4 rounded-lg shadow-lg border-2 transform transition-all duration-300 ${
+          notification.type === 'success'
+            ? 'bg-green-50 border-green-500 text-green-800'
+            : 'bg-red-50 border-red-500 text-red-800'
+        }`}>
+          <div className="flex items-start gap-3">
+            <span className="text-2xl">
+              {notification.type === 'success' ? '✓' : '✕'}
+            </span>
+            <p className="text-sm leading-relaxed">{notification.message}</p>
+          </div>
+        </div>
+      )}
+
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-6 flex items-center justify-between gap-4">
@@ -705,7 +768,7 @@ export default function Home() {
               disabled={formStatus === "sending"}
               className="w-full px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors disabled:opacity-50"
             >
-              {formStatus === "sending" ? "Sending..." : formStatus === "sent" ? "Sent" : "Send"}
+              {formStatus === "sending" ? "Sending..." : formStatus === "sent" ? "Sent ✓" : formStatus === "error" ? "Try Again" : "Send Message"}
             </button>
           </form>
         </div>
