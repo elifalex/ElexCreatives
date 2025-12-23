@@ -208,27 +208,38 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative w-full overflow-visible">
       <div
-        className="w-64 h-[540px] bg-gray-100 rounded-3xl overflow-hidden border border-gray-200 touch-pan-y select-none"
+        className="touch-pan-y select-none py-4 px-12 overflow-hidden"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         <div
-          className="h-full flex items-center justify-center transition-transform duration-300 ease-out p-4"
+          className="flex gap-6 transition-transform duration-300 ease-out"
           style={{
-            transform: isDragging ? `translateX(${dragOffset}px)` : 'translateX(0)',
+            transform: `translateX(calc(50% - ${currentIndex * (256 + 24)}px - 128px + ${isDragging ? dragOffset : 0}px))`,
             transition: isDragging ? 'none' : 'transform 0.3s ease-out'
           }}
         >
-          <Image
-            src={screenshots[currentIndex]}
-            alt={`${appName} screenshot ${currentIndex + 1}`}
-            width={256}
-            height={500}
-            className="w-full h-full object-contain pointer-events-none"
-          />
+          {screenshots.map((screenshot, index) => (
+            <div
+              key={index}
+              className={`flex-shrink-0 transition-all duration-300 ${
+                index === currentIndex ? 'opacity-100 scale-100' : 'opacity-40 scale-90'
+              }`}
+            >
+              <div className="w-64 h-[540px] bg-gray-100 rounded-3xl overflow-hidden border border-gray-200 p-4 flex items-center justify-center shadow-lg">
+                <Image
+                  src={screenshot}
+                  alt={`${appName} screenshot ${index + 1}`}
+                  width={256}
+                  height={500}
+                  className="w-full h-full object-contain pointer-events-none"
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -236,24 +247,24 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
         <>
           <button
             onClick={prevSlide}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center transition-colors z-10 shadow-lg"
             aria-label="Previous screenshot"
           >
             ←
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/60 hover:bg-black/80 text-white rounded-full flex items-center justify-center transition-colors z-10 shadow-lg"
             aria-label="Next screenshot"
           >
             →
           </button>
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 bg-black/60 px-3 py-2 rounded-full">
             {screenshots.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                className={`w-2 h-2 rounded-full transition-colors ${
                   index === currentIndex ? 'bg-white' : 'bg-white/40'
                 }`}
                 aria-label={`Go to screenshot ${index + 1}`}
