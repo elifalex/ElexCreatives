@@ -39,7 +39,7 @@ function AppCard({
 }: AppCardProps) {
   return (
     <div
-      className={`bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer ${
+      className={`bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer overflow-hidden ${
         isExpanded ? 'ring-2 ring-black/5' : ''
       }`}
       onClick={onToggle}
@@ -76,10 +76,10 @@ function AppCard({
 
       {/* Expanded content */}
       {isExpanded && (
-        <div className="pt-4 border-t border-gray-200/50 space-y-6" onClick={(e) => e.stopPropagation()}>
+        <div className="pt-4 border-t border-gray-200/50 space-y-6 overflow-x-hidden" onClick={(e) => e.stopPropagation()}>
           {/* Screenshots */}
           {screenshots.length > 0 && (
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-center mb-6 w-full">
               <ScreenshotCarousel appName={name} screenshots={screenshots} />
             </div>
           )}
@@ -216,25 +216,25 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
   };
 
   return (
-    <div className="relative w-full overflow-visible">
+    <div className="relative w-full max-w-md mx-auto overflow-hidden">
       <div
-        className="touch-pan-y select-none py-4 sm:px-12 overflow-hidden"
+        className="touch-pan-y select-none py-4"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         <div
-          className="flex gap-4 sm:gap-6 transition-transform duration-300 ease-out"
+          className="flex gap-4 sm:gap-6 transition-transform duration-300 ease-out px-4 sm:px-12"
           style={{
-            transform: `translateX(calc(50% - ${currentIndex * 100}% - ${currentIndex * (isMobile ? 16 : 24)}px + ${isDragging ? dragOffset : 0}px))`,
+            transform: `translateX(calc(-${currentIndex * 100}% - ${currentIndex * (isMobile ? 16 : 24)}px + ${isDragging ? dragOffset : 0}px))`,
             transition: isDragging ? 'none' : 'transform 0.3s ease-out'
           }}
         >
           {screenshots.map((screenshot, index) => (
             <div
               key={index}
-              className={`flex-shrink-0 w-[200px] sm:w-64 transition-all duration-300 ${
-                index === currentIndex ? 'opacity-100 scale-100' : 'opacity-30 scale-90'
+              className={`flex-shrink-0 w-[calc(100vw-2rem)] sm:w-64 max-w-[280px] transition-all duration-300 ${
+                index === currentIndex ? 'opacity-100 scale-100' : 'opacity-30 scale-95'
               }`}
             >
               <Image
