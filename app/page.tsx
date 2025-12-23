@@ -17,6 +17,8 @@ interface AppCardProps {
   playStoreUrl?: string;
   screenshots: string[];
   comingSoon?: boolean;
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
 function AppCard({
@@ -31,16 +33,16 @@ function AppCard({
   appStoreUrl,
   playStoreUrl,
   screenshots,
-  comingSoon
+  comingSoon,
+  isExpanded,
+  onToggle
 }: AppCardProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
   return (
     <div
       className={`bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer ${
         isExpanded ? 'ring-2 ring-black/5' : ''
       }`}
-      onClick={() => setIsExpanded(!isExpanded)}
+      onClick={onToggle}
     >
       {/* Header */}
       <div className="flex items-start gap-4 mb-4">
@@ -159,6 +161,8 @@ interface ScreenshotCarouselProps {
 
 function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % screenshots.length);
@@ -168,15 +172,46 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
     setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    }
+    if (isRightSwipe) {
+      prevSlide();
+    }
+
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
   return (
     <div className="relative">
-      <div className="w-64 h-[500px] bg-gray-100 rounded-3xl overflow-hidden border border-gray-200">
+      <div
+        className="w-64 h-[500px] bg-gray-100 rounded-3xl overflow-hidden border border-gray-200 touch-pan-y select-none"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <Image
           src={screenshots[currentIndex]}
           alt={`${appName} screenshot ${currentIndex + 1}`}
           width={256}
           height={500}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover pointer-events-none"
         />
       </div>
 
@@ -221,6 +256,7 @@ export default function Home() {
     message: "",
   });
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [expandedApp, setExpandedApp] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -418,6 +454,8 @@ export default function Home() {
               '/screenshots/SpeedDots/SpeedDots - 4.png',
               '/screenshots/SpeedDots/SpeedDots - 5.png',
             ]}
+            isExpanded={expandedApp === 'SpeedDots'}
+            onToggle={() => setExpandedApp(expandedApp === 'SpeedDots' ? null : 'SpeedDots')}
           />
 
           <AppCard
@@ -450,6 +488,8 @@ export default function Home() {
               '/screenshots/DailyIntentions/DailyIntentions - 4.jpg',
               '/screenshots/DailyIntentions/DailyIntentions - 5.jpg',
             ]}
+            isExpanded={expandedApp === 'DailyIntention'}
+            onToggle={() => setExpandedApp(expandedApp === 'DailyIntention' ? null : 'DailyIntention')}
           />
 
           <AppCard
@@ -485,6 +525,8 @@ export default function Home() {
               '/screenshots/avid/5.png',
             ]}
             comingSoon={true}
+            isExpanded={expandedApp === 'Avid'}
+            onToggle={() => setExpandedApp(expandedApp === 'Avid' ? null : 'Avid')}
           />
         </div>
       </section>
