@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface AppCardProps {
   icon: string;
@@ -37,8 +37,24 @@ function AppCard({
   isExpanded,
   onToggle
 }: AppCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isExpanded && cardRef.current) {
+      // Wait for expansion animation, then scroll
+      setTimeout(() => {
+        const headerHeight = 80; // Account for sticky header
+        const cardTop = cardRef.current!.getBoundingClientRect().top + window.scrollY;
+        const scrollTo = cardTop - headerHeight - 20; // 20px padding from header
+
+        window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+      }, 100);
+    }
+  }, [isExpanded]);
+
   return (
     <div
+      ref={cardRef}
       className={`bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer overflow-hidden ${
         isExpanded ? 'ring-2 ring-black/5' : ''
       }`}
@@ -307,31 +323,39 @@ export default function Home() {
     }, 1000);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Simple Header */}
-      <header className="border-b border-gray-200">
-        <div className="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center">
+      {/* Sticky Header */}
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-6 flex items-center justify-between gap-4">
+          <button
+            onClick={scrollToTop}
+            className="flex items-center cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0"
+            aria-label="Scroll to top"
+          >
             <Image
               src="/icons/ElexCreatives Logo.png"
               alt="Elex Creatives"
               width={360}
               height={80}
-              className="h-20 w-auto"
+              className="h-12 sm:h-20 w-auto"
             />
-          </Link>
-          <nav className="flex gap-8 text-sm">
-            <Link href="#services" className="text-gray-600 hover:text-black transition-colors">
+          </button>
+          <nav className="flex gap-3 sm:gap-8 text-xs sm:text-sm">
+            <Link href="#services" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap">
               Services
             </Link>
-            <Link href="#apps" className="text-gray-600 hover:text-black transition-colors">
+            <Link href="#apps" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap">
               Apps
             </Link>
-            <Link href="#about" className="text-gray-600 hover:text-black transition-colors">
+            <Link href="#about" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap">
               About
             </Link>
-            <Link href="#contact" className="text-gray-600 hover:text-black transition-colors">
+            <Link href="#contact" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap">
               Contact
             </Link>
           </nav>
