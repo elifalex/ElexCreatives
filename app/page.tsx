@@ -266,8 +266,8 @@ export default function Home() {
             Turn-key mobile applications.<br />From idea to App Store.
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed mb-8">
-            We're Alex and Elif—a French-Turkish engineering duo delivering complete React Native solutions.
-            Whether you're starting from scratch or need to revamp existing code, we handle it all.
+            Founded by a duo of engineers in London, ElexCreatives is focused on delivering professional React Native solutions.
+            We combine our experience and agility to offer services from blank page design to auditing existing code.
           </p>
           <div className="flex gap-4">
             <Link
@@ -470,19 +470,19 @@ export default function Home() {
 
         <div className="max-w-2xl">
           <p className="text-xl text-gray-600 leading-relaxed mb-6">
-            We're Alex and Elif. A French and Turkish engineering duo building mobile apps full-time.
+            ElexCreatives is founded by Elif and Alex, a French and Turkish engineering duo helping privates and professionals building mobile apps.
           </p>
           <p className="text-gray-600 leading-relaxed mb-6">
-            We started working together because we both care about the same things: clear design,
-            clean code, and apps that people actually want to use. No fluff, no over-engineering.
+            We started working together as we both take pride in turning idea's into real-world products with clear design,
+            clean code, and apps that people actually want to use.
           </p>
           <p className="text-gray-600 leading-relaxed mb-6">
             We work between London and remote, building React Native apps from concept to launch.
-            Every project gets the same attention—obsessive focus on simplicity and function.
+            Every project gets the same attention and focus on simplicity and functionality.
           </p>
           <p className="text-gray-600 leading-relaxed">
-            If you're working on something and need people who understand both the technical and
-            design side, we're probably a good fit.
+            If you're working on a project and need people who are agile and understand both the technical and
+            design side, ElexCreatives is probably a good fit.
           </p>
         </div>
 
@@ -492,13 +492,13 @@ export default function Home() {
             <h3 className="text-sm font-medium text-black mb-3">Development</h3>
             <p className="text-gray-600 text-sm leading-relaxed">
               iOS and Android apps with React Native. Clean architecture, tested code,
-              and deployment to both stores.
+              and succesfull deployment to both stores.
             </p>
           </div>
           <div>
             <h3 className="text-sm font-medium text-black mb-3">Design</h3>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Interface design focused on clarity and usability. No trends for the sake of trends.
+              User interface and flow focused on working principles, clarity and usability.
             </p>
           </div>
           <div>
