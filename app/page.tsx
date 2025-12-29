@@ -377,16 +377,16 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Notification Toast */}
       {notification.show && (
-        <div className={`fixed top-24 right-4 z-50 max-w-md p-4 rounded-lg shadow-lg border-2 transform transition-all duration-300 ${
+        <div className={`fixed top-28 left-4 right-4 sm:top-32 sm:left-auto sm:right-8 sm:max-w-md z-[60] p-5 rounded-xl shadow-2xl border-2 transform transition-all duration-300 animate-slide-down ${
           notification.type === 'success'
-            ? 'bg-green-50 border-green-500 text-green-800'
-            : 'bg-red-50 border-red-500 text-red-800'
+            ? 'bg-green-50 border-green-600 text-green-900'
+            : 'bg-red-50 border-red-600 text-red-900'
         }`}>
           <div className="flex items-start gap-3">
-            <span className="text-2xl">
-              {notification.type === 'success' ? '✓' : '✕'}
+            <span className="text-3xl flex-shrink-0">
+              {notification.type === 'success' ? '✅' : '❌'}
             </span>
-            <p className="text-sm leading-relaxed">{notification.message}</p>
+            <p className="text-sm sm:text-base leading-relaxed font-medium">{notification.message}</p>
           </div>
         </div>
       )}
