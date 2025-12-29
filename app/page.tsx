@@ -335,11 +335,20 @@ export default function Home() {
         to_email: 'elexcreatives@gmail.com',
       };
 
-      // Send email to elexcreatives@gmail.com
+      // Send email to elexcreatives@gmail.com (this is the critical one)
+      console.log('Sending main email to elexcreatives@gmail.com...');
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.log('Main email sent successfully!');
 
-      // Send auto-reply confirmation to user
-      await emailjs.send(serviceId, autoReplyTemplateId, templateParams, publicKey);
+      // Try to send auto-reply - if this fails, still show success
+      try {
+        console.log('Sending auto-reply to user...');
+        await emailjs.send(serviceId, autoReplyTemplateId, templateParams, publicKey);
+        console.log('Auto-reply sent successfully!');
+      } catch (autoReplyError) {
+        console.warn('Auto-reply failed (but main email was sent):', autoReplyError);
+        // Don't throw - we still want to show success since main email worked
+      }
 
       setFormStatus("sent");
       setFormData({ name: "", email: "", message: "" });
@@ -354,7 +363,8 @@ export default function Home() {
         setNotification({show: false, type: 'success', message: ''});
       }, 5000);
     } catch (error) {
-      console.error('Email error:', error);
+      console.error('Email sending failed:', error);
+      console.error('Error details:', JSON.stringify(error, null, 2));
       setFormStatus("error");
       setNotification({
         show: true,
