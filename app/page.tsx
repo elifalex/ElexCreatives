@@ -581,7 +581,7 @@ export default function Home() {
               'Performance: 60fps gameplay with instant haptic feedback on multi-touch interactions',
               'Scalable architecture: Built for 100-1,000 concurrent players, designed to scale to 10,000+',
             ]}
-            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'AdMob', 'AI-assisted coding']}
+            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'AdMob']}
             appStoreUrl="https://apps.apple.com/th/app/speeddots-how-fast-are-you/id6755077344?l=th"
             playStoreUrl="https://play.google.com/store/apps/details?id=com.alexprv.speeddots"
             screenshots={[
@@ -615,7 +615,7 @@ export default function Home() {
               'User engagement flow: Designed intuitive UI and interaction patterns to create a calm, focused experience',
               'Retention mechanics: Weekly streak system and push notifications to build daily habits',
             ]}
-            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat', 'AI-assisted coding']}
+            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat']}
             appStoreUrl="https://apps.apple.com/us/app/dailyintentions/id6754063190"
             playStoreUrl="https://play.google.com/store/apps/details?id=com.alexprv.dailyintentions"
             screenshots={[
@@ -653,7 +653,7 @@ export default function Home() {
               'Data persistence architecture: Syncing between local AsyncStorage and Firebase cloud storage with offline support',
               'Apple Sign In OAuth: Integrating native Apple authentication for iOS',
             ]}
-            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat', 'iOS Widgets', 'AI-assisted coding']}
+            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat', 'iOS Widgets']}
             screenshots={[
               '/screenshots/avid/1.png',
               '/screenshots/avid/2.png',
@@ -804,7 +804,6 @@ export default function Home() {
                 className="w-full px-4 py-3 border border-gray-300 text-black focus:border-black focus:outline-none transition-colors bg-white"
               >
                 <option value="">Flexible</option>
-                <option value="ASAP (2-4 weeks)">ASAP (2-4 weeks)</option>
                 <option value="1-2 months">1-2 months</option>
                 <option value="2-3 months">2-3 months</option>
                 <option value="3+ months">3+ months</option>
