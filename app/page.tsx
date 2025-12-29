@@ -322,12 +322,11 @@ export default function Home() {
     setFormStatus("sending");
 
     try {
-      // EmailJS configuration - REPLACE THESE WITH YOUR ACTUAL VALUES
-      // See EMAILJS_SETUP.md for detailed setup instructions
-      const serviceId = 'YOUR_SERVICE_ID';
-      const templateId = 'YOUR_TEMPLATE_ID';  // Template for email to elexcreatives@gmail.com
-      const autoReplyTemplateId = 'YOUR_AUTOREPLY_TEMPLATE_ID';  // Template for confirmation to user
-      const publicKey = 'YOUR_PUBLIC_KEY';
+      // EmailJS configuration
+      const serviceId = 'service_kme1o1f';
+      const templateId = 'template_hnamvvk';  // Template for email to elexcreatives@gmail.com
+      const autoReplyTemplateId = 'template_p9o9po7';  // Template for confirmation to user
+      const publicKey = 'J85w1TmWlGhUcK7xU';
 
       const templateParams = {
         from_name: formData.name,
