@@ -307,6 +307,8 @@ export default function Home() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    projectType: "",
+    timeline: "",
     message: "",
   });
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -331,6 +333,8 @@ export default function Home() {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
+        project_type: formData.projectType,
+        timeline: formData.timeline,
         message: formData.message,
         to_email: 'elexcreatives@gmail.com',
       };
@@ -351,7 +355,7 @@ export default function Home() {
       }
 
       setFormStatus("sent");
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", projectType: "", timeline: "", message: "" });
       setNotification({
         show: true,
         type: 'success',
@@ -717,50 +721,101 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-16">
           <div>
             <p className="text-gray-600 mb-8 leading-relaxed">
-              Working on something? Need help with an app? Let's talk.
+              Got an app idea? Need to revamp existing code? Let's discuss your project.
             </p>
-            <div className="space-y-3">
-              <p className="text-sm text-gray-600">
-                Email:{" "}
-                <a href="mailto:elexcreatives@gmail.com" className="text-black hover:underline">
+            <div className="space-y-4 text-sm text-gray-600">
+              <p>
+                Fill out the form with details about your project, and we'll get back to you within 48 hours with a personalized proposal.
+              </p>
+              <p>
+                Or email us directly at:{" "}
+                <a href="mailto:elexcreatives@gmail.com" className="text-black hover:underline font-medium">
                   elexcreatives@gmail.com
                 </a>
               </p>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm text-gray-600 mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
-                className="w-full px-4 py-3 border border-gray-300 text-black focus:border-black focus:outline-none transition-colors"
-              />
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Name & Email - Side by side on desktop */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 text-black focus:border-black focus:outline-none transition-colors"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 text-black focus:border-black focus:outline-none transition-colors"
+                  placeholder="your@email.com"
+                />
+              </div>
             </div>
 
+            {/* Project Type */}
             <div>
-              <label htmlFor="email" className="block text-sm text-gray-600 mb-2">
-                Email
+              <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 mb-2">
+                What do you need? *
               </label>
-              <input
-                type="email"
-                id="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              <select
+                id="projectType"
+                value={formData.projectType}
+                onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                 required
-                className="w-full px-4 py-3 border border-gray-300 text-black focus:border-black focus:outline-none transition-colors"
-              />
+                className="w-full px-4 py-3 border border-gray-300 text-black focus:border-black focus:outline-none transition-colors bg-white"
+              >
+                <option value="">Select a service</option>
+                <option value="New App Development">New App Development (from idea to launch)</option>
+                <option value="Code Review & Audit">Code Review & Audit</option>
+                <option value="Code Revamp & Refactoring">Code Revamp & Refactoring</option>
+                <option value="Feature Addition">Feature Addition to Existing App</option>
+                <option value="Bug Fixes & Optimization">Bug Fixes & Optimization</option>
+                <option value="Not Sure / Consultation">Not Sure / Need Consultation</option>
+              </select>
             </div>
 
+            {/* Timeline */}
             <div>
-              <label htmlFor="message" className="block text-sm text-gray-600 mb-2">
-                Message
+              <label htmlFor="timeline" className="block text-sm font-medium text-gray-700 mb-2">
+                Timeline
+              </label>
+              <select
+                id="timeline"
+                value={formData.timeline}
+                onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                className="w-full px-4 py-3 border border-gray-300 text-black focus:border-black focus:outline-none transition-colors bg-white"
+              >
+                <option value="">Flexible</option>
+                <option value="ASAP (2-4 weeks)">ASAP (2-4 weeks)</option>
+                <option value="1-2 months">1-2 months</option>
+                <option value="2-3 months">2-3 months</option>
+                <option value="3+ months">3+ months</option>
+                <option value="Just exploring">Just exploring</option>
+              </select>
+            </div>
+
+            {/* Project Description */}
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                Tell us about your project *
               </label>
               <textarea
                 id="message"
@@ -769,16 +824,21 @@ export default function Home() {
                 required
                 rows={5}
                 className="w-full px-4 py-3 border border-gray-300 text-black focus:border-black focus:outline-none transition-colors resize-none"
+                placeholder="Describe your app idea, current challenges, or what you're looking to build..."
               />
             </div>
 
             <button
               type="submit"
               disabled={formStatus === "sending"}
-              className="w-full px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors disabled:opacity-50"
+              className="w-full px-6 py-4 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {formStatus === "sending" ? "Sending..." : formStatus === "sent" ? "Sent ✓" : formStatus === "error" ? "Try Again" : "Send Message"}
+              {formStatus === "sending" ? "Sending..." : formStatus === "sent" ? "Sent ✓" : formStatus === "error" ? "Try Again" : "Send Project Details"}
             </button>
+
+            <p className="text-xs text-gray-500 text-center">
+              We'll review your project and respond within 48 hours
+            </p>
           </form>
         </div>
       </section>
