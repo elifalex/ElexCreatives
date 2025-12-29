@@ -566,7 +566,7 @@ export default function Home() {
             icon="/icons/SpeedDots logo 1024x1024.png"
             name="SpeedDots"
             category="Gaming"
-            timeline="4-6 weeks"
+            timeline="6-8 weeks"
             description="Arcade game testing reaction speed with global competition. Players tap dots as fast as possible across multiple game modes."
             features={[
               'Firebase authentication',
@@ -633,7 +633,7 @@ export default function Home() {
             icon="/icons/Avid Icon.png"
             name="Avid"
             category="Productivity"
-            timeline="4-6 weeks"
+            timeline="6-8 weeks"
             description="Minimalistic wellness and goal tracker helping users build sustainable healthy habits through daily to-dos, meal planning, and gamification with streaks and achievement badges."
             features={[
               'Daily to-do tracking with calendar view',
