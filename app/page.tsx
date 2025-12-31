@@ -564,7 +564,7 @@ export default function Home() {
             {/* Animated Glass Icons - Second on mobile, first on desktop */}
             <div className="relative h-64 lg:h-[600px] flex items-center justify-center w-full order-2 lg:order-1 mt-8 lg:mt-0">
               {/* Floating App Icon 1 - DailyIntentions (Medium) */}
-              <div className="absolute top-10 left-4 lg:top-20 lg:left-10 animate-float" style={{ animationDelay: '0s' }}>
+              <div className="absolute top-4 left-2 lg:top-20 lg:left-10 animate-float" style={{ animationDelay: '0s' }}>
                 <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                   <Image
                     src="/icons/DailyIntentions_appIcon_android.png"
@@ -577,7 +577,7 @@ export default function Home() {
               </div>
 
               {/* Floating App Icon 2 - SpeedDots (Largest) */}
-              <div className="absolute top-20 right-8 lg:top-40 lg:right-16 animate-float" style={{ animationDelay: '1s' }}>
+              <div className="absolute top-2 right-4 lg:top-40 lg:right-16 animate-float" style={{ animationDelay: '1s' }}>
                 <div className="w-20 h-20 lg:w-32 lg:h-32 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                   <Image
                     src="/icons/SpeedDots logo 1024x1024.png"
@@ -590,7 +590,7 @@ export default function Home() {
               </div>
 
               {/* Floating App Icon 3 - Avid (Large) */}
-              <div className="absolute bottom-16 left-12 lg:bottom-32 lg:left-20 animate-float" style={{ animationDelay: '2s' }}>
+              <div className="absolute bottom-4 left-4 lg:bottom-32 lg:left-20 animate-float" style={{ animationDelay: '2s' }}>
                 <div className="w-18 h-18 lg:w-28 lg:h-28 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                   <Image
                     src="/icons/Avid Icon.png"
@@ -603,7 +603,7 @@ export default function Home() {
               </div>
 
               {/* Floating App Icon 4 - App Store (Small) */}
-              <div className="absolute top-32 left-16 lg:top-60 lg:left-40 animate-float" style={{ animationDelay: '3s' }}>
+              <div className="absolute top-28 left-1/2 -translate-x-1/2 lg:top-60 lg:left-20 lg:translate-x-0 animate-float" style={{ animationDelay: '3s' }}>
                 <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                   <Image
                     src="/icons/AppleStore-icon.png"
@@ -616,7 +616,7 @@ export default function Home() {
               </div>
 
               {/* Floating App Icon 5 - Play Store (Small) */}
-              <div className="absolute bottom-20 right-12 lg:bottom-40 lg:right-20 animate-float" style={{ animationDelay: '4s' }}>
+              <div className="absolute bottom-2 right-2 lg:bottom-40 lg:right-20 animate-float" style={{ animationDelay: '4s' }}>
                 <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                   <Image
                     src="/icons/PlayStore.png"
@@ -629,9 +629,9 @@ export default function Home() {
               </div>
 
               {/* Floating Decorative Orbs */}
-              <div className="absolute top-6 right-16 lg:top-10 lg:right-32 w-10 h-10 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br from-blue-400/30 to-purple-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '0.5s' }}></div>
-              <div className="absolute bottom-10 right-4 lg:bottom-20 lg:right-8 w-12 h-12 lg:w-20 lg:h-20 rounded-full bg-gradient-to-br from-pink-400/30 to-orange-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '1.5s' }}></div>
-              <div className="absolute top-1/2 left-20 lg:left-32 w-8 h-8 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-green-400/30 to-teal-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '2.5s' }}></div>
+              <div className="absolute top-20 right-20 lg:top-10 lg:right-32 w-8 h-8 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br from-blue-400/30 to-purple-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute bottom-24 right-16 lg:bottom-20 lg:right-8 w-10 h-10 lg:w-20 lg:h-20 rounded-full bg-gradient-to-br from-pink-400/30 to-orange-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '1.5s' }}></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-32 w-8 h-8 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-green-400/30 to-teal-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '2.5s' }}></div>
             </div>
           </div>
         </div>
