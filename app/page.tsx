@@ -549,7 +549,7 @@ export default function Home() {
             {/* Text Content - First on mobile, second on desktop */}
             <div className="text-left flex lg:justify-center order-1 lg:order-2 w-full mb-12 lg:mb-0">
               <div className="max-w-2xl">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-light text-black mb-6 leading-tight tracking-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-light text-black mb-6 leading-tight tracking-tight">
                   <span className="whitespace-nowrap">From Idea to App Stores</span><br />
                   <span className="font-bold">In Weeks</span>
                 </h1>
@@ -563,7 +563,7 @@ export default function Home() {
 
             {/* Animated Glass Icons - Second on mobile, first on desktop */}
             <div className="relative h-64 lg:h-[600px] flex items-center justify-center w-full order-2 lg:order-1 mt-8 lg:mt-0">
-              {/* Floating App Icon 1 - DailyIntentions */}
+              {/* Floating App Icon 1 - DailyIntentions (Medium) */}
               <div className="absolute top-10 left-4 lg:top-20 lg:left-10 animate-float" style={{ animationDelay: '0s' }}>
                 <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                   <Image
@@ -576,28 +576,54 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Floating App Icon 2 - SpeedDots */}
+              {/* Floating App Icon 2 - SpeedDots (Largest) */}
               <div className="absolute top-20 right-8 lg:top-40 lg:right-16 animate-float" style={{ animationDelay: '1s' }}>
-                <div className="w-20 h-20 lg:w-28 lg:h-28 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                <div className="w-20 h-20 lg:w-32 lg:h-32 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                   <Image
                     src="/icons/SpeedDots logo 1024x1024.png"
                     alt="SpeedDots"
                     width={96}
                     height={96}
-                    className="rounded-xl lg:rounded-2xl w-16 h-16 lg:w-24 lg:h-24"
+                    className="rounded-xl lg:rounded-2xl w-16 h-16 lg:w-28 lg:h-28"
                   />
                 </div>
               </div>
 
-              {/* Floating App Icon 3 - Avid */}
+              {/* Floating App Icon 3 - Avid (Large) */}
               <div className="absolute bottom-16 left-12 lg:bottom-32 lg:left-20 animate-float" style={{ animationDelay: '2s' }}>
-                <div className="w-20 h-20 lg:w-32 lg:h-32 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                <div className="w-18 h-18 lg:w-28 lg:h-28 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                   <Image
                     src="/icons/Avid Icon.png"
                     alt="Avid"
                     width={112}
                     height={112}
-                    className="rounded-xl lg:rounded-2xl w-16 h-16 lg:w-28 lg:h-28"
+                    className="rounded-xl lg:rounded-2xl w-16 h-16 lg:w-24 lg:h-24"
+                  />
+                </div>
+              </div>
+
+              {/* Floating App Icon 4 - App Store (Small) */}
+              <div className="absolute top-32 left-16 lg:top-60 lg:left-40 animate-float" style={{ animationDelay: '3s' }}>
+                <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/icons/AppleStore icon.jfif"
+                    alt="App Store"
+                    width={64}
+                    height={64}
+                    className="rounded-lg lg:rounded-xl w-10 h-10 lg:w-14 lg:h-14"
+                  />
+                </div>
+              </div>
+
+              {/* Floating App Icon 5 - Play Store (Small) */}
+              <div className="absolute bottom-20 right-12 lg:bottom-40 lg:right-20 animate-float" style={{ animationDelay: '4s' }}>
+                <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/icons/PlayStore.png"
+                    alt="Play Store"
+                    width={64}
+                    height={64}
+                    className="rounded-lg lg:rounded-xl w-10 h-10 lg:w-14 lg:h-14"
                   />
                 </div>
               </div>
