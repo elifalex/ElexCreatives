@@ -443,22 +443,26 @@ export default function Home() {
     const handleTouchStart = (e: TouchEvent) => {
       if (window.scrollY < window.innerHeight) {
         let startY = e.touches[0].clientY;
+        let totalDiff = 0;
 
         const handleTouchMove = (moveEvent: TouchEvent) => {
           const currentY = moveEvent.touches[0].clientY;
           const diff = startY - currentY;
 
           if (diff > 0) { // Swiping up
-            setScrollAttempt(prev => prev + Math.abs(diff));
+            totalDiff += Math.abs(diff - totalDiff);
 
-            if (scrollAttempt > 100) {
+            // Prevent default scroll until threshold is reached
+            if (totalDiff < 100) {
+              moveEvent.preventDefault();
+            } else if (totalDiff >= 100) {
               setIsScrollLocked(false);
               const servicesSection = document.getElementById('services');
               if (servicesSection) {
                 const offset = servicesSection.offsetTop;
                 window.scrollTo({ top: offset, behavior: 'smooth' });
               }
-              setScrollAttempt(0);
+              document.removeEventListener('touchmove', handleTouchMove);
             }
           }
         };
@@ -469,7 +473,7 @@ export default function Home() {
           document.removeEventListener('touchend', handleTouchEnd);
         };
 
-        document.addEventListener('touchmove', handleTouchMove, { passive: true });
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
         document.addEventListener('touchend', handleTouchEnd);
       }
     };
@@ -543,7 +547,7 @@ export default function Home() {
           <div className="flex flex-col lg:grid lg:grid-cols-[35%_65%] gap-0 items-center">
 
             {/* Text Content - First on mobile, second on desktop */}
-            <div className="text-center lg:text-left flex justify-center order-1 lg:order-2 w-full">
+            <div className="text-left flex lg:justify-center order-1 lg:order-2 w-full mb-12 lg:mb-0">
               <div className="max-w-2xl">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-light text-black mb-6 leading-tight tracking-tight">
                   <span className="whitespace-nowrap">From Idea to App Stores</span><br />
@@ -551,14 +555,14 @@ export default function Home() {
                 </h1>
 
                 {/* Secondary USP */}
-                <p className="text-base sm:text-lg lg:text-xl font-medium text-gray-600 leading-relaxed mb-8">
+                <p className="text-base sm:text-lg lg:text-xl font-medium text-gray-600 leading-relaxed">
                   Fixed Price, Unlimited Revisions Until You Are Satisfied.
                 </p>
               </div>
             </div>
 
             {/* Animated Glass Icons - Second on mobile, first on desktop */}
-            <div className="relative h-64 lg:h-[600px] flex items-center justify-center w-full order-2 lg:order-1">
+            <div className="relative h-64 lg:h-[600px] flex items-center justify-center w-full order-2 lg:order-1 mt-8 lg:mt-0">
               {/* Floating App Icon 1 - DailyIntentions */}
               <div className="absolute top-10 left-4 lg:top-20 lg:left-10 animate-float" style={{ animationDelay: '0s' }}>
                 <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
