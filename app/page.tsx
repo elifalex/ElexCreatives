@@ -540,57 +540,10 @@ export default function Home() {
       {/* Hero - Bold USP - Isolated Full Screen */}
       <section className="w-full bg-gradient-to-br from-gray-50 via-white to-blue-50" style={{ height: '100vh', minHeight: '100vh', maxHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="grid lg:grid-cols-[35%_65%] gap-0 items-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-[35%_65%] gap-0 items-center">
 
-            {/* Left Side - Animated Glass Icons */}
-            <div className="relative h-96 lg:h-[600px] hidden lg:flex items-center justify-center">
-              {/* Floating App Icon 1 - DailyIntentions */}
-              <div className="absolute top-20 left-10 animate-float" style={{ animationDelay: '0s' }}>
-                <div className="w-24 h-24 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
-                  <Image
-                    src="/icons/DailyIntentions_appIcon_android.png"
-                    alt="DailyIntentions"
-                    width={80}
-                    height={80}
-                    className="rounded-2xl"
-                  />
-                </div>
-              </div>
-
-              {/* Floating App Icon 2 - SpeedDots */}
-              <div className="absolute top-40 right-16 animate-float" style={{ animationDelay: '1s' }}>
-                <div className="w-28 h-28 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
-                  <Image
-                    src="/icons/SpeedDots logo 1024x1024.png"
-                    alt="SpeedDots"
-                    width={96}
-                    height={96}
-                    className="rounded-2xl"
-                  />
-                </div>
-              </div>
-
-              {/* Floating App Icon 3 - Avid */}
-              <div className="absolute bottom-32 left-20 animate-float" style={{ animationDelay: '2s' }}>
-                <div className="w-32 h-32 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
-                  <Image
-                    src="/icons/Avid Icon.png"
-                    alt="Avid"
-                    width={112}
-                    height={112}
-                    className="rounded-2xl"
-                  />
-                </div>
-              </div>
-
-              {/* Floating Decorative Orbs */}
-              <div className="absolute top-10 right-32 w-16 h-16 rounded-full bg-gradient-to-br from-blue-400/30 to-purple-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '0.5s' }}></div>
-              <div className="absolute bottom-20 right-8 w-20 h-20 rounded-full bg-gradient-to-br from-pink-400/30 to-orange-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '1.5s' }}></div>
-              <div className="absolute top-1/2 left-32 w-12 h-12 rounded-full bg-gradient-to-br from-green-400/30 to-teal-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '2.5s' }}></div>
-            </div>
-
-            {/* Right Side - Text Content */}
-            <div className="text-left lg:text-left flex justify-center">
+            {/* Text Content - First on mobile, second on desktop */}
+            <div className="text-center lg:text-left flex justify-center order-1 lg:order-2 w-full">
               <div className="max-w-2xl">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-light text-black mb-6 leading-tight tracking-tight">
                   <span className="whitespace-nowrap">From Idea to App Stores</span><br />
@@ -602,6 +555,53 @@ export default function Home() {
                   Fixed Price, Unlimited Revisions Until You Are Satisfied.
                 </p>
               </div>
+            </div>
+
+            {/* Animated Glass Icons - Second on mobile, first on desktop */}
+            <div className="relative h-64 lg:h-[600px] flex items-center justify-center w-full order-2 lg:order-1">
+              {/* Floating App Icon 1 - DailyIntentions */}
+              <div className="absolute top-10 left-4 lg:top-20 lg:left-10 animate-float" style={{ animationDelay: '0s' }}>
+                <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/icons/DailyIntentions_appIcon_android.png"
+                    alt="DailyIntentions"
+                    width={80}
+                    height={80}
+                    className="rounded-xl lg:rounded-2xl w-14 h-14 lg:w-20 lg:h-20"
+                  />
+                </div>
+              </div>
+
+              {/* Floating App Icon 2 - SpeedDots */}
+              <div className="absolute top-20 right-8 lg:top-40 lg:right-16 animate-float" style={{ animationDelay: '1s' }}>
+                <div className="w-20 h-20 lg:w-28 lg:h-28 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/icons/SpeedDots logo 1024x1024.png"
+                    alt="SpeedDots"
+                    width={96}
+                    height={96}
+                    className="rounded-xl lg:rounded-2xl w-16 h-16 lg:w-24 lg:h-24"
+                  />
+                </div>
+              </div>
+
+              {/* Floating App Icon 3 - Avid */}
+              <div className="absolute bottom-16 left-12 lg:bottom-32 lg:left-20 animate-float" style={{ animationDelay: '2s' }}>
+                <div className="w-20 h-20 lg:w-32 lg:h-32 rounded-2xl lg:rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/icons/Avid Icon.png"
+                    alt="Avid"
+                    width={112}
+                    height={112}
+                    className="rounded-xl lg:rounded-2xl w-16 h-16 lg:w-28 lg:h-28"
+                  />
+                </div>
+              </div>
+
+              {/* Floating Decorative Orbs */}
+              <div className="absolute top-6 right-16 lg:top-10 lg:right-32 w-10 h-10 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br from-blue-400/30 to-purple-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute bottom-10 right-4 lg:bottom-20 lg:right-8 w-12 h-12 lg:w-20 lg:h-20 rounded-full bg-gradient-to-br from-pink-400/30 to-orange-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '1.5s' }}></div>
+              <div className="absolute top-1/2 left-20 lg:left-32 w-8 h-8 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-green-400/30 to-teal-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '2.5s' }}></div>
             </div>
           </div>
         </div>
