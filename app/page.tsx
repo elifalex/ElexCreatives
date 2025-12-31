@@ -606,7 +606,7 @@ export default function Home() {
               <div className="absolute top-32 left-16 lg:top-60 lg:left-40 animate-float" style={{ animationDelay: '3s' }}>
                 <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                   <Image
-                    src="/icons/AppleStore-icon.jfif"
+                    src="/icons/AppleStore-icon.png"
                     alt="App Store"
                     width={64}
                     height={64}
