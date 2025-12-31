@@ -524,17 +524,17 @@ export default function Home() {
               className="h-12 sm:h-20 w-auto"
             />
           </button>
-          <nav className="flex gap-3 sm:gap-8 text-xs sm:text-sm">
-            <Link href="#services" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap">
+          <nav className="flex gap-4 sm:gap-8 text-sm sm:text-sm">
+            <Link href="#services" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap py-2 px-1 min-h-[44px] flex items-center">
               Services
             </Link>
-            <Link href="#apps" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap">
+            <Link href="#apps" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap py-2 px-1 min-h-[44px] flex items-center">
               Apps
             </Link>
-            <Link href="#about" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap">
+            <Link href="#about" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap py-2 px-1 min-h-[44px] flex items-center">
               About
             </Link>
-            <Link href="#contact" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap">
+            <Link href="#contact" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap py-2 px-1 min-h-[44px] flex items-center">
               Contact
             </Link>
           </nav>
