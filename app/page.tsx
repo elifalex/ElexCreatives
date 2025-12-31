@@ -387,6 +387,103 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const [showHeader, setShowHeader] = useState(false);
+  const [isScrollLocked, setIsScrollLocked] = useState(true);
+  const [scrollAttempt, setScrollAttempt] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show header after scrolling down 100vh (past hero section)
+      setShowHeader(window.scrollY > window.innerHeight * 0.8);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (window.scrollY < window.innerHeight) {
+        e.preventDefault();
+
+        if (e.deltaY > 0) { // Scrolling down
+          setScrollAttempt(prev => prev + e.deltaY);
+
+          // Release after enough scroll attempts (resistance)
+          if (scrollAttempt > 200) {
+            setIsScrollLocked(false);
+            // Snap directly to the next section
+            const servicesSection = document.getElementById('services');
+            if (servicesSection) {
+              const offset = servicesSection.offsetTop;
+              window.scrollTo({ top: offset, behavior: 'smooth' });
+            }
+            setScrollAttempt(0);
+          }
+        } else if (e.deltaY < 0 && window.scrollY > 0) { // Scrolling up
+          // Snap back to top
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          setIsScrollLocked(true);
+          setScrollAttempt(0);
+        }
+
+        // Reset scroll attempt after user stops scrolling
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          setScrollAttempt(0);
+        }, 150);
+      } else {
+        // Enable normal scrolling after leaving hero
+        setIsScrollLocked(false);
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (window.scrollY < window.innerHeight) {
+        let startY = e.touches[0].clientY;
+
+        const handleTouchMove = (moveEvent: TouchEvent) => {
+          const currentY = moveEvent.touches[0].clientY;
+          const diff = startY - currentY;
+
+          if (diff > 0) { // Swiping up
+            setScrollAttempt(prev => prev + Math.abs(diff));
+
+            if (scrollAttempt > 100) {
+              setIsScrollLocked(false);
+              const servicesSection = document.getElementById('services');
+              if (servicesSection) {
+                const offset = servicesSection.offsetTop;
+                window.scrollTo({ top: offset, behavior: 'smooth' });
+              }
+              setScrollAttempt(0);
+            }
+          }
+        };
+
+        const handleTouchEnd = () => {
+          setTimeout(() => setScrollAttempt(0), 150);
+          document.removeEventListener('touchmove', handleTouchMove);
+          document.removeEventListener('touchend', handleTouchEnd);
+        };
+
+        document.addEventListener('touchmove', handleTouchMove, { passive: true });
+        document.addEventListener('touchend', handleTouchEnd);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      clearTimeout(scrollTimeout);
+    };
+  }, [isScrollLocked, scrollAttempt]);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Notification Toast */}
@@ -405,8 +502,10 @@ export default function Home() {
         </div>
       )}
 
-      {/* Sticky Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+      {/* Sticky Header - Only shows after scrolling past hero */}
+      <header className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm transition-transform duration-300 ${
+        showHeader ? 'translate-y-0' : '-translate-y-full'
+      }`}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-6 flex items-center justify-between gap-4">
           <button
             onClick={scrollToTop}
@@ -438,30 +537,99 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero - Minimal */}
-      <section className="max-w-5xl mx-auto px-6 py-24">
-        <div className="max-w-2xl">
-          <h1 className="text-5xl font-light text-black mb-6 leading-tight">
-            Turn-key mobile applications.<br />From idea to App Store.
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed mb-8">
-            Founded by a duo of engineers in London, ElexCreatives is focused on delivering professional React Native solutions.
-            We combine our experience and agility to offer services from blank page design to auditing existing code.
-          </p>
-          <div className="flex gap-4">
-            <Link
-              href="#services"
-              className="inline-block px-6 py-3 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors"
-            >
-              Our services
-            </Link>
-            <Link
-              href="#apps"
-              className="inline-block px-6 py-3 border border-black text-black text-sm font-medium hover:bg-black hover:text-white transition-colors"
-            >
-              View our work
-            </Link>
+      {/* Hero - Bold USP - Isolated Full Screen */}
+      <section className="w-full bg-gradient-to-br from-gray-50 via-white to-blue-50" style={{ height: '100vh', minHeight: '100vh', maxHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+        <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
+          <div className="grid lg:grid-cols-[35%_65%] gap-0 items-center">
+
+            {/* Left Side - Animated Glass Icons */}
+            <div className="relative h-96 lg:h-[600px] hidden lg:flex items-center justify-center">
+              {/* Floating App Icon 1 - DailyIntentions */}
+              <div className="absolute top-20 left-10 animate-float" style={{ animationDelay: '0s' }}>
+                <div className="w-24 h-24 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/icons/DailyIntentions_appIcon_android.png"
+                    alt="DailyIntentions"
+                    width={80}
+                    height={80}
+                    className="rounded-2xl"
+                  />
+                </div>
+              </div>
+
+              {/* Floating App Icon 2 - SpeedDots */}
+              <div className="absolute top-40 right-16 animate-float" style={{ animationDelay: '1s' }}>
+                <div className="w-28 h-28 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/icons/SpeedDots logo 1024x1024.png"
+                    alt="SpeedDots"
+                    width={96}
+                    height={96}
+                    className="rounded-2xl"
+                  />
+                </div>
+              </div>
+
+              {/* Floating App Icon 3 - Avid */}
+              <div className="absolute bottom-32 left-20 animate-float" style={{ animationDelay: '2s' }}>
+                <div className="w-32 h-32 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 shadow-2xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                  <Image
+                    src="/icons/Avid Icon.png"
+                    alt="Avid"
+                    width={112}
+                    height={112}
+                    className="rounded-2xl"
+                  />
+                </div>
+              </div>
+
+              {/* Floating Decorative Orbs */}
+              <div className="absolute top-10 right-32 w-16 h-16 rounded-full bg-gradient-to-br from-blue-400/30 to-purple-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute bottom-20 right-8 w-20 h-20 rounded-full bg-gradient-to-br from-pink-400/30 to-orange-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '1.5s' }}></div>
+              <div className="absolute top-1/2 left-32 w-12 h-12 rounded-full bg-gradient-to-br from-green-400/30 to-teal-400/30 backdrop-blur-xl animate-float-slow" style={{ animationDelay: '2.5s' }}></div>
+            </div>
+
+            {/* Right Side - Text Content */}
+            <div className="text-left lg:text-left flex justify-center">
+              <div className="max-w-2xl">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-light text-black mb-6 leading-tight tracking-tight">
+                  <span className="whitespace-nowrap">From Idea to App Stores</span><br />
+                  <span className="font-bold">In Weeks</span>
+                </h1>
+
+                {/* Secondary USP */}
+                <p className="text-base sm:text-lg lg:text-xl font-medium text-gray-600 leading-relaxed mb-8">
+                  Fixed Price, Unlimited Revisions Until You Are Satisfied.
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Scroll Down Arrow - Fixed at bottom of hero section */}
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40">
+          <button
+            onClick={() => {
+              setIsScrollLocked(false);
+              const servicesSection = document.getElementById('services');
+              if (servicesSection) {
+                const offset = servicesSection.offsetTop;
+                window.scrollTo({ top: offset, behavior: 'smooth' });
+              }
+            }}
+            className="flex flex-col items-center gap-2 text-gray-400 hover:text-black transition-all cursor-pointer group animate-bounce-slow"
+            aria-label="Scroll to services"
+          >
+            <span className="text-sm font-medium uppercase tracking-wider">Scroll</span>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
         </div>
       </section>
 
@@ -566,7 +734,7 @@ export default function Home() {
             icon="/icons/SpeedDots logo 1024x1024.png"
             name="SpeedDots"
             category="Gaming"
-            timeline="6-8 weeks"
+            timeline="<8 weeks"
             description="Arcade game testing reaction speed with global competition. Players tap dots as fast as possible across multiple game modes."
             features={[
               'Firebase authentication',
@@ -599,7 +767,7 @@ export default function Home() {
             icon="/icons/DailyIntentions_appIcon_android.png"
             name="DailyIntention"
             category="Wellness - Lifestyle"
-            timeline="6-8 weeks"
+            timeline="<8 weeks"
             description="Manifestation and intention-setting app helping users align daily actions with long-term goals through guided prompts and journaling."
             features={[
               'Firebase authentication with local-to-cloud data migration',
@@ -633,7 +801,7 @@ export default function Home() {
             icon="/icons/Avid Icon.png"
             name="Avid"
             category="Productivity"
-            timeline="6-8 weeks"
+            timeline="<8 weeks"
             description="Minimalistic wellness and goal tracker helping users build sustainable healthy habits through daily to-dos, meal planning, and gamification with streaks and achievement badges."
             features={[
               'Daily to-do tracking with calendar view',
