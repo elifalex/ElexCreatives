@@ -981,11 +981,9 @@ export default function Home() {
                 className="w-full px-4 py-3 border border-gray-300 text-black focus:border-black focus:outline-none transition-colors bg-white"
               >
                 <option value="">Select a service</option>
-                <option value="New App Development">New App Development (from idea to launch)</option>
+                <option value="New App Development">New App Development</option>
                 <option value="Code Review & Audit">Code Review & Audit</option>
-                <option value="Code Revamp & Refactoring">Code Revamp & Refactoring</option>
                 <option value="Feature Addition">Feature Addition to Existing App</option>
-                <option value="Bug Fixes & Optimization">Bug Fixes & Optimization</option>
                 <option value="Not Sure / Consultation">Not Sure / Need Consultation</option>
               </select>
             </div>
