@@ -761,6 +761,44 @@ export default function Home() {
 
         <div className="grid md:grid-cols-2 gap-8">
           <AppCard
+            icon="/icons/Avid Icon.png"
+            name="Avid"
+            category="Productivity"
+            timeline="<8 weeks"
+            description="Minimalistic wellness and goal tracker helping users build sustainable healthy habits through daily to-dos, meal planning, and gamification with streaks and achievement badges."
+            features={[
+              'Daily to-do tracking with calendar view',
+              'Meal planning and calorie tracking',
+              'Weekly routines that auto-populate calendar',
+              'Long-term goal setting and progress tracking',
+              'Gamification with 12+ unlockable badges and achievements',
+              'iOS home and lock screen widgets',
+              'Firebase authentication with Apple Sign In',
+              'Real-time cloud sync across devices',
+              'RevenueCat subscription with trial period',
+            ]}
+            challenges={[
+              'iOS Widget development: Building interactive native widgets with React Native using custom plugins',
+              'Complex streak logic: Date-based calculations for maintaining and resetting user streaks',
+              'Dynamic badge system: Conditional achievement unlocking based on multiple criteria (perfect weeks, task counts, goal completion)',
+              'Data persistence architecture: Syncing between local AsyncStorage and Firebase cloud storage with offline support',
+              'Apple Sign In OAuth: Integrating native Apple authentication for iOS',
+            ]}
+            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat', 'iOS Widgets']}
+            screenshots={[
+              '/screenshots/avid/1.png',
+              '/screenshots/avid/2.png',
+              '/screenshots/avid/3.png',
+              '/screenshots/avid/4.png',
+              '/screenshots/avid/5.png',
+              '/screenshots/avid/6.png',
+            ]}
+            comingSoon={true}
+            isExpanded={expandedApp === 'Avid'}
+            onToggle={() => setExpandedApp(expandedApp === 'Avid' ? null : 'Avid')}
+          />
+
+          <AppCard
             icon="/icons/SpeedDots logo 1024x1024.png"
             name="SpeedDots"
             category="Gaming"
@@ -825,44 +863,6 @@ export default function Home() {
             ]}
             isExpanded={expandedApp === 'DailyIntention'}
             onToggle={() => setExpandedApp(expandedApp === 'DailyIntention' ? null : 'DailyIntention')}
-          />
-
-          <AppCard
-            icon="/icons/Avid Icon.png"
-            name="Avid"
-            category="Productivity"
-            timeline="<8 weeks"
-            description="Minimalistic wellness and goal tracker helping users build sustainable healthy habits through daily to-dos, meal planning, and gamification with streaks and achievement badges."
-            features={[
-              'Daily to-do tracking with calendar view',
-              'Meal planning and calorie tracking',
-              'Weekly routines that auto-populate calendar',
-              'Long-term goal setting and progress tracking',
-              'Gamification with 12+ unlockable badges and achievements',
-              'iOS home and lock screen widgets',
-              'Firebase authentication with Apple Sign In',
-              'Real-time cloud sync across devices',
-              'RevenueCat subscription with trial period',
-            ]}
-            challenges={[
-              'iOS Widget development: Building interactive native widgets with React Native using custom plugins',
-              'Complex streak logic: Date-based calculations for maintaining and resetting user streaks',
-              'Dynamic badge system: Conditional achievement unlocking based on multiple criteria (perfect weeks, task counts, goal completion)',
-              'Data persistence architecture: Syncing between local AsyncStorage and Firebase cloud storage with offline support',
-              'Apple Sign In OAuth: Integrating native Apple authentication for iOS',
-            ]}
-            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat', 'iOS Widgets']}
-            screenshots={[
-              '/screenshots/avid/1.png',
-              '/screenshots/avid/2.png',
-              '/screenshots/avid/3.png',
-              '/screenshots/avid/4.png',
-              '/screenshots/avid/5.png',
-              '/screenshots/avid/6.png',
-            ]}
-            comingSoon={true}
-            isExpanded={expandedApp === 'Avid'}
-            onToggle={() => setExpandedApp(expandedApp === 'Avid' ? null : 'Avid')}
           />
         </div>
       </section>
