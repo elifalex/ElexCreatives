@@ -858,6 +858,7 @@ export default function Home() {
               '/screenshots/avid/3.png',
               '/screenshots/avid/4.png',
               '/screenshots/avid/5.png',
+              '/screenshots/avid/6.png',
             ]}
             comingSoon={true}
             isExpanded={expandedApp === 'Avid'}
