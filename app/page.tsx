@@ -403,6 +403,7 @@ export default function Home() {
 
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
+    const HEADER_HEIGHT = 100; // Account for sticky header height
 
     const handleWheel = (e: WheelEvent) => {
       if (window.scrollY < window.innerHeight) {
@@ -414,16 +415,16 @@ export default function Home() {
           // Release after enough scroll attempts (resistance)
           if (scrollAttempt > 200) {
             setIsScrollLocked(false);
-            // Snap directly to the next section
+            // Snap directly to the next section with header offset
             const servicesSection = document.getElementById('services');
             if (servicesSection) {
-              const offset = servicesSection.offsetTop;
+              const offset = servicesSection.offsetTop - HEADER_HEIGHT;
               window.scrollTo({ top: offset, behavior: 'smooth' });
             }
             setScrollAttempt(0);
           }
         } else if (e.deltaY < 0 && window.scrollY > 0) { // Scrolling up
-          // Snap back to top
+          // Snap back to top only if we're in the hero section
           window.scrollTo({ top: 0, behavior: 'smooth' });
           setIsScrollLocked(true);
           setScrollAttempt(0);
@@ -459,7 +460,7 @@ export default function Home() {
               setIsScrollLocked(false);
               const servicesSection = document.getElementById('services');
               if (servicesSection) {
-                const offset = servicesSection.offsetTop;
+                const offset = servicesSection.offsetTop - HEADER_HEIGHT;
                 window.scrollTo({ top: offset, behavior: 'smooth' });
               }
               document.removeEventListener('touchmove', handleTouchMove);
@@ -643,7 +644,8 @@ export default function Home() {
               setIsScrollLocked(false);
               const servicesSection = document.getElementById('services');
               if (servicesSection) {
-                const offset = servicesSection.offsetTop;
+                const HEADER_HEIGHT = 100; // Account for sticky header height
+                const offset = servicesSection.offsetTop - HEADER_HEIGHT;
                 window.scrollTo({ top: offset, behavior: 'smooth' });
               }
             }}
