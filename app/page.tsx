@@ -406,7 +406,8 @@ export default function Home() {
     const HEADER_HEIGHT = 100; // Account for sticky header height
 
     const handleWheel = (e: WheelEvent) => {
-      if (window.scrollY < window.innerHeight) {
+      // Only lock scroll when we're at the very top (in hero section)
+      if (window.scrollY <= 50) {
         e.preventDefault();
 
         if (e.deltaY > 0) { // Scrolling down
@@ -415,19 +416,10 @@ export default function Home() {
           // Release after enough scroll attempts (resistance)
           if (scrollAttempt > 100) {
             setIsScrollLocked(false);
-            // Snap directly to the next section with header offset
-            const servicesSection = document.getElementById('services');
-            if (servicesSection) {
-              const offset = servicesSection.offsetTop - HEADER_HEIGHT;
-              window.scrollTo({ top: offset, behavior: 'smooth' });
-            }
+            // Snap to just past the hero section to exit the lock zone
+            window.scrollTo({ top: window.innerHeight + 10, behavior: 'smooth' });
             setScrollAttempt(0);
           }
-        } else if (e.deltaY < 0 && window.scrollY > 0) { // Scrolling up
-          // Snap back to top only if we're in the hero section
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          setIsScrollLocked(true);
-          setScrollAttempt(0);
         }
 
         // Reset scroll attempt after user stops scrolling
@@ -435,6 +427,12 @@ export default function Home() {
         scrollTimeout = setTimeout(() => {
           setScrollAttempt(0);
         }, 500);
+      } else if (window.scrollY < window.innerHeight && e.deltaY < 0) {
+        // If user scrolls up while between top and hero bottom, snap back to top
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setIsScrollLocked(true);
+        setScrollAttempt(0);
       } else {
         // Enable normal scrolling after leaving hero
         setIsScrollLocked(false);
@@ -442,7 +440,8 @@ export default function Home() {
     };
 
     const handleTouchStart = (e: TouchEvent) => {
-      if (window.scrollY < window.innerHeight) {
+      // Only lock scroll when we're at the very top (in hero section)
+      if (window.scrollY <= 50) {
         let startY = e.touches[0].clientY;
         let totalDiff = 0;
 
@@ -458,11 +457,8 @@ export default function Home() {
               moveEvent.preventDefault();
             } else if (totalDiff >= 80) {
               setIsScrollLocked(false);
-              const servicesSection = document.getElementById('services');
-              if (servicesSection) {
-                const offset = servicesSection.offsetTop - HEADER_HEIGHT;
-                window.scrollTo({ top: offset, behavior: 'smooth' });
-              }
+              // Snap to just past the hero section to exit the lock zone
+              window.scrollTo({ top: window.innerHeight + 10, behavior: 'smooth' });
               document.removeEventListener('touchmove', handleTouchMove);
             }
           }
@@ -642,12 +638,8 @@ export default function Home() {
           <button
             onClick={() => {
               setIsScrollLocked(false);
-              const servicesSection = document.getElementById('services');
-              if (servicesSection) {
-                const HEADER_HEIGHT = 100; // Account for sticky header height
-                const offset = servicesSection.offsetTop - HEADER_HEIGHT;
-                window.scrollTo({ top: offset, behavior: 'smooth' });
-              }
+              // Snap to just past the hero section to exit the lock zone
+              window.scrollTo({ top: window.innerHeight + 10, behavior: 'smooth' });
             }}
             className="flex flex-col items-center gap-2 text-gray-400 hover:text-black transition-all cursor-pointer group animate-bounce-slow"
             aria-label="Scroll to services"
