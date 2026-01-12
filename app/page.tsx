@@ -406,12 +406,16 @@ export default function Home() {
     const HEADER_HEIGHT = 100; // Account for sticky header height
 
     const handleWheel = (e: WheelEvent) => {
+      // Normalize deltaY for cross-browser compatibility (Firefox uses different values)
+      const normalizedDelta = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY; // DOM_DELTA_LINE = 1
+
       // Only lock scroll when we're at the very top (in hero section)
       if (window.scrollY <= 50) {
         e.preventDefault();
+        e.stopPropagation();
 
-        if (e.deltaY > 0) { // Scrolling down
-          setScrollAttempt(prev => prev + e.deltaY);
+        if (normalizedDelta > 0) { // Scrolling down
+          setScrollAttempt(prev => prev + Math.abs(normalizedDelta));
 
           // Release after enough scroll attempts (resistance)
           if (scrollAttempt > 100) {
@@ -427,9 +431,10 @@ export default function Home() {
         scrollTimeout = setTimeout(() => {
           setScrollAttempt(0);
         }, 500);
-      } else if (window.scrollY < window.innerHeight && e.deltaY < 0) {
+      } else if (window.scrollY < window.innerHeight && normalizedDelta < 0) {
         // If user scrolls up while between top and hero bottom, snap back to top
         e.preventDefault();
+        e.stopPropagation();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         setIsScrollLocked(true);
         setScrollAttempt(0);
@@ -849,11 +854,11 @@ export default function Home() {
             appStoreUrl="https://apps.apple.com/us/app/dailyintentions/id6754063190"
             playStoreUrl="https://play.google.com/store/apps/details?id=com.alexprv.dailyintentions"
             screenshots={[
-              '/screenshots/DailyIntentions/DailyIntentions - 1.jpg',
-              '/screenshots/DailyIntentions/DailyIntentions - 2.jpg',
-              '/screenshots/DailyIntentions/DailyIntentions - 3.jpg',
-              '/screenshots/DailyIntentions/DailyIntentions - 4.jpg',
-              '/screenshots/DailyIntentions/DailyIntentions - 5.jpg',
+              '/screenshots/DailyIntentions/1.png',
+              '/screenshots/DailyIntentions/2.png',
+              '/screenshots/DailyIntentions/3.png',
+              '/screenshots/DailyIntentions/4.png',
+              '/screenshots/DailyIntentions/5.png',
             ]}
             isExpanded={expandedApp === 'DailyIntention'}
             onToggle={() => setExpandedApp(expandedApp === 'DailyIntention' ? null : 'DailyIntention')}
