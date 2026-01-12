@@ -413,7 +413,7 @@ export default function Home() {
           setScrollAttempt(prev => prev + e.deltaY);
 
           // Release after enough scroll attempts (resistance)
-          if (scrollAttempt > 200) {
+          if (scrollAttempt > 100) {
             setIsScrollLocked(false);
             // Snap directly to the next section with header offset
             const servicesSection = document.getElementById('services');
@@ -434,7 +434,7 @@ export default function Home() {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
           setScrollAttempt(0);
-        }, 150);
+        }, 500);
       } else {
         // Enable normal scrolling after leaving hero
         setIsScrollLocked(false);
@@ -454,9 +454,9 @@ export default function Home() {
             totalDiff += Math.abs(diff - totalDiff);
 
             // Prevent default scroll until threshold is reached
-            if (totalDiff < 100) {
+            if (totalDiff < 80) {
               moveEvent.preventDefault();
-            } else if (totalDiff >= 100) {
+            } else if (totalDiff >= 80) {
               setIsScrollLocked(false);
               const servicesSection = document.getElementById('services');
               if (servicesSection) {
@@ -469,7 +469,7 @@ export default function Home() {
         };
 
         const handleTouchEnd = () => {
-          setTimeout(() => setScrollAttempt(0), 150);
+          setTimeout(() => setScrollAttempt(0), 500);
           document.removeEventListener('touchmove', handleTouchMove);
           document.removeEventListener('touchend', handleTouchEnd);
         };
