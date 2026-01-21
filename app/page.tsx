@@ -663,8 +663,11 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="max-w-5xl mx-auto px-6 py-24 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50">
-        <h2 className="text-3xl font-light text-black mb-16">What we do</h2>
+      <section id="services" className="max-w-5xl mx-auto px-6 py-24 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50 scroll-mt-24">
+        <h2 className="text-3xl font-light text-black mb-6">What we do</h2>
+        <p className="text-gray-600 leading-relaxed mb-16 max-w-3xl">
+          ElexCreatives is a one-stop mobile application development studio, offering a single solution to founders and individuals who need to turn ideas into functional products using the powerful React Native framework.
+        </p>
 
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           {/* Service 1: Turn-key Development */}
