@@ -232,11 +232,11 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
     setDragOffset(0);
   };
 
-  const imageWidth = isMobile ? 200 : 256;
-  const gap = isMobile ? 16 : 24;
+  const imageWidth = isMobile ? 160 : 200;
+  const gap = isMobile ? 12 : 16;
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full max-w-sm mx-auto overflow-hidden">
       <div
         className="touch-pan-y select-none py-4"
         onTouchStart={handleTouchStart}
@@ -253,15 +253,15 @@ function ScreenshotCarousel({ appName, screenshots }: ScreenshotCarouselProps) {
           {screenshots.map((screenshot, index) => (
             <div
               key={index}
-              className={`flex-shrink-0 w-[200px] sm:w-64 transition-all duration-300 ${
+              className={`flex-shrink-0 w-[160px] sm:w-[200px] transition-all duration-300 ${
                 index === currentIndex ? 'opacity-100 scale-100' : 'opacity-30 scale-95'
               }`}
             >
               <Image
                 src={screenshot}
                 alt={`${appName} screenshot ${index + 1}`}
-                width={256}
-                height={500}
+                width={200}
+                height={400}
                 className="w-full h-auto object-contain pointer-events-none rounded-2xl shadow-xl"
               />
             </div>
@@ -318,6 +318,7 @@ export default function Home() {
     type: 'success',
     message: ''
   });
+  const [heroHidden, setHeroHidden] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -384,33 +385,31 @@ export default function Home() {
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setHeroHidden(false);
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
   };
 
-  const [showHeader, setShowHeader] = useState(false);
   const [isScrollLocked, setIsScrollLocked] = useState(true);
   const [scrollAttempt, setScrollAttempt] = useState(0);
 
+  // Reset scroll to top on page load
   useEffect(() => {
-    const handleScroll = () => {
-      // Show header after scrolling down 100vh (past hero section)
-      setShowHeader(window.scrollY > window.innerHeight * 0.8);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }, []);
+
+  // No longer need automatic hero hiding - it's handled by scroll resistance logic
 
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
-    const HEADER_HEIGHT = 100; // Account for sticky header height
 
     const handleWheel = (e: WheelEvent) => {
       // Normalize deltaY for cross-browser compatibility (Firefox uses different values)
       const normalizedDelta = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY; // DOM_DELTA_LINE = 1
 
-      // Only lock scroll when we're at the very top (in hero section)
-      if (window.scrollY <= 50) {
+      // Only lock scroll when we're at the very top (in hero section) and hero is visible
+      if (window.scrollY <= 50 && !heroHidden) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -420,8 +419,16 @@ export default function Home() {
           // Release after enough scroll attempts (resistance)
           if (scrollAttempt > 100) {
             setIsScrollLocked(false);
-            // Snap to just past the hero section to exit the lock zone
-            window.scrollTo({ top: window.innerHeight + 10, behavior: 'smooth' });
+            // Smoothly scroll to just below hero to show App Portfolio
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+            // Hide hero after scroll animation completes
+            setTimeout(() => {
+              setHeroHidden(true);
+              // Reset scroll position to top now that hero is hidden
+              setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'auto' });
+              }, 50);
+            }, 500);
             setScrollAttempt(0);
           }
         }
@@ -431,22 +438,12 @@ export default function Home() {
         scrollTimeout = setTimeout(() => {
           setScrollAttempt(0);
         }, 500);
-      } else if (window.scrollY < window.innerHeight && normalizedDelta < 0) {
-        // If user scrolls up while between top and hero bottom, snap back to top
-        e.preventDefault();
-        e.stopPropagation();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setIsScrollLocked(true);
-        setScrollAttempt(0);
-      } else {
-        // Enable normal scrolling after leaving hero
-        setIsScrollLocked(false);
       }
     };
 
     const handleTouchStart = (e: TouchEvent) => {
-      // Only lock scroll when we're at the very top (in hero section)
-      if (window.scrollY <= 50) {
+      // Only lock scroll when we're at the very top (in hero section) and hero is visible
+      if (window.scrollY <= 50 && !heroHidden) {
         let startY = e.touches[0].clientY;
         let totalDiff = 0;
 
@@ -462,8 +459,16 @@ export default function Home() {
               moveEvent.preventDefault();
             } else if (totalDiff >= 80) {
               setIsScrollLocked(false);
-              // Snap to just past the hero section to exit the lock zone
-              window.scrollTo({ top: window.innerHeight + 10, behavior: 'smooth' });
+              // Smoothly scroll to just below hero to show App Portfolio
+              window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+              // Hide hero after scroll animation completes
+              setTimeout(() => {
+                setHeroHidden(true);
+                // Reset scroll position to top now that hero is hidden
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: 'auto' });
+                }, 50);
+              }, 500);
               document.removeEventListener('touchmove', handleTouchMove);
             }
           }
@@ -488,7 +493,7 @@ export default function Home() {
       window.removeEventListener('touchstart', handleTouchStart);
       clearTimeout(scrollTimeout);
     };
-  }, [isScrollLocked, scrollAttempt]);
+  }, [isScrollLocked, scrollAttempt, heroHidden]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -508,43 +513,23 @@ export default function Home() {
         </div>
       )}
 
-      {/* Sticky Header - Only shows after scrolling past hero */}
-      <header className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm transition-transform duration-300 ${
-        showHeader ? 'translate-y-0' : '-translate-y-full'
-      }`}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 sm:py-6 flex items-center justify-between gap-4">
-          <button
-            onClick={scrollToTop}
-            className="flex items-center cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0"
-            aria-label="Scroll to top"
-          >
-            <Image
-              src="/icons/ElexCreatives Logo.png"
-              alt="Elex Creatives"
-              width={360}
-              height={80}
-              className="h-12 sm:h-20 w-auto"
-            />
-          </button>
-          <nav className="flex gap-4 sm:gap-8 text-sm sm:text-sm">
-            <Link href="#services" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap py-2 px-1 min-h-[44px] flex items-center">
-              Services
-            </Link>
-            <Link href="#apps" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap py-2 px-1 min-h-[44px] flex items-center">
-              Apps
-            </Link>
-            <Link href="#about" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap py-2 px-1 min-h-[44px] flex items-center">
-              About
-            </Link>
-            <Link href="#contact" className="text-gray-600 hover:text-black transition-colors whitespace-nowrap py-2 px-1 min-h-[44px] flex items-center">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
+      {/* Back to Home Button - Appears when hero is hidden */}
+      {heroHidden && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-[100] w-16 h-16 bg-black text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center animate-fade-in border-2 border-white"
+          aria-label="Back to Home"
+          style={{ animation: 'fadeIn 0.3s ease-in' }}
+        >
+          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+        </button>
+      )}
 
       {/* Hero - Bold USP - Isolated Full Screen */}
-      <section className="w-full bg-gradient-to-br from-gray-50 via-white to-blue-50" style={{ height: '100vh', minHeight: '100vh', maxHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+      {!heroHidden && (
+        <section className="w-full bg-gradient-to-br from-gray-50 via-white to-blue-50" style={{ height: '100vh', minHeight: '100vh', maxHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-[35%_65%] gap-0 items-center">
 
@@ -643,11 +628,19 @@ export default function Home() {
           <button
             onClick={() => {
               setIsScrollLocked(false);
-              // Snap to just past the hero section to exit the lock zone
-              window.scrollTo({ top: window.innerHeight + 10, behavior: 'smooth' });
+              // Smoothly scroll to just below hero to show App Portfolio
+              window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+              // Hide hero after scroll animation completes
+              setTimeout(() => {
+                setHeroHidden(true);
+                // Reset scroll position to top now that hero is hidden
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: 'auto' });
+                }, 50);
+              }, 500);
             }}
             className="flex flex-col items-center gap-2 text-gray-400 hover:text-black transition-all cursor-pointer group animate-bounce-slow"
-            aria-label="Scroll to services"
+            aria-label="Scroll to portfolio"
           >
             <span className="text-sm font-medium uppercase tracking-wider">Scroll</span>
             <svg
@@ -661,19 +654,474 @@ export default function Home() {
           </button>
         </div>
       </section>
+      )}
+
+      {/* Apps Section */}
+      <section id="apps" className="max-w-5xl mx-auto px-6 pt-16 pb-10 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50">
+        <h2 className="text-2xl font-light text-black mb-10 border-l-4 border-black pl-3 uppercase tracking-wider">App Portfolio</h2>
+
+        {/* App Selector Cards - App Store Style */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          {/* Avid Card */}
+          <button
+            onClick={() => setExpandedApp(expandedApp === 'Avid' ? null : 'Avid')}
+            className={`bg-white backdrop-blur-xl border-2 rounded-2xl p-4 text-left transition-all duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 hover:-translate-y-1 shadow-md ${
+              expandedApp === 'Avid' ? 'ring-2 ring-black shadow-2xl scale-105' : 'border-gray-300'
+            }`}
+          >
+            <div className="flex items-start gap-4">
+              <Image
+                src="/icons/Avid Icon.png"
+                alt="Avid"
+                width={60}
+                height={60}
+                className="rounded-xl flex-shrink-0"
+              />
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-semibold text-black mb-1">Avid - Goal Tracker</h3>
+                <p className="text-xs text-gray-500 mb-2">Productivity</p>
+                <p className="text-xs text-gray-600 line-clamp-2">Track goals, build habits</p>
+              </div>
+            </div>
+          </button>
+
+          {/* SpeedDots Card */}
+          <button
+            onClick={() => setExpandedApp(expandedApp === 'SpeedDots' ? null : 'SpeedDots')}
+            className={`bg-white backdrop-blur-xl border-2 rounded-2xl p-4 text-left transition-all duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 hover:-translate-y-1 shadow-md ${
+              expandedApp === 'SpeedDots' ? 'ring-2 ring-black shadow-2xl scale-105' : 'border-gray-300'
+            }`}
+          >
+            <div className="flex items-start gap-4">
+              <Image
+                src="/icons/SpeedDots logo 1024x1024.png"
+                alt="SpeedDots"
+                width={60}
+                height={60}
+                className="rounded-xl flex-shrink-0"
+              />
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-semibold text-black mb-1">SpeedDots - How fast are you ?</h3>
+                <p className="text-xs text-gray-500 mb-2">Gaming</p>
+                <p className="text-xs text-gray-600 line-clamp-2">The ultimate speed test</p>
+              </div>
+            </div>
+          </button>
+
+          {/* DailyIntention Card */}
+          <button
+            onClick={() => setExpandedApp(expandedApp === 'DailyIntention' ? null : 'DailyIntention')}
+            className={`bg-white backdrop-blur-xl border-2 rounded-2xl p-4 text-left transition-all duration-300 cursor-pointer hover:shadow-2xl hover:scale-105 hover:-translate-y-1 shadow-md ${
+              expandedApp === 'DailyIntention' ? 'ring-2 ring-black shadow-2xl scale-105' : 'border-gray-300'
+            }`}
+          >
+            <div className="flex items-start gap-4">
+              <Image
+                src="/icons/DailyIntentions_appIcon_android.png"
+                alt="DailyIntention"
+                width={60}
+                height={60}
+                className="rounded-xl flex-shrink-0"
+              />
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-semibold text-black mb-1">DailyIntentions</h3>
+                <p className="text-xs text-gray-500 mb-2">Wellness - Lifestyle</p>
+                <p className="text-xs text-gray-600 line-clamp-2">Manifestation through Action</p>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        {/* Detail View */}
+        {expandedApp && (
+          <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-3xl p-6 shadow-xl">
+            {expandedApp === 'Avid' && (
+              <div>
+                {/* Top: Title and Description - Full Width */}
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold text-black mb-2">Avid - Goal Tracker</h3>
+                  <p className="text-sm text-gray-500 mb-4">Productivity • &lt;8 weeks</p>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                    Minimalistic wellness and goal tracker helping users build sustainable healthy habits through daily to-dos, meal planning, and gamification with streaks and achievement badges.
+                  </p>
+                </div>
+
+                {/* Bottom: Two Columns - Details + Screenshots */}
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Left: Features, Challenges, Tech Stack */}
+                  <div>
+                    <div className="mb-5">
+                      <h4 className="text-sm font-semibold text-black mb-2">Main features</h4>
+                      <ul className="space-y-1 text-gray-600 text-sm">
+                        <li>• Daily to-do tracking with calendar view</li>
+                        <li>• Meal planning and calorie tracking</li>
+                        <li>• Weekly routines that auto-populate calendar</li>
+                        <li>• Gamification with 12+ unlockable badges</li>
+                        <li>• iOS home and lock screen widgets</li>
+                      </ul>
+                    </div>
+
+                    <div className="mb-5">
+                      <h4 className="text-sm font-semibold text-black mb-2">Key challenges tackled</h4>
+                      <ul className="space-y-1 text-gray-600 text-sm">
+                        <li>• iOS Widget development with React Native using custom plugins</li>
+                        <li>• Complex streak logic for maintaining and resetting user streaks</li>
+                        <li>• Dynamic badge system with conditional achievement unlocking</li>
+                        <li>• Syncing between local AsyncStorage and Firebase with offline support</li>
+                      </ul>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold text-black mb-2">Tech Stack</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat'].map((tech) => (
+                          <span key={tech} className="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <a
+                      href="https://apps.apple.com/id/app/avid-goal-tracker/id6756402199"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block px-6 py-3 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
+                    >
+                      App Store
+                    </a>
+                  </div>
+
+                  {/* Right: Screenshots */}
+                  <div className="flex items-start justify-center">
+                    <ScreenshotCarousel appName="Avid" screenshots={[
+                      '/screenshots/avid/1.png',
+                      '/screenshots/avid/2.png',
+                      '/screenshots/avid/3.png',
+                      '/screenshots/avid/4.png',
+                      '/screenshots/avid/5.png',
+                      '/screenshots/avid/6.png',
+                    ]} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {expandedApp === 'SpeedDots' && (
+              <div>
+                {/* Top: Title and Description - Full Width */}
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold text-black mb-2">SpeedDots - How fast are you ?</h3>
+                  <p className="text-sm text-gray-500 mb-4">Gaming • &lt;8 weeks</p>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                    Arcade game testing reaction speed with global competition. Players tap dots as fast as possible across multiple game modes.
+                  </p>
+                </div>
+
+                {/* Bottom: Two Columns - Details + Screenshots */}
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Left: Features, Challenges, Tech Stack */}
+                  <div>
+                    <div className="mb-5">
+                      <h4 className="text-sm font-semibold text-black mb-2">Main features</h4>
+                      <ul className="space-y-1 text-gray-600 text-sm">
+                        <li>• Firebase authentication</li>
+                        <li>• 5-leaderboard system</li>
+                        <li>• AdMob rewarded video ads</li>
+                        <li>• Real-time score synchronization</li>
+                        <li>• Multi-touch gesture handling</li>
+                      </ul>
+                    </div>
+
+                    <div className="mb-5">
+                      <h4 className="text-sm font-semibold text-black mb-2">Key challenges tackled</h4>
+                      <ul className="space-y-1 text-gray-600 text-sm">
+                        <li>• Cross-leaderboard score aggregation across all game modes</li>
+                        <li>• Firebase optimization: 5-minute cache to prevent write conflicts</li>
+                        <li>• 60fps gameplay with instant haptic feedback on multi-touch</li>
+                        <li>• Scalable architecture for 100-1,000+ concurrent players</li>
+                      </ul>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold text-black mb-2">Tech Stack</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {['React Native', 'Expo', 'TypeScript', 'Firebase', 'AdMob'].map((tech) => (
+                          <span key={tech} className="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <a
+                        href="https://apps.apple.com/us/app/speeddots-how-fast-are-you/id6755077344"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block px-6 py-3 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
+                      >
+                        App Store
+                      </a>
+                      <a
+                        href="https://play.google.com/store/apps/details?id=com.alexprv.speeddots"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block px-6 py-3 border border-black text-black text-sm font-medium rounded-lg hover:bg-black hover:text-white transition-colors"
+                      >
+                        Google Play
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right: Screenshots */}
+                  <div className="flex items-start justify-center">
+                    <ScreenshotCarousel appName="SpeedDots" screenshots={[
+                      '/screenshots/SpeedDots/SpeedDots - 1.png',
+                      '/screenshots/SpeedDots/SpeedDots - 2.png',
+                      '/screenshots/SpeedDots/SpeedDots - 3.png',
+                      '/screenshots/SpeedDots/SpeedDots - 4.png',
+                      '/screenshots/SpeedDots/SpeedDots - 5.png',
+                    ]} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {expandedApp === 'DailyIntention' && (
+              <div>
+                {/* Top: Title and Description - Full Width */}
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold text-black mb-2">DailyIntentions</h3>
+                  <p className="text-sm text-gray-500 mb-4">Wellness - Lifestyle • &lt;8 weeks</p>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                    Manifestation and intention-setting app helping users align daily actions with long-term goals through guided prompts and journaling.
+                  </p>
+                </div>
+
+                {/* Bottom: Two Columns - Details + Screenshots */}
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Left: Features, Challenges, Tech Stack */}
+                  <div>
+                    <div className="mb-5">
+                      <h4 className="text-sm font-semibold text-black mb-2">Main features</h4>
+                      <ul className="space-y-1 text-gray-600 text-sm">
+                        <li>• Firebase authentication with data migration</li>
+                        <li>• RevenueCat subscription system</li>
+                        <li>• Push notifications for daily reminders</li>
+                        <li>• Weekly streak tracking</li>
+                        <li>• Personal journal data export</li>
+                      </ul>
+                    </div>
+
+                    <div className="mb-5">
+                      <h4 className="text-sm font-semibold text-black mb-2">Key challenges tackled</h4>
+                      <ul className="space-y-1 text-gray-600 text-sm">
+                        <li>• Seamless local-to-cloud data migration for users' journal data</li>
+                        <li>• Full RevenueCat integration for cross-platform payment handling</li>
+                        <li>• Designed intuitive UI to create a calm, focused experience</li>
+                        <li>• Weekly streak system and push notifications to build daily habits</li>
+                      </ul>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold text-black mb-2">Tech Stack</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat'].map((tech) => (
+                          <span key={tech} className="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-full">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4">
+                      <a
+                        href="https://apps.apple.com/us/app/dailyintentions/id6754063190"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block px-6 py-3 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
+                      >
+                        App Store
+                      </a>
+                      <a
+                        href="https://play.google.com/store/apps/details?id=com.alexprv.dailyintentions"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block px-6 py-3 border border-black text-black text-sm font-medium rounded-lg hover:bg-black hover:text-white transition-colors"
+                      >
+                        Google Play
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right: Screenshots */}
+                  <div className="flex items-start justify-center">
+                    <ScreenshotCarousel appName="DailyIntention" screenshots={[
+                      '/screenshots/DailyIntentions/1.png',
+                      '/screenshots/DailyIntentions/2.png',
+                      '/screenshots/DailyIntentions/3.png',
+                      '/screenshots/DailyIntentions/4.png',
+                      '/screenshots/DailyIntentions/5.png',
+                    ]} />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </section>
 
       {/* Services Section */}
-      <section id="services" className="max-w-5xl mx-auto px-6 py-24 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50 scroll-mt-24">
-        <h2 className="text-3xl font-light text-black mb-6">What we do</h2>
-        <p className="text-gray-600 leading-relaxed mb-16 max-w-3xl">
+      <section id="services" className="max-w-5xl mx-auto px-6 py-16 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50">
+        <h2 className="text-2xl font-light text-black mb-4 border-l-4 border-black pl-3 uppercase tracking-wider">Our approach</h2>
+        <p className="text-gray-600 leading-relaxed mb-10 max-w-3xl text-sm">
           ElexCreatives is a one-stop mobile application development studio, offering a single solution to founders and individuals who need to turn ideas into functional products using the powerful React Native framework.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
+        {/* Problem/Solution Cards */}
+        <div className="mb-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {/* Card 1: Idea */}
+            <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300">
+              <h3 className="text-sm font-semibold text-black mb-2 border-b border-gray-200 pb-2">
+                Have an app idea?
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                No technical background needed. We translate your vision into a fully functional app.
+              </p>
+            </div>
+
+            {/* Card 2: Fixed Price */}
+            <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300">
+              <h3 className="text-sm font-semibold text-black mb-2 border-b border-gray-200 pb-2">
+                Fixed price, no surprises
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Transparent pricing from day one. No unpredictable hourly rates or hidden costs.
+              </p>
+            </div>
+
+            {/* Card 3: Design + Dev */}
+            <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300">
+              <h3 className="text-sm font-semibold text-black mb-2 border-b border-gray-200 pb-2">
+                Design + Development
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                No need to coordinate multiple teams. We handle both beautiful design and solid code.
+              </p>
+            </div>
+
+            {/* Card 4: Timeline */}
+            <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300">
+              <h3 className="text-sm font-semibold text-black mb-2 border-b border-gray-200 pb-2">
+                Weeks, not months
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                Traditional agencies take forever. We deliver production-ready apps in 8 weeks or less.
+              </p>
+            </div>
+
+            {/* Card 5: Full Cycle */}
+            <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300">
+              <h3 className="text-sm font-semibold text-black mb-2 border-b border-gray-200 pb-2">
+                Full cycle execution
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                From brand identity to App Store launch. We handle every step of the journey.
+              </p>
+            </div>
+
+            {/* Card 6: Iteration */}
+            <div className="bg-white/40 backdrop-blur-2xl border border-white/60 rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-300">
+              <h3 className="text-sm font-semibold text-black mb-2 border-b border-gray-200 pb-2">
+                Unlimited revisions
+              </h3>
+              <p className="text-xs text-gray-600 leading-relaxed">
+                We iterate until you're satisfied. Your success is our priority.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Tech Stack */}
+        <div className="mt-10 text-center">
+          <p className="text-gray-600 leading-relaxed mb-8 max-w-2xl mx-auto text-sm">
+            We use a tech stack to build cross-platform apps that scale.
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            <a href="https://reactnative.dev/" target="_blank" rel="noopener noreferrer" className="group">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-2xl p-2 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl shadow-lg cursor-pointer">
+                <Image
+                  src="/icons/Tools/ReactNative.png"
+                  alt="React Native"
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </a>
+            <a href="https://expo.dev" target="_blank" rel="noopener noreferrer" className="group">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-2xl p-2 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl shadow-lg cursor-pointer">
+                <Image
+                  src="/icons/Tools/Expo.png"
+                  alt="Expo"
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </a>
+            <a href="https://firebase.google.com/" target="_blank" rel="noopener noreferrer" className="group">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-black border border-gray-200/50 rounded-2xl p-2 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl shadow-lg cursor-pointer">
+                <Image
+                  src="/icons/Tools/Firebase (2).png"
+                  alt="Firebase"
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </a>
+            <a href="https://www.revenuecat.com/" target="_blank" rel="noopener noreferrer" className="group">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-2xl p-2 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl shadow-lg cursor-pointer">
+                <Image
+                  src="/icons/Tools/RevenueCat.png"
+                  alt="RevenueCat"
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </a>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="group">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-2xl p-2 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl shadow-lg cursor-pointer">
+                <Image
+                  src="/icons/Tools/GitHub_Logo.png"
+                  alt="GitHub"
+                  width={96}
+                  height={96}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </a>
+            <div className="group">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl shadow-lg">
+                <span className="text-3xl md:text-4xl font-bold text-gray-400">...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-200 mt-16 pt-12">
+          <h2 className="text-2xl font-light text-black mb-6 border-l-4 border-black pl-3 uppercase tracking-wider">Our services</h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
           {/* Service 1: Turn-key Development */}
-          <div className="bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-3xl p-8">
-            <h3 className="text-xl font-medium text-black mb-4">Turn-key Development</h3>
-            <p className="text-gray-600 mb-6 leading-relaxed">
+          <div className="bg-white backdrop-blur-xl border-2 border-gray-300 rounded-3xl p-6 shadow-md hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300">
+            <h3 className="text-lg font-medium text-black mb-3">Turn-key Development</h3>
+            <p className="text-gray-600 mb-4 leading-relaxed text-sm">
               From idea to App Store delivery. We handle the complete journey—brand identity, logo design,
               UX/UI, and React Native development for iOS and Android.
             </p>
@@ -703,7 +1151,7 @@ export default function Home() {
                 <span className="text-black mt-1">→</span>
                 <div>
                   <p className="text-sm font-medium text-black">API Integrations</p>
-                  <p className="text-xs text-gray-600">OpenAI, Firebase, Google Cloud, RevenueCat, and more</p>
+                  <p className="text-xs text-gray-600">OpenAI, Firebase, RevenueCat, and more</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -717,9 +1165,9 @@ export default function Home() {
           </div>
 
           {/* Service 2: Code Review & Revamp */}
-          <div className="bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-3xl p-8">
-            <h3 className="text-xl font-medium text-black mb-4">Code Review & Revamp</h3>
-            <p className="text-gray-600 mb-6 leading-relaxed">
+          <div className="bg-white backdrop-blur-xl border-2 border-gray-300 rounded-3xl p-6 shadow-md hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300">
+            <h3 className="text-lg font-medium text-black mb-3">Code Review & Revamp</h3>
+            <p className="text-gray-600 mb-4 leading-relaxed text-sm">
               Already have a React Native app? We audit your codebase, identify issues, and revamp it
               with best practices, performance improvements, and modern architecture.
             </p>
@@ -757,174 +1205,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Apps Section */}
-      <section id="apps" className="max-w-7xl mx-auto px-6 py-24 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50">
-        <h2 className="text-3xl font-light text-black mb-16">Apps</h2>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          <AppCard
-            icon="/icons/Avid Icon.png"
-            name="Avid"
-            category="Productivity"
-            timeline="<8 weeks"
-            description="Minimalistic wellness and goal tracker helping users build sustainable healthy habits through daily to-dos, meal planning, and gamification with streaks and achievement badges."
-            features={[
-              'Daily to-do tracking with calendar view',
-              'Meal planning and calorie tracking',
-              'Weekly routines that auto-populate calendar',
-              'Long-term goal setting and progress tracking',
-              'Gamification with 12+ unlockable badges and achievements',
-              'iOS home and lock screen widgets',
-              'Firebase authentication with Apple Sign In',
-              'Real-time cloud sync across devices',
-              'RevenueCat subscription with trial period',
-            ]}
-            challenges={[
-              'iOS Widget development: Building interactive native widgets with React Native using custom plugins',
-              'Complex streak logic: Date-based calculations for maintaining and resetting user streaks',
-              'Dynamic badge system: Conditional achievement unlocking based on multiple criteria (perfect weeks, task counts, goal completion)',
-              'Data persistence architecture: Syncing between local AsyncStorage and Firebase cloud storage with offline support',
-              'Apple Sign In OAuth: Integrating native Apple authentication for iOS',
-            ]}
-            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat', 'iOS Widgets']}
-            screenshots={[
-              '/screenshots/avid/1.png',
-              '/screenshots/avid/2.png',
-              '/screenshots/avid/3.png',
-              '/screenshots/avid/4.png',
-              '/screenshots/avid/5.png',
-              '/screenshots/avid/6.png',
-            ]}
-            comingSoon={true}
-            isExpanded={expandedApp === 'Avid'}
-            onToggle={() => setExpandedApp(expandedApp === 'Avid' ? null : 'Avid')}
-          />
-
-          <AppCard
-            icon="/icons/SpeedDots logo 1024x1024.png"
-            name="SpeedDots"
-            category="Gaming"
-            timeline="<8 weeks"
-            description="Arcade game testing reaction speed with global competition. Players tap dots as fast as possible across multiple game modes."
-            features={[
-              'Firebase authentication',
-              '5-leaderboard system (4 game modes + global player rankings)',
-              'AdMob rewarded video ads for extra lives',
-              'Real-time score synchronization',
-              'Multi-touch gesture handling',
-            ]}
-            challenges={[
-              'Cross-leaderboard score aggregation: Player rankings update dynamically across all game modes',
-              'Firebase optimization: 5-minute cache refresh to prevent write conflicts and stay within free tier',
-              'Performance: 60fps gameplay with instant haptic feedback on multi-touch interactions',
-              'Scalable architecture: Built for 100-1,000 concurrent players, designed to scale to 10,000+',
-            ]}
-            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'AdMob']}
-            appStoreUrl="https://apps.apple.com/th/app/speeddots-how-fast-are-you/id6755077344?l=th"
-            playStoreUrl="https://play.google.com/store/apps/details?id=com.alexprv.speeddots"
-            screenshots={[
-              '/screenshots/SpeedDots/SpeedDots - 1.png',
-              '/screenshots/SpeedDots/SpeedDots - 2.png',
-              '/screenshots/SpeedDots/SpeedDots - 3.png',
-              '/screenshots/SpeedDots/SpeedDots - 4.png',
-              '/screenshots/SpeedDots/SpeedDots - 5.png',
-            ]}
-            isExpanded={expandedApp === 'SpeedDots'}
-            onToggle={() => setExpandedApp(expandedApp === 'SpeedDots' ? null : 'SpeedDots')}
-          />
-
-          <AppCard
-            icon="/icons/DailyIntentions_appIcon_android.png"
-            name="DailyIntention"
-            category="Wellness - Lifestyle"
-            timeline="<8 weeks"
-            description="Manifestation and intention-setting app helping users align daily actions with long-term goals through guided prompts and journaling."
-            features={[
-              'Firebase authentication with local-to-cloud data migration',
-              'RevenueCat subscription system (monthly/yearly plans)',
-              'Push notifications for daily reminders',
-              'Weekly streak tracking for engagement',
-              'Personal journal data export',
-              'Affiliate marketing integration',
-            ]}
-            challenges={[
-              "Seamless local-to-cloud migration: Users' journal data syncs to Firebase when creating an account",
-              'Subscription architecture: Full RevenueCat integration for cross-platform payment handling',
-              'User engagement flow: Designed intuitive UI and interaction patterns to create a calm, focused experience',
-              'Retention mechanics: Weekly streak system and push notifications to build daily habits',
-            ]}
-            techStack={['React Native', 'Expo', 'TypeScript', 'Firebase', 'RevenueCat']}
-            appStoreUrl="https://apps.apple.com/us/app/dailyintentions/id6754063190"
-            playStoreUrl="https://play.google.com/store/apps/details?id=com.alexprv.dailyintentions"
-            screenshots={[
-              '/screenshots/DailyIntentions/1.png',
-              '/screenshots/DailyIntentions/2.png',
-              '/screenshots/DailyIntentions/3.png',
-              '/screenshots/DailyIntentions/4.png',
-              '/screenshots/DailyIntentions/5.png',
-            ]}
-            isExpanded={expandedApp === 'DailyIntention'}
-            onToggle={() => setExpandedApp(expandedApp === 'DailyIntention' ? null : 'DailyIntention')}
-          />
-        </div>
-      </section>
-
       {/* About Section */}
-      <section id="about" className="max-w-5xl mx-auto px-6 py-24 border-t border-gray-200">
-        <h2 className="text-3xl font-light text-black mb-16">About</h2>
+      <section id="about" className="max-w-5xl mx-auto px-6 py-16 border-t border-gray-200">
+        <h2 className="text-2xl font-light text-black mb-10 border-l-4 border-black pl-3 uppercase tracking-wider">About</h2>
 
         <div className="max-w-2xl">
-          <p className="text-xl text-gray-600 leading-relaxed mb-6">
+          <p className="text-gray-600 leading-relaxed mb-4 text-sm">
             ElexCreatives is founded by Elif and Alex, a French and Turkish engineering duo helping privates and professionals building mobile apps.
           </p>
-          <p className="text-gray-600 leading-relaxed mb-6">
-            We started working together as we both take pride in turning idea's into real-world products with clear design,
+          <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+            We started working together as we both take pride in turning ideas into real-world products with clear design,
             clean code, and apps that people actually want to use.
           </p>
-          <p className="text-gray-600 leading-relaxed mb-6">
+          <p className="text-gray-600 leading-relaxed mb-4 text-sm">
             We work between London and remote, building React Native apps from concept to launch.
             Every project gets the same attention and focus on simplicity and functionality.
           </p>
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed text-sm">
             If you're working on a project and need people who are agile and understand both the technical and
             design side, ElexCreatives is probably a good fit.
           </p>
         </div>
-
-        {/* What we do */}
-        <div className="mt-16 grid md:grid-cols-3 gap-12">
-          <div>
-            <h3 className="text-sm font-medium text-black mb-3">Development</h3>
-            <p className="text-gray-600 text-sm leading-relaxed">
-              iOS and Android apps with React Native. Clean architecture, tested code,
-              and succesfull deployment to both stores.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-sm font-medium text-black mb-3">Design</h3>
-            <p className="text-gray-600 text-sm leading-relaxed">
-              User interface and flow focused on working principles, clarity and usability.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-sm font-medium text-black mb-3">Full Cycle</h3>
-            <p className="text-gray-600 text-sm leading-relaxed">
-              From idea to launch. We handle architecture, development, design, testing, and deployment.
-            </p>
-          </div>
-        </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="max-w-5xl mx-auto px-6 py-24 border-t border-gray-200">
-        <h2 className="text-3xl font-light text-black mb-16">Contact</h2>
+      <section id="contact" className="max-w-5xl mx-auto px-6 py-16 border-t border-gray-200">
+        <h2 className="text-2xl font-light text-black mb-10 border-l-4 border-black pl-3 uppercase tracking-wider">Contact</h2>
 
-        <div className="grid md:grid-cols-2 gap-16">
+        <div className="grid md:grid-cols-2 gap-10">
           <div>
-            <p className="text-gray-600 mb-8 leading-relaxed">
+            <p className="text-gray-600 mb-6 leading-relaxed text-sm">
               Got an app idea? Need to revamp existing code? Let's discuss your project.
             </p>
-            <div className="space-y-4 text-sm text-gray-600">
+            <div className="space-y-3 text-sm text-gray-600">
               <p>
                 Fill out the form with details about your project, and we'll get back to you within 48 hours with a personalized proposal.
               </p>
@@ -937,7 +1250,7 @@ export default function Home() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name & Email - Side by side on desktop */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
@@ -1046,7 +1359,17 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6 py-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <p className="text-sm text-gray-400">© 2025 Elex Creatives</p>
-            <p className="text-sm text-gray-400">Alex & Elif · Mobile App Development</p>
+            <a
+              href="https://www.linkedin.com/company/elexcreatives/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-gray-400 hover:text-black transition-colors flex items-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              LinkedIn
+            </a>
           </div>
         </div>
       </footer>
