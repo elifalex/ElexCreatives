@@ -658,7 +658,7 @@ export default function Home() {
 
       {/* Apps Section */}
       <section id="apps" className="max-w-5xl mx-auto px-6 pt-16 pb-10 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50">
-        <h2 className="text-2xl font-light text-black mb-10 border-l-4 border-black pl-3 uppercase tracking-wider">App Portfolio</h2>
+        <h2 className="text-2xl font-light text-black mb-12 border-l-4 border-black pl-3 uppercase tracking-wider">App Portfolio</h2>
 
         {/* App Selector Cards - App Store Style */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -974,8 +974,8 @@ export default function Home() {
 
       {/* Services Section */}
       <section id="services" className="max-w-5xl mx-auto px-6 py-16 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50">
-        <h2 className="text-2xl font-light text-black mb-4 border-l-4 border-black pl-3 uppercase tracking-wider">Our approach</h2>
-        <p className="text-gray-600 leading-relaxed mb-10 max-w-3xl text-sm">
+        <h2 className="text-2xl font-light text-black mb-6 border-l-4 border-black pl-3 uppercase tracking-wider">Our approach</h2>
+        <p className="text-gray-600 leading-relaxed mb-12 max-w-3xl text-sm">
           ElexCreatives is a one-stop mobile application development studio, offering a single solution to founders and individuals who need to turn ideas into functional products using the powerful React Native framework.
         </p>
 
@@ -1114,7 +1114,7 @@ export default function Home() {
         </div>
 
         <div className="border-t border-gray-200 mt-16 pt-12">
-          <h2 className="text-2xl font-light text-black mb-6 border-l-4 border-black pl-3 uppercase tracking-wider">Our services</h2>
+          <h2 className="text-2xl font-light text-black mb-8 border-l-4 border-black pl-3 uppercase tracking-wider">Our services</h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -1207,7 +1207,7 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="max-w-5xl mx-auto px-6 py-16 border-t border-gray-200">
-        <h2 className="text-2xl font-light text-black mb-10 border-l-4 border-black pl-3 uppercase tracking-wider">About</h2>
+        <h2 className="text-2xl font-light text-black mb-12 border-l-4 border-black pl-3 uppercase tracking-wider">About</h2>
 
         <div className="max-w-2xl">
           <p className="text-gray-600 leading-relaxed mb-4 text-sm">
@@ -1230,7 +1230,7 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="max-w-5xl mx-auto px-6 py-16 border-t border-gray-200">
-        <h2 className="text-2xl font-light text-black mb-10 border-l-4 border-black pl-3 uppercase tracking-wider">Contact</h2>
+        <h2 className="text-2xl font-light text-black mb-12 border-l-4 border-black pl-3 uppercase tracking-wider">Contact</h2>
 
         <div className="grid md:grid-cols-2 gap-10">
           <div>
