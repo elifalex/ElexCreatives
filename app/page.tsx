@@ -539,6 +539,12 @@ export default function Home() {
                 >
                   Blog
                 </Link>
+                <Link
+                  href="/faq"
+                  className="text-sm text-gray-600 hover:text-black transition-colors"
+                >
+                  FAQ
+                </Link>
                 <a
                   href="#contact"
                   className="text-sm text-gray-600 hover:text-black transition-colors"
@@ -594,6 +600,12 @@ export default function Home() {
                   className="text-sm text-gray-600 hover:text-black transition-colors px-2 py-1"
                 >
                   Blog
+                </Link>
+                <Link
+                  href="/faq"
+                  className="text-sm text-gray-600 hover:text-black transition-colors px-2 py-1"
+                >
+                  FAQ
                 </Link>
                 <a
                   href="#contact"

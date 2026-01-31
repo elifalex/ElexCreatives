@@ -265,69 +265,6 @@ export default function MobileAppDevelopmentPage() {
           </p>
         </section>
 
-        {/* FAQ */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-light text-black mb-6">Frequently Asked Questions</h2>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-medium text-black mb-2">How long does it take to build a mobile app?</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Most projects are completed in 8 weeks or less, from initial concept to App Store submission. Simple MVPs can be done even faster (4-6 weeks), while more complex apps may take 10-12 weeks.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-medium text-black mb-2">What's included in your fixed pricing?</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Everything you need to launch: design, development, testing, App Store submission, and unlimited revisions during the project. We also include 30 days of post-launch support to fix any bugs or issues that come up after launch.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-medium text-black mb-2">Do you work with non-technical founders?</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Absolutely! Most of our clients are non-technical founders. We guide you through every step and explain technical decisions in plain language. You don't need to know how to code—you just need a great idea.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-medium text-black mb-2">Which platforms do you develop for?</h3>
-              <p className="text-gray-700 leading-relaxed">
-                We build for both iOS and Android using React Native, ensuring your app works on both platforms from a single codebase. This saves you time and money compared to building separate native apps.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-medium text-black mb-2">What happens after the app is launched?</h3>
-              <p className="text-gray-700 leading-relaxed">
-                We provide 30 days of post-launch support to fix any bugs or issues. After that, we can help with updates, new features, scaling, and ongoing maintenance on a project basis or monthly retainer.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-medium text-black mb-2">Can you help with App Store submission?</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Yes! We handle the entire App Store and Google Play submission process for you, including creating screenshots, writing app descriptions, and navigating the approval process. You don't have to worry about any of it.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-medium text-black mb-2">What if I need to add features later?</h3>
-              <p className="text-gray-700 leading-relaxed">
-                That's expected! Apps evolve based on user feedback. After launch, we can add new features, update the design, or scale your infrastructure. We work on a project basis or offer monthly retainer packages for ongoing development.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-medium text-black mb-2">How do I get started?</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Simple: <Link href="/#contact" className="text-black underline hover:text-gray-600">fill out our contact form</Link> with details about your project. We'll schedule a call to discuss your idea, timeline, and budget. If we're a good fit, we'll send you a proposal and get started right away.
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* CTA */}
         <section className="text-center py-12 border-t border-gray-200">
           <h2 className="text-3xl font-light text-black mb-4">Ready to Build Your App?</h2>
@@ -346,6 +283,11 @@ export default function MobileAppDevelopmentPage() {
         <section className="mt-12 pt-8 border-t border-gray-200">
           <h3 className="text-xl font-medium text-black mb-4">Learn More</h3>
           <div className="space-y-2">
+            <p>
+              <Link href="/faq" className="text-black underline hover:text-gray-600">
+                → Frequently Asked Questions
+              </Link>
+            </p>
             <p>
               <Link href="/blog/mobile-app-mvp-guide" className="text-black underline hover:text-gray-600">
                 → Building Your First Mobile App MVP: A Founder's Guide
