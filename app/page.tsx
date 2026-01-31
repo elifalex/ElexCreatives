@@ -499,6 +499,115 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <ServiceSchema />
+
+      {/* Sticky Navigation Bar - Appears after hero */}
+      {heroHidden && (
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm animate-fade-in">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              {/* Logo/Brand */}
+              <button
+                onClick={scrollToTop}
+                className="text-xl font-light text-black hover:text-gray-600 transition-colors"
+              >
+                ElexCreatives
+              </button>
+
+              {/* Navigation Links */}
+              <div className="hidden md:flex items-center gap-8">
+                <button
+                  onClick={scrollToTop}
+                  className="text-sm text-gray-600 hover:text-black transition-colors"
+                >
+                  Home
+                </button>
+                <a
+                  href="#apps"
+                  className="text-sm text-gray-600 hover:text-black transition-colors"
+                >
+                  Apps
+                </a>
+                <Link
+                  href="/services/mobile-app-development-for-startups"
+                  className="text-sm text-gray-600 hover:text-black transition-colors"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="/blog"
+                  className="text-sm text-gray-600 hover:text-black transition-colors"
+                >
+                  Blog
+                </Link>
+                <a
+                  href="#contact"
+                  className="text-sm text-gray-600 hover:text-black transition-colors"
+                >
+                  Contact
+                </a>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => {
+                  const mobileMenu = document.getElementById('mobile-menu');
+                  if (mobileMenu) {
+                    mobileMenu.classList.toggle('hidden');
+                  }
+                }}
+                className="md:hidden text-black p-2"
+                aria-label="Toggle menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile Menu */}
+            <div id="mobile-menu" className="hidden md:hidden pt-4 pb-2">
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => {
+                    scrollToTop();
+                    document.getElementById('mobile-menu')?.classList.add('hidden');
+                  }}
+                  className="text-sm text-gray-600 hover:text-black transition-colors text-left px-2 py-1"
+                >
+                  Home
+                </button>
+                <a
+                  href="#apps"
+                  onClick={() => document.getElementById('mobile-menu')?.classList.add('hidden')}
+                  className="text-sm text-gray-600 hover:text-black transition-colors px-2 py-1"
+                >
+                  Apps
+                </a>
+                <Link
+                  href="/services/mobile-app-development-for-startups"
+                  className="text-sm text-gray-600 hover:text-black transition-colors px-2 py-1"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="/blog"
+                  className="text-sm text-gray-600 hover:text-black transition-colors px-2 py-1"
+                >
+                  Blog
+                </Link>
+                <a
+                  href="#contact"
+                  onClick={() => document.getElementById('mobile-menu')?.classList.add('hidden')}
+                  className="text-sm text-gray-600 hover:text-black transition-colors px-2 py-1"
+                >
+                  Contact
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      )}
+
       {/* Notification Toast */}
       {notification.show && (
         <div className={`fixed top-28 left-4 right-4 sm:top-32 sm:left-auto sm:right-8 sm:max-w-md z-[60] p-5 rounded-xl shadow-2xl border-2 transform transition-all duration-300 animate-slide-down ${
