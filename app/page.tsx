@@ -1205,6 +1205,16 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* CTA to detailed service page */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/services/mobile-app-development-for-startups"
+            className="inline-block bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-all duration-300 font-medium shadow-lg hover:shadow-xl hover:scale-105"
+          >
+            Learn More About Our Process →
+          </Link>
+        </div>
       </section>
 
       {/* About Section */}
@@ -1228,6 +1238,20 @@ export default function Home() {
             design side, ElexCreatives is probably a good fit.
           </p>
         </div>
+      </section>
+
+      {/* Blog/Resources Section */}
+      <section className="max-w-5xl mx-auto px-6 py-16 border-t border-gray-200 bg-gradient-to-b from-gray-50 to-white">
+        <h2 className="text-2xl font-light text-black mb-6 border-l-4 border-black pl-3 uppercase tracking-wider">Resources</h2>
+        <p className="text-gray-600 leading-relaxed mb-8 max-w-3xl text-sm">
+          Learn about mobile app development, React Native, and startup best practices from our blog.
+        </p>
+        <Link
+          href="/blog"
+          className="inline-block bg-white border-2 border-black text-black px-8 py-4 rounded-xl hover:bg-black hover:text-white transition-all duration-300 font-medium shadow-lg hover:shadow-xl hover:scale-105"
+        >
+          Read Our Blog →
+        </Link>
       </section>
 
       {/* Contact Section */}
