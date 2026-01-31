@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block Vercel preview deployments
+Disallow: /*?*
+
+Sitemap: https://elexcreatives.com/sitemap.xml

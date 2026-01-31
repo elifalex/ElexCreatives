@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import emailjs from '@emailjs/browser';
+import ServiceSchema from './components/schemas/ServiceSchema';
 
 interface AppCardProps {
   icon: string;
@@ -497,6 +498,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      <ServiceSchema />
       {/* Notification Toast */}
       {notification.show && (
         <div className={`fixed top-28 left-4 right-4 sm:top-32 sm:left-auto sm:right-8 sm:max-w-md z-[60] p-5 rounded-xl shadow-2xl border-2 transform transition-all duration-300 animate-slide-down ${

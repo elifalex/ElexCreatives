@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import OrganizationSchema from "./components/schemas/OrganizationSchema";
+import Analytics from "./components/Analytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,12 +15,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://elexcreatives.com'),
   title: "Elex Creatives | From Idea to App Store, in Weeks.",
   description: "From Idea to App Store, in Weeks. Professional mobile app development duo specializing in React Native and Expo. Creators of DailyIntentions, SpeedDots, and Avid.",
   keywords: ["mobile app development", "React Native", "Expo", "iOS apps", "Android apps", "app development", "Elex Creatives"],
   authors: [{ name: "Elex Creatives" }],
   creator: "Elex Creatives",
   publisher: "Elex Creatives",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://elexcreatives.com',
+  },
+  verification: {
+    google: 'PLACEHOLDER_ADD_AFTER_SEARCH_CONSOLE_SETUP',
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -62,7 +82,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <OrganizationSchema />
         {children}
+        <Analytics />
       </body>
     </html>
   );
