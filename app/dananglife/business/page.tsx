@@ -11,7 +11,7 @@ export default function BusinessOwnerForm() {
     name: '',
     email: '',
     businessName: '',
-    businessType: '',
+    businessType: [] as string[],
     location: '',
     instagram: '',
   })
@@ -27,6 +27,7 @@ export default function BusinessOwnerForm() {
         body: JSON.stringify({
           userType: 'business',
           ...formData,
+          businessType: formData.businessType.join(', '),
         }),
       })
 
@@ -110,22 +111,29 @@ export default function BusinessOwnerForm() {
           {/* Business Type */}
           <div>
             <label className="block text-sm font-semibold text-charcoal mb-2">
-              Business Type *
+              Business Type * <span className="text-gray-400 font-normal">(Select all that apply)</span>
             </label>
-            <select
-              required
-              value={formData.businessType}
-              onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
-            >
-              <option value="">Select type...</option>
-              <option value="Café">Café</option>
-              <option value="Restaurant">Restaurant</option>
-              <option value="Gym">Gym</option>
-              <option value="Co-working Space">Co-working Space</option>
-              <option value="Bar">Bar</option>
-              <option value="Other">Other</option>
-            </select>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {['Café', 'Restaurant', 'Gym', 'Co-working Space', 'Bar', 'Other'].map((type) => (
+                <button
+                  key={type}
+                  type="button"
+                  onClick={() => setFormData(prev => ({
+                    ...prev,
+                    businessType: prev.businessType.includes(type)
+                      ? prev.businessType.filter(t => t !== type)
+                      : [...prev.businessType, type]
+                  }))}
+                  className={`px-4 py-3 rounded-xl border-2 font-medium transition-all text-sm ${
+                    formData.businessType.includes(type)
+                      ? 'bg-ocean-blue text-white border-ocean-blue'
+                      : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'
+                  }`}
+                >
+                  {type}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Location (Optional) */}
@@ -164,7 +172,7 @@ export default function BusinessOwnerForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || formData.businessType.length === 0}
             className="w-full bg-ocean-blue text-white py-4 rounded-xl font-semibold text-lg hover:bg-teal-blue transition-colors disabled:bg-charcoal/40 disabled:cursor-not-allowed"
           >
             {loading ? 'Joining...' : 'Join Waitlist'}
