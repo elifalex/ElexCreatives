@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true })
   } catch (error) {
     return NextResponse.json(
-      { error: 'Failed to submit', detail: (error as Error).message, hasEmail: !!process.env.GOOGLE_SHEETS_CLIENT_EMAIL, hasKey: !!process.env.GOOGLE_SHEETS_PRIVATE_KEY, hasId: !!process.env.GOOGLE_SHEETS_SPREADSHEET_ID },
+      { error: 'Failed to submit' },
       { status: 500 }
     )
   }
