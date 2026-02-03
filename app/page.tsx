@@ -1344,14 +1344,14 @@ export default function Home() {
 
         <div className="max-w-2xl">
           <p className="text-gray-600 leading-relaxed mb-4 text-sm">
-            ElexCreatives is founded by Elif and Alex, a French and Turkish engineering duo helping privates and professionals building mobile apps.
+            ElexCreatives is a software development studio specializing in mobile app development for startups, entrepreneurs, and businesses.
           </p>
           <p className="text-gray-600 leading-relaxed mb-4 text-sm">
-            We started working together as we both take pride in turning ideas into real-world products with clear design,
+            We take pride in turning ideas into real-world products with clear design,
             clean code, and apps that people actually want to use.
           </p>
           <p className="text-gray-600 leading-relaxed mb-4 text-sm">
-            We work between London and remote, building React Native apps from concept to launch.
+            Working remotely with clients worldwide, we build React Native apps from concept to launch.
             Every project gets the same attention and focus on simplicity and functionality.
           </p>
           <p className="text-gray-600 leading-relaxed text-sm">
