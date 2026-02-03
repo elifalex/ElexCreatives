@@ -24,7 +24,7 @@ export default function HeroPage() {
             alt="Da Nang Life"
             width={300}
             height={300}
-            className="w-40 md:w-56 h-auto rounded-3xl shadow-lg"
+            className="w-52 md:w-72 h-auto rounded-3xl shadow-lg"
             priority
           />
         </div>
