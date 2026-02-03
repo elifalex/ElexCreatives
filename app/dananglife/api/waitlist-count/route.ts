@@ -15,14 +15,7 @@ export async function GET() {
     const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID
 
     if (!spreadsheetId) {
-      return NextResponse.json({
-        count: 140,
-        debug: {
-          hasEmail: !!process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-          hasKey: !!process.env.GOOGLE_SHEETS_PRIVATE_KEY,
-          hasId: !!process.env.GOOGLE_SHEETS_SPREADSHEET_ID,
-        }
-      })
+      return NextResponse.json({ count: 140 })
     }
 
     // Fetch both sheets
@@ -46,6 +39,6 @@ export async function GET() {
 
     return NextResponse.json({ count: totalCount })
   } catch (error) {
-    return NextResponse.json({ count: 140, error: (error as Error).message }, { status: 200 })
+    return NextResponse.json({ count: 140 })
   }
 }
