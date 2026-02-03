@@ -39,7 +39,6 @@ export async function GET() {
 
     return NextResponse.json({ count: totalCount })
   } catch (error) {
-    console.error('Error fetching waitlist count:', error)
-    return NextResponse.json({ count: 140 }, { status: 200 }) // Default to 140 if error
+    return NextResponse.json({ count: 140, error: (error as Error).message }, { status: 200 })
   }
 }
