@@ -53,7 +53,7 @@ export default function HeroPage() {
         )}
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-xl mx-auto">
           <Link
             href="/dananglife/business"
             className="w-full bg-ocean-blue text-white px-8 py-5 rounded-2xl text-lg font-semibold hover:bg-teal-blue transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
