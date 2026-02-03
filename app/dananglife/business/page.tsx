@@ -14,6 +14,7 @@ export default function BusinessOwnerForm() {
     businessType: [] as string[],
     location: '',
     instagram: '',
+    willPay: '',
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -165,6 +166,29 @@ export default function BusinessOwnerForm() {
                 onChange={(e) => setFormData({ ...formData, instagram: e.target.value })}
                 className="flex-1 px-4 py-3 border border-gray-300 rounded-r-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
                 placeholder="yourcafe"
+              />
+            </div>
+          </div>
+
+          {/* Monthly Budget */}
+          <div>
+            <label className="block text-sm font-semibold text-charcoal mb-2">
+              How much would you pay per month? <span className="text-gray-400 font-normal">(Optional)</span>
+            </label>
+            <p className="text-xs text-charcoal/50 mb-3">
+              To publish posts about events, promotions, and get listed on the app
+            </p>
+            <div className="flex items-center">
+              <span className="bg-gray-100 px-4 py-3 border border-r-0 border-gray-300 rounded-l-xl text-gray-600">
+                $
+              </span>
+              <input
+                type="number"
+                min="0"
+                value={formData.willPay}
+                onChange={(e) => setFormData({ ...formData, willPay: e.target.value })}
+                className="flex-1 px-4 py-3 border border-gray-300 rounded-r-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
+                placeholder="25"
               />
             </div>
           </div>

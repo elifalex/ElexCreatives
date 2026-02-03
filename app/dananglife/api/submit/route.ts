@@ -16,6 +16,7 @@ export async function POST(request: Request) {
         data.businessType,
         data.location || '',
         data.instagram || '',
+        data.willPay ? `$${data.willPay}/mo` : '',
         'Organic Waitlist',
       ])
     } else if (data.userType === 'visitor') {
