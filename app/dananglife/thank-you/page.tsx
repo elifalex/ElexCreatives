@@ -75,8 +75,8 @@ function ThankYouContent() {
 
         {/* Share with friends */}
         <div className="bg-white rounded-3xl shadow-lg p-6">
-          <h2 className="text-xl font-bold text-charcoal mb-1">Share with travel friends</h2>
-          <p className="text-sm text-charcoal/50 mb-5">Help us grow — tell a friend who loves Da Nang</p>
+          <h2 className="text-xl font-bold text-charcoal mb-1">Share the waitlist</h2>
+          <p className="text-sm text-charcoal/50 mb-5">Tell your travel friends about Da Nang Life</p>
           <div className="flex flex-col gap-3">
             <a
               href={`https://wa.me/?text=${encodeURIComponent(SHARE_TEXT + '\n' + SHARE_URL)}`}
