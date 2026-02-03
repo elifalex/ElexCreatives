@@ -38,7 +38,7 @@ export default function VisitorForm() {
     setLoading(true)
 
     try {
-      const response = await fetch('/api/submit', {
+      const response = await fetch('/dananglife/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -49,7 +49,7 @@ export default function VisitorForm() {
       })
 
       if (response.ok) {
-        router.push('/thank-you?type=visitor')
+        router.push('/dananglife/thank-you?type=visitor')
       } else {
         alert('Something went wrong. Please try again.')
       }
@@ -64,7 +64,7 @@ export default function VisitorForm() {
     <div className="min-h-screen bg-off-white flex items-center justify-center px-4 py-12">
       <div className="max-w-2xl w-full">
         {/* Back Button */}
-        <Link href="/" className="inline-flex items-center text-charcoal/60 hover:text-ocean-blue mb-8 transition-colors">
+        <Link href="/dananglife" className="inline-flex items-center text-charcoal/60 hover:text-ocean-blue mb-8 transition-colors">
           ← Back
         </Link>
 

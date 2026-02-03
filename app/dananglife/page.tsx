@@ -8,7 +8,7 @@ export default function HeroPage() {
   const [waitlistCount, setWaitlistCount] = useState<number | null>(null)
 
   useEffect(() => {
-    fetch('/api/waitlist-count')
+    fetch('/dananglife/api/waitlist-count')
       .then(res => res.json())
       .then(data => setWaitlistCount(data.count))
       .catch(() => setWaitlistCount(140))
@@ -55,14 +55,14 @@ export default function HeroPage() {
         {/* CTA Buttons */}
         <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
           <Link
-            href="/business"
+            href="/dananglife/business"
             className="w-full md:w-auto bg-ocean-blue text-white px-12 py-6 rounded-2xl text-lg font-semibold hover:bg-teal-blue transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
             I'm a Business Owner
           </Link>
 
           <Link
-            href="/visitor"
+            href="/dananglife/visitor"
             className="w-full md:w-auto bg-white border-2 border-ocean-blue text-ocean-blue px-12 py-6 rounded-2xl text-lg font-semibold hover:bg-light-aqua/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
             I'm a Visitor

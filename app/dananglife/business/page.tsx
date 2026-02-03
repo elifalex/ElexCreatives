@@ -21,7 +21,7 @@ export default function BusinessOwnerForm() {
     setLoading(true)
 
     try {
-      const response = await fetch('/api/submit', {
+      const response = await fetch('/dananglife/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -31,7 +31,7 @@ export default function BusinessOwnerForm() {
       })
 
       if (response.ok) {
-        router.push('/thank-you?type=business')
+        router.push('/dananglife/thank-you?type=business')
       } else {
         alert('Something went wrong. Please try again.')
       }
@@ -46,7 +46,7 @@ export default function BusinessOwnerForm() {
     <div className="min-h-screen bg-off-white flex items-center justify-center px-4 py-12">
       <div className="max-w-2xl w-full">
         {/* Back Button */}
-        <Link href="/" className="inline-flex items-center text-charcoal/60 hover:text-ocean-blue mb-8 transition-colors">
+        <Link href="/dananglife" className="inline-flex items-center text-charcoal/60 hover:text-ocean-blue mb-8 transition-colors">
           ← Back
         </Link>
 
