@@ -90,7 +90,7 @@ export default function VisitorForm() {
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
               placeholder="Sarah Smith"
             />
           </div>
@@ -105,7 +105,7 @@ export default function VisitorForm() {
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
               placeholder="sarah@email.com"
             />
           </div>
@@ -164,7 +164,7 @@ export default function VisitorForm() {
             <select
               value={formData.whenInDaNang}
               onChange={(e) => setFormData({ ...formData, whenInDaNang: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
             >
               <option value="">Select...</option>
               <option value="Already here">Already here</option>

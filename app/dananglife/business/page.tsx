@@ -72,7 +72,7 @@ export default function BusinessOwnerForm() {
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
               placeholder="Alex Nguyen"
             />
           </div>
@@ -87,7 +87,7 @@ export default function BusinessOwnerForm() {
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
               placeholder="alex@mycafe.com"
             />
           </div>
@@ -102,7 +102,7 @@ export default function BusinessOwnerForm() {
               required
               value={formData.businessName}
               onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
               placeholder="The Coffee House"
             />
           </div>
@@ -116,7 +116,7 @@ export default function BusinessOwnerForm() {
               required
               value={formData.businessType}
               onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
             >
               <option value="">Select type...</option>
               <option value="Café">Café</option>
@@ -137,7 +137,7 @@ export default function BusinessOwnerForm() {
               type="text"
               value={formData.location}
               onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
               placeholder="My Khe Beach, An Thuong, etc."
             />
           </div>
@@ -155,7 +155,7 @@ export default function BusinessOwnerForm() {
                 type="text"
                 value={formData.instagram}
                 onChange={(e) => setFormData({ ...formData, instagram: e.target.value })}
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-r-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors"
+                className="flex-1 px-4 py-3 border border-gray-300 rounded-r-xl focus:border-ocean-blue focus:ring-2 focus:ring-ocean-blue/10 transition-colors text-charcoal bg-white"
                 placeholder="yourcafe"
               />
             </div>
