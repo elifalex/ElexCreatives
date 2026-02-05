@@ -256,23 +256,30 @@ export default function MobileAppDevelopmentPage() {
 
         {/* Pricing */}
         <section className="mb-16 bg-black text-white p-8 rounded-lg">
-          <h2 className="text-3xl font-light mb-6">Simple, Fixed Pricing</h2>
-          <p className="leading-relaxed mb-4">
+          <h2 className="text-3xl font-light mb-6">Clear, Fixed Pricing</h2>
+          <p className="leading-relaxed mb-6">
             No hourly rates. No surprise invoices. No scope creep. You'll know the exact cost before we start, and that's what you'll pay.
           </p>
-          <p className="leading-relaxed mb-4">
-            Every project includes:
-          </p>
-          <ul className="list-disc list-inside space-y-2 ml-4 mb-6">
-            <li>Custom UI/UX design (we make it look great)</li>
-            <li>Development for both iPhone and Android</li>
-            <li>Testing on real devices</li>
-            <li>App Store & Google Play submission</li>
-            <li>Unlimited revisions during the project</li>
-            <li>30 days of support after launch</li>
-          </ul>
-          <p className="leading-relaxed mb-2">
-            <strong>Typical projects range from $5,000 to $15,000</strong> depending on complexity—a fraction of what big agencies charge.
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="border border-white/20 rounded-lg p-6">
+              <h3 className="text-xl font-medium mb-2">MVP / Prototype</h3>
+              <p className="text-3xl font-light mb-3">From $500</p>
+              <p className="text-white/70 text-sm">
+                Test your idea with a working prototype. Core features only, perfect for validating your concept before going all-in.
+              </p>
+            </div>
+            <div className="border border-white/20 rounded-lg p-6">
+              <h3 className="text-xl font-medium mb-2">Production App</h3>
+              <p className="text-3xl font-light mb-3">Under $5,000</p>
+              <p className="text-white/70 text-sm">
+                Turn-key app deployed to App Store & Google Play. Design, development, testing, and submission—all included.
+              </p>
+            </div>
+          </div>
+
+          <p className="leading-relaxed mb-4 text-white/90">
+            Compare that to agencies quoting $50,000–$150,000 for the same work. We keep costs low because we're a lean team with zero bloat.
           </p>
           <p className="leading-relaxed">
             <Link href="/#contact" className="underline hover:text-gray-300">Tell us about your idea →</Link> and we'll send you a free, no-obligation quote within 48 hours.

@@ -120,16 +120,18 @@ Let's talk money.
 
 Building a mobile app costs anywhere from $5,000 to $500,000. Why the huge range? Because "app" covers everything from a simple timer to Instagram.
 
-**Rough estimates for working with a professional team:**
+**What big agencies charge:**
 
-| Complexity | Examples | Typical Cost |
+| Complexity | Examples | Agency Price |
 |------------|----------|--------------|
-| Simple | Timer, calculator, basic utility | $5,000 - $10,000 |
-| Moderate | App with user accounts, database, basic features | $10,000 - $25,000 |
-| Complex | Social features, real-time data, integrations | $25,000 - $75,000 |
-| Very Complex | Marketplace, payments, complex logic | $75,000+ |
+| Simple | Timer, calculator, basic utility | $10,000 - $25,000 |
+| Moderate | App with user accounts, database, basic features | $25,000 - $75,000 |
+| Complex | Social features, real-time data, integrations | $75,000 - $150,000 |
+| Very Complex | Marketplace, payments, complex logic | $150,000+ |
 
-**The honest truth:** If your budget is under $5,000, you'll struggle to find quality help. You might find cheaper options, but you often get what you pay for.
+**But here's the thing:** Those prices are inflated by agency overhead—fancy offices, account managers, layers of bureaucracy. A lean team can deliver the same quality for a fraction of the cost.
+
+At Elex Creatives, MVPs start from a few hundred dollars, and full production apps typically cost under $5,000. Same quality, no bloat.
 
 **Ways to reduce costs:**
 

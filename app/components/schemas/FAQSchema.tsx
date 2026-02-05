@@ -6,7 +6,7 @@ export default function FAQSchema() {
     },
     {
       question: "How much does it cost to build an app?",
-      answer: "Our projects typically range from $5,000 to $15,000 depending on complexity. We provide a fixed quote upfront so you know exactly what you'll pay."
+      answer: "MVPs start from a few hundred dollars. Full production apps deployed to the App Store typically cost under $5,000. We provide a fixed quote upfront so you know exactly what you'll pay."
     },
     {
       question: "Will you sign an NDA to protect my idea?",
