@@ -267,7 +267,7 @@ export default function MobileAppDevelopmentPage() {
             Fixed pricing, so you know exactly what you're paying before we start. No hourly surprises, no scope creep.
           </p>
           <p className="leading-relaxed">
-            <Link href="/#contact" className="underline hover:text-gray-300">Tell us about your idea →</Link> and we'll send you a quote within 48 hours. You might be surprised.
+            <Link href="/#contact" className="underline hover:text-gray-300">Tell us about your idea →</Link> and we'll send you a clear quote within 48 hours.
           </p>
         </section>
 
