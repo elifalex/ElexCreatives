@@ -6,14 +6,15 @@ import FAQSchema from '@/app/components/schemas/FAQSchema'
 import BreadcrumbSchema from '@/app/components/schemas/BreadcrumbSchema'
 
 export const metadata: Metadata = {
-  title: 'Mobile App Development for Startups | Fixed Price, 8 Weeks or Less',
-  description: 'Turn your startup idea into a production-ready mobile app in 8 weeks. Fixed pricing, unlimited revisions, React Native development for iOS and Android.',
+  title: 'Turn Your App Idea Into Reality | No Coding Required | Elex Creatives',
+  description: 'Have an app idea but no technical skills? We build mobile apps for people with ideas. Fixed pricing, plain English, and your app in the App Store in 8 weeks.',
+  keywords: ['app idea', 'build my app', 'turn app idea into reality', 'hire app developer', 'mobile app development', 'no coding', 'app for personal project'],
   alternates: {
     canonical: 'https://elexcreatives.com/services/mobile-app-development-for-startups',
   },
   openGraph: {
-    title: 'Mobile App Development for Startups | Elex Creatives',
-    description: 'Turn your startup idea into a production-ready mobile app in 8 weeks. Fixed pricing, unlimited revisions, React Native for iOS and Android.',
+    title: 'Turn Your App Idea Into Reality | Elex Creatives',
+    description: 'Have an app idea but no technical skills? We build mobile apps for people with ideas. Fixed pricing, your app in the App Store in 8 weeks.',
     url: 'https://elexcreatives.com/services/mobile-app-development-for-startups',
     type: 'website',
     images: [
@@ -21,14 +22,14 @@ export const metadata: Metadata = {
         url: 'https://elexcreatives.com/icons/ElexCreatives Logo - Website.png',
         width: 1200,
         height: 630,
-        alt: 'Elex Creatives - Mobile App Development for Startups',
+        alt: 'Elex Creatives - Turn Your App Idea Into Reality',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mobile App Development for Startups | Elex Creatives',
-    description: 'Turn your startup idea into a production-ready mobile app in 8 weeks.',
+    title: 'Turn Your App Idea Into Reality | Elex Creatives',
+    description: 'Have an app idea but no technical skills? We build mobile apps for people with ideas.',
     images: ['https://elexcreatives.com/icons/ElexCreatives Logo - Website.png'],
   },
 }
@@ -37,7 +38,7 @@ export default function MobileAppDevelopmentPage() {
   const breadcrumbs = [
     { name: 'Home', url: 'https://elexcreatives.com' },
     { name: 'Services', url: 'https://elexcreatives.com/services' },
-    { name: 'Mobile App Development for Startups', url: 'https://elexcreatives.com/services/mobile-app-development-for-startups' }
+    { name: 'Turn Your App Idea Into Reality', url: 'https://elexcreatives.com/services/mobile-app-development-for-startups' }
   ]
 
   return (
@@ -57,166 +58,153 @@ export default function MobileAppDevelopmentPage() {
 
       <article className="max-w-4xl mx-auto px-6 py-16">
         <h1 className="text-5xl font-light text-black mb-6 border-l-4 border-black pl-4">
-          Mobile App Development for Startups
+          You Have an App Idea.<br />We'll Make It Real.
         </h1>
         <p className="text-xl text-gray-600 leading-relaxed mb-12 pl-5">
-          Turn your startup idea into a production-ready mobile app in 8 weeks or less. Fixed pricing, unlimited revisions, and expert React Native development.
+          No coding skills? No problem. We build mobile apps for people with ideas—not tech backgrounds. Tell us your vision, and we'll handle everything from design to the App Store.
         </p>
 
         {/* Hero Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-light text-black mb-6">Why Startups Choose Elex Creatives</h2>
+          <h2 className="text-3xl font-light text-black mb-6">You've Had This Idea for a While...</h2>
           <p className="text-gray-700 leading-relaxed mb-4">
-            You have an idea that could change your industry. But between fundraising, hiring, and building your business, you don't have time to become a mobile development expert. You need a partner who can take your vision and turn it into a real, working app—fast.
+            Maybe it came to you in the shower. Maybe you've been sketching it on napkins for months. You <em>know</em> this app could help people—or maybe it's just something you want to exist in the world.
           </p>
           <p className="text-gray-700 leading-relaxed mb-4">
-            That's where we come in. Elex Creatives is a mobile app development duo specializing in React Native and Expo. We've built apps for habit tracking, event discovery, and gaming—all delivered on time, on budget, and ready for the App Store.
+            But every time you look into building it, you hit the same walls: confusing technical jargon, agencies quoting $100,000+, or freelancers who disappear after taking your deposit.
+          </p>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            <strong>You don't need to learn to code.</strong> You don't need to become a "tech founder." You just need someone who will listen to your idea and build it—without the BS.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            We don't do lengthy sales calls or complicated proposals. We focus on what matters: building your app and getting it into users' hands.
+            That's what we do at Elex Creatives. We're a small team that specializes in working with people like you: creative thinkers with great ideas and zero interest in learning Swift or Kotlin.
           </p>
         </section>
 
         {/* The Problem */}
         <section className="mb-16 bg-gray-50 p-8 rounded-lg">
-          <h2 className="text-3xl font-light text-black mb-6">The Problem with Traditional App Development</h2>
+          <h2 className="text-3xl font-light text-black mb-6">Why Building an App Feels Impossible</h2>
           <div className="space-y-4">
             <div>
-              <h3 className="text-xl font-medium text-black mb-2">Budget Uncertainty</h3>
+              <h3 className="text-xl font-medium text-black mb-2">"I Don't Understand Any of This"</h3>
               <p className="text-gray-700 leading-relaxed">
-                Most agencies quote $50,000-$150,000 for a basic app, with vague timelines and scope creep that drives costs even higher.
+                APIs, backends, frameworks, native vs. cross-platform... it's overwhelming. You shouldn't need a computer science degree to get your app built. We explain everything in plain English—no jargon, no condescension.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-medium text-black mb-2">Slow Timelines</h3>
+              <h3 className="text-xl font-medium text-black mb-2">"Everyone Wants $50,000+"</h3>
               <p className="text-gray-700 leading-relaxed">
-                Traditional development firms take 4-6 months to deliver an MVP. By the time your app launches, the market may have moved on.
+                Big agencies charge big-agency prices because they have big-agency overhead. We're a lean team with low overhead, which means we can build your app for a fraction of what the big guys charge—without cutting corners.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-medium text-black mb-2">Technical Complexity</h3>
+              <h3 className="text-xl font-medium text-black mb-2">"I'm Scared Someone Will Steal My Idea"</h3>
               <p className="text-gray-700 leading-relaxed">
-                You're not a developer. You shouldn't have to understand the difference between Swift and Kotlin, or worry about App Store submission guidelines.
+                We get it. Your idea is precious. We're happy to sign an NDA before you share any details. And honestly? Ideas are everywhere—execution is what matters. We're here to help you execute, not compete with you.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-medium text-black mb-2">"What If I Get Ripped Off?"</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Horror stories are real. That's why we use fixed pricing (you know the cost upfront), milestone payments (you don't pay everything at once), and weekly updates with working demos (you see progress every step of the way).
               </p>
             </div>
           </div>
         </section>
 
-        {/* Our Process */}
+        {/* How It Works */}
         <section className="mb-16">
-          <h2 className="text-3xl font-light text-black mb-6">Our 8-Week Process</h2>
+          <h2 className="text-3xl font-light text-black mb-6">How It Works (In Plain English)</h2>
           <p className="text-gray-700 leading-relaxed mb-8">
-            We've refined a streamlined process that takes your app from concept to the App Store in 8 weeks or less. Here's how it works:
+            We've helped teachers, nurses, artists, retirees, and first-time creators bring their app ideas to life. Here's our simple process:
           </p>
 
           <div className="space-y-8">
             <div className="border-l-4 border-black pl-6">
-              <h3 className="text-xl font-medium text-black mb-2">Weeks 1-2: Planning & Design</h3>
-              <p className="text-gray-700 leading-relaxed mb-2">
-                We start with a kickoff call to understand your vision, target users, and core features. Then we:
+              <h3 className="text-xl font-medium text-black mb-2">Step 1: Tell Us Your Idea</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Fill out our contact form or send us an email. Describe your app idea in your own words—bullet points, voice memos, napkin sketches, whatever works for you. We'll schedule a free call to discuss it and see if we're a good fit.
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
-                <li>Define the MVP scope (3-5 key features only)</li>
-                <li>Create wireframes and user flows</li>
-                <li>Design the UI/UX with your brand in mind</li>
-                <li>Finalize the tech stack and architecture</li>
-              </ul>
             </div>
 
             <div className="border-l-4 border-gray-400 pl-6">
-              <h3 className="text-xl font-medium text-black mb-2">Weeks 3-6: Development</h3>
-              <p className="text-gray-700 leading-relaxed mb-2">
-                This is where the magic happens. We build your app using React Native and Expo, which means:
+              <h3 className="text-xl font-medium text-black mb-2">Step 2: We Design It Together</h3>
+              <p className="text-gray-700 leading-relaxed">
+                We create wireframes (simple sketches of each screen) and a design mockup so you can see exactly what your app will look like before we write a single line of code. You give feedback, we refine. Repeat until you love it.
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
-                <li>One codebase works on both iOS and Android</li>
-                <li>Faster development without compromising quality</li>
-                <li>Weekly progress updates with working demos</li>
-                <li>Unlimited revisions during this phase</li>
-              </ul>
             </div>
 
             <div className="border-l-4 border-gray-400 pl-6">
-              <h3 className="text-xl font-medium text-black mb-2">Weeks 7-8: Testing & Launch</h3>
-              <p className="text-gray-700 leading-relaxed mb-2">
-                The final sprint to the finish line:
+              <h3 className="text-xl font-medium text-black mb-2">Step 3: We Build It</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Over the next 4-6 weeks, we build your app. Every week, you get a working demo you can actually tap through on your phone. You can request changes as we go—unlimited revisions are included.
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
-                <li>QA testing on real iOS and Android devices</li>
-                <li>Bug fixes and performance optimization</li>
-                <li>App Store and Google Play asset preparation</li>
-                <li>Submission and approval (we handle the entire process)</li>
-              </ul>
+            </div>
+
+            <div className="border-l-4 border-gray-400 pl-6">
+              <h3 className="text-xl font-medium text-black mb-2">Step 4: We Launch It</h3>
+              <p className="text-gray-700 leading-relaxed">
+                We handle the entire App Store and Google Play submission process. Screenshots, descriptions, app review—all of it. Within 8 weeks of starting, your app is live and available for download worldwide.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Tech Stack */}
+        {/* What You Don't Need */}
         <section className="mb-16">
-          <h2 className="text-3xl font-light text-black mb-6">Our Tech Stack: React Native + Expo</h2>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            We exclusively build with <strong>React Native and Expo</strong>, and here's why that matters for your startup:
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
+          <h2 className="text-3xl font-light text-black mb-6">What You Don't Need to Bring</h2>
+          <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-lg font-medium text-black mb-2">Cross-Platform Development</h3>
+              <h3 className="text-lg font-medium text-black mb-2">❌ Technical Knowledge</h3>
               <p className="text-gray-700 text-sm">
-                One codebase runs on both iOS and Android. You don't need to hire separate developers for each platform, cutting your costs in half.
+                We translate tech-speak into human language. You don't need to know what an API is or how databases work.
               </p>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-lg font-medium text-black mb-2">Faster Development</h3>
+              <h3 className="text-lg font-medium text-black mb-2">❌ A Detailed Specification</h3>
               <p className="text-gray-700 text-sm">
-                React Native's component-based architecture and rich ecosystem of libraries mean we can build features faster without sacrificing quality.
+                "I want an app that does X" is enough to start. We'll help you figure out the details together.
               </p>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-lg font-medium text-black mb-2">Over-the-Air Updates</h3>
+              <h3 className="text-lg font-medium text-black mb-2">❌ Existing Designs</h3>
               <p className="text-gray-700 text-sm">
-                With Expo, we can push bug fixes and small updates instantly without waiting for App Store approval. This means faster iteration post-launch.
+                Design is included. We'll create a beautiful, intuitive interface based on your vision and preferences.
               </p>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <h3 className="text-lg font-medium text-black mb-2">Proven at Scale</h3>
+              <h3 className="text-lg font-medium text-black mb-2">❌ A Business Plan</h3>
               <p className="text-gray-700 text-sm">
-                Companies like Instagram, Facebook, Airbnb, and Microsoft use React Native. It's not a toy framework—it's production-ready for apps of any size.
+                Passion projects are welcome. Not every app needs to be a business. If you just want to see your idea exist, that's reason enough.
               </p>
             </div>
           </div>
-
-          <p className="text-gray-700 leading-relaxed">
-            For most startups, React Native is the obvious choice. It lets you launch faster, iterate quicker, and spend less money—without compromising on app quality or performance.
-          </p>
         </section>
 
-        {/* Case Studies */}
+        {/* Apps We've Built */}
         <section className="mb-16">
-          <h2 className="text-3xl font-light text-black mb-6">Apps We've Built</h2>
+          <h2 className="text-3xl font-light text-black mb-6">Apps We've Brought to Life</h2>
           <p className="text-gray-700 leading-relaxed mb-8">
-            See our work in action. Here are three apps we've built using the same process we'll use for your project. <Link href="/#apps" className="text-black underline hover:text-gray-600">View our full portfolio →</Link>
+            Real apps, built for real people. Here's what we've created using the same process we'll use for your project.
           </p>
 
           <div className="space-y-8">
             <div className="border border-gray-200 rounded-lg p-6">
               <div className="flex items-start gap-4 mb-4">
                 <Image
-                  src="/icons/avid_appIcon_1024.png"
-                  alt="Avid App Icon"
+                  src="/icons/DailyIntentions_appIcon_android.png"
+                  alt="DailyIntentions App Icon"
                   width={64}
                   height={64}
                   className="rounded-xl"
                 />
                 <div>
-                  <h3 className="text-xl font-medium text-black">Avid - Local Events Discovery</h3>
-                  <p className="text-sm text-gray-400">Timeline: 8 weeks</p>
+                  <h3 className="text-xl font-medium text-black">DailyIntentions</h3>
+                  <p className="text-sm text-gray-400">Personal wellness app • 6 weeks to launch</p>
                 </div>
               </div>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                A location-based app that helps users discover events happening around them. Features include map integration, real-time event updates, user authentication, and push notifications.
-              </p>
               <p className="text-gray-700 leading-relaxed">
-                <strong>Challenge:</strong> Integrating Google Maps with custom markers and real-time data synchronization. <strong>Solution:</strong> Built a custom caching layer to ensure smooth map performance even with hundreds of events.
+                A simple, beautiful app for setting daily intentions and tracking streaks. The creator wanted a calmer alternative to aggressive habit trackers—something gentle that encouraged rather than guilt-tripped.
               </p>
             </div>
 
@@ -230,75 +218,127 @@ export default function MobileAppDevelopmentPage() {
                   className="rounded-xl"
                 />
                 <div>
-                  <h3 className="text-xl font-medium text-black">SpeedDots - Reaction Time Game</h3>
-                  <p className="text-sm text-gray-400">Timeline: 4 weeks</p>
+                  <h3 className="text-xl font-medium text-black">SpeedDots</h3>
+                  <p className="text-sm text-gray-400">Mobile game • 4 weeks to launch</p>
                 </div>
               </div>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                A fast-paced mobile game testing reaction time and hand-eye coordination. Includes leaderboards, achievements, and smooth 60fps animations.
-              </p>
               <p className="text-gray-700 leading-relaxed">
-                <strong>Challenge:</strong> Achieving consistent 60fps performance across devices. <strong>Solution:</strong> Optimized rendering using React Native's built-in animation libraries and careful component optimization.
+                A fast-paced reaction time game with leaderboards and achievements. Started as a personal project, now enjoyed by thousands of players on both iOS and Android.
               </p>
             </div>
 
             <div className="border border-gray-200 rounded-lg p-6">
               <div className="flex items-start gap-4 mb-4">
                 <Image
-                  src="/icons/DailyIntentions_appIcon_android.png"
-                  alt="DailyIntentions App Icon"
+                  src="/icons/avid_appIcon_1024.png"
+                  alt="Avid App Icon"
                   width={64}
                   height={64}
                   className="rounded-xl"
                 />
                 <div>
-                  <h3 className="text-xl font-medium text-black">DailyIntentions - Habit Tracker</h3>
-                  <p className="text-sm text-gray-400">Timeline: 6 weeks</p>
+                  <h3 className="text-xl font-medium text-black">Avid</h3>
+                  <p className="text-sm text-gray-400">Local events discovery • 8 weeks to launch</p>
                 </div>
               </div>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                A morning intention-setting app with streak tracking, push notifications, and an elegant, minimalist design. Helps users start their day with purpose.
-              </p>
               <p className="text-gray-700 leading-relaxed">
-                <strong>Challenge:</strong> Building an offline-first app that syncs across devices. <strong>Solution:</strong> Implemented local-first data storage with cloud sync, ensuring the app works perfectly even without internet.
+                An app for discovering events happening nearby. Map integration, real-time updates, and push notifications—all built from a simple idea: "I wish I knew what was happening around me."
+              </p>
+            </div>
+          </div>
+
+          <p className="text-center mt-8">
+            <Link href="/#apps" className="text-black underline hover:text-gray-600">
+              View our full portfolio →
+            </Link>
+          </p>
+        </section>
+
+        {/* Pricing */}
+        <section className="mb-16 bg-black text-white p-8 rounded-lg">
+          <h2 className="text-3xl font-light mb-6">Simple, Fixed Pricing</h2>
+          <p className="leading-relaxed mb-4">
+            No hourly rates. No surprise invoices. No scope creep. You'll know the exact cost before we start, and that's what you'll pay.
+          </p>
+          <p className="leading-relaxed mb-4">
+            Every project includes:
+          </p>
+          <ul className="list-disc list-inside space-y-2 ml-4 mb-6">
+            <li>Custom UI/UX design (we make it look great)</li>
+            <li>Development for both iPhone and Android</li>
+            <li>Testing on real devices</li>
+            <li>App Store & Google Play submission</li>
+            <li>Unlimited revisions during the project</li>
+            <li>30 days of support after launch</li>
+          </ul>
+          <p className="leading-relaxed mb-2">
+            <strong>Typical projects range from $5,000 to $15,000</strong> depending on complexity—a fraction of what big agencies charge.
+          </p>
+          <p className="leading-relaxed">
+            <Link href="/#contact" className="underline hover:text-gray-300">Tell us about your idea →</Link> and we'll send you a free, no-obligation quote within 48 hours.
+          </p>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-light text-black mb-8">Common Questions</h2>
+
+          <div className="space-y-6">
+            <div className="border-b border-gray-200 pb-6">
+              <h3 className="text-xl font-medium text-black mb-2">What if my idea isn't fully formed yet?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                That's fine! Most people come to us with rough concepts. We'll help you shape the idea during our initial conversations. You don't need a perfect plan—just enthusiasm.
+              </p>
+            </div>
+
+            <div className="border-b border-gray-200 pb-6">
+              <h3 className="text-xl font-medium text-black mb-2">Will you sign an NDA?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Absolutely. We're happy to sign a mutual NDA before you share any details about your project. Your idea stays between us.
+              </p>
+            </div>
+
+            <div className="border-b border-gray-200 pb-6">
+              <h3 className="text-xl font-medium text-black mb-2">I'm not trying to build a business. Is that okay?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                More than okay—we love passion projects. Not every app needs to make money. If you want to build something for yourself, your family, your community, or just because it should exist, we're excited to help.
+              </p>
+            </div>
+
+            <div className="border-b border-gray-200 pb-6">
+              <h3 className="text-xl font-medium text-black mb-2">How do payments work?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                We split the project into milestones. You pay a deposit to start (typically 30%), then payments at key checkpoints. You're never paying for work that hasn't been done.
+              </p>
+            </div>
+
+            <div className="border-b border-gray-200 pb-6">
+              <h3 className="text-xl font-medium text-black mb-2">What if I want to make changes after the app launches?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                We include 30 days of post-launch support for bug fixes. After that, we're happy to continue working with you on new features—just reach out when you're ready.
+              </p>
+            </div>
+
+            <div className="pb-6">
+              <h3 className="text-xl font-medium text-black mb-2">Do I own the app?</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Yes, 100%. Once the project is complete, you own all the code, designs, and assets. It's your app. We just help you build it.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Pricing */}
-        <section className="mb-16 bg-black text-white p-8 rounded-lg">
-          <h2 className="text-3xl font-light mb-6">Fixed Pricing, No Surprises</h2>
-          <p className="leading-relaxed mb-4">
-            We believe in transparent, predictable pricing. No hourly rates, no scope creep, no surprise invoices.
-          </p>
-          <p className="leading-relaxed mb-4">
-            Our fixed-price packages include:
-          </p>
-          <ul className="list-disc list-inside space-y-2 ml-4 mb-6">
-            <li>Full UI/UX design</li>
-            <li>React Native development (iOS + Android)</li>
-            <li>QA testing on real devices</li>
-            <li>App Store and Google Play submission</li>
-            <li>Unlimited revisions during the project</li>
-            <li>Post-launch support (30 days)</li>
-          </ul>
-          <p className="leading-relaxed mb-6">
-            Want to discuss pricing for your specific project? <Link href="/#contact" className="underline hover:text-gray-300">Get in touch for a custom quote →</Link>
-          </p>
-        </section>
-
         {/* CTA */}
         <section className="text-center py-12 border-t border-gray-200">
-          <h2 className="text-3xl font-light text-black mb-4">Ready to Build Your App?</h2>
+          <h2 className="text-3xl font-light text-black mb-4">Ready to Finally Build That App?</h2>
           <p className="text-gray-700 leading-relaxed mb-8 max-w-2xl mx-auto">
-            Let's turn your idea into a real, working mobile app. No lengthy sales process, no confusing jargon—just great apps built fast.
+            You've been thinking about this long enough. Tell us your idea—in your own words, no tech-speak required—and let's make it happen.
           </p>
           <Link
             href="/#contact"
             className="inline-block bg-black text-white px-8 py-4 rounded-lg hover:bg-gray-800 transition-colors font-medium"
           >
-            Get Started Today →
+            Share Your Idea →
           </Link>
         </section>
 
@@ -308,17 +348,12 @@ export default function MobileAppDevelopmentPage() {
           <div className="space-y-2">
             <p>
               <Link href="/faq" className="text-black underline hover:text-gray-600">
-                → Frequently Asked Questions
+                → More Frequently Asked Questions
               </Link>
             </p>
             <p>
               <Link href="/blog/mobile-app-mvp-guide" className="text-black underline hover:text-gray-600">
-                → Building Your First Mobile App MVP: A Founder's Guide
-              </Link>
-            </p>
-            <p>
-              <Link href="/blog/react-native-vs-native-development" className="text-black underline hover:text-gray-600">
-                → React Native vs Native Development: Which Is Right for Your Startup?
+                → Building Your First App: A Beginner's Guide
               </Link>
             </p>
             <p>

@@ -2,7 +2,7 @@ export default function ServiceSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Mobile App Development for Startups",
+    "name": "Mobile App Development for Non-Technical Creators",
     "serviceType": "Mobile Application Development",
     "provider": {
       "@type": "Organization",
@@ -14,7 +14,7 @@ export default function ServiceSchema() {
       "@type": "Place",
       "name": "Worldwide"
     },
-    "description": "Turn your startup idea into a production-ready mobile app in 8 weeks or less. Fixed pricing, unlimited revisions, React Native development for iOS and Android.",
+    "description": "Turn your app idea into reality without coding skills. We build mobile apps for people with ideas - fixed pricing, plain English, and your app in the App Store in 8 weeks.",
     "url": "https://elexcreatives.com/services/mobile-app-development-for-startups",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -24,30 +24,30 @@ export default function ServiceSchema() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "MVP Development",
-            "description": "Complete mobile app MVP delivered in 8 weeks or less"
+            "name": "App Idea to Reality",
+            "description": "Complete mobile app from your idea delivered in 8 weeks or less"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Cross-Platform Development",
-            "description": "Single codebase for iOS and Android using React Native"
+            "name": "Design & Development",
+            "description": "Full UI/UX design and cross-platform development for iOS and Android"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "App Store Submission",
-            "description": "Complete App Store and Google Play submission handling"
+            "name": "App Store Launch",
+            "description": "Complete App Store and Google Play submission - we handle everything"
           }
         }
       ]
     },
     "termsOfService": "Fixed pricing with unlimited revisions during development",
-    "slogan": "From Idea to App Store, in Weeks"
+    "slogan": "You have an app idea. We'll make it real."
   }
 
   return (
