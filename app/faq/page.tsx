@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import FAQSchema from '@/app/components/schemas/FAQSchema'
+import BreadcrumbSchema from '@/app/components/schemas/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions | Elex Creatives',
@@ -8,12 +9,38 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://elexcreatives.com/faq',
   },
+  openGraph: {
+    title: 'Frequently Asked Questions | Elex Creatives',
+    description: 'Common questions about mobile app development, pricing, timelines, and our process.',
+    url: 'https://elexcreatives.com/faq',
+    type: 'website',
+    images: [
+      {
+        url: 'https://elexcreatives.com/icons/ElexCreatives Logo - Website.png',
+        width: 1200,
+        height: 630,
+        alt: 'Elex Creatives FAQ',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Frequently Asked Questions | Elex Creatives',
+    description: 'Common questions about mobile app development, pricing, timelines, and our process.',
+    images: ['https://elexcreatives.com/icons/ElexCreatives Logo - Website.png'],
+  },
 }
 
 export default function FAQPage() {
+  const breadcrumbs = [
+    { name: 'Home', url: 'https://elexcreatives.com' },
+    { name: 'FAQ', url: 'https://elexcreatives.com/faq' }
+  ]
+
   return (
     <div className="min-h-screen bg-white">
       <FAQSchema />
+      <BreadcrumbSchema items={breadcrumbs} />
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200">

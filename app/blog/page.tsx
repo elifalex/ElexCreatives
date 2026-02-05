@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/blog'
+import BreadcrumbSchema from '@/app/components/schemas/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   title: 'Mobile App Development Blog | Elex Creatives',
@@ -8,13 +9,39 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://elexcreatives.com/blog',
   },
+  openGraph: {
+    title: 'Mobile App Development Blog | Elex Creatives',
+    description: 'Insights on React Native, mobile app development, and startup tips from the Elex Creatives team.',
+    url: 'https://elexcreatives.com/blog',
+    type: 'website',
+    images: [
+      {
+        url: 'https://elexcreatives.com/icons/ElexCreatives Logo - Website.png',
+        width: 1200,
+        height: 630,
+        alt: 'Elex Creatives Blog',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mobile App Development Blog | Elex Creatives',
+    description: 'Insights on React Native, mobile app development, and startup tips.',
+    images: ['https://elexcreatives.com/icons/ElexCreatives Logo - Website.png'],
+  },
 }
 
 export default async function BlogPage() {
   const posts = await getAllPosts()
 
+  const breadcrumbs = [
+    { name: 'Home', url: 'https://elexcreatives.com' },
+    { name: 'Blog', url: 'https://elexcreatives.com/blog' }
+  ]
+
   return (
     <div className="min-h-screen bg-white">
+      <BreadcrumbSchema items={breadcrumbs} />
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-6 py-4">

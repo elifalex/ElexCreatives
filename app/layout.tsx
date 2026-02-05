@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import OrganizationSchema from "./components/schemas/OrganizationSchema";
 import Analytics from "./components/Analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -85,6 +86,7 @@ export default function RootLayout({
         <OrganizationSchema />
         {children}
         <Analytics />
+        <VercelAnalytics />
       </body>
     </html>
   );

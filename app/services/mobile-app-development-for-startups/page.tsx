@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ServiceSchema from '@/app/components/schemas/ServiceSchema'
 import FAQSchema from '@/app/components/schemas/FAQSchema'
+import BreadcrumbSchema from '@/app/components/schemas/BreadcrumbSchema'
 
 export const metadata: Metadata = {
   title: 'Mobile App Development for Startups | Fixed Price, 8 Weeks or Less',
@@ -12,16 +13,38 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Mobile App Development for Startups | Elex Creatives',
-    description: 'Turn your startup idea into a production-ready mobile app in 8 weeks.',
+    description: 'Turn your startup idea into a production-ready mobile app in 8 weeks. Fixed pricing, unlimited revisions, React Native for iOS and Android.',
     url: 'https://elexcreatives.com/services/mobile-app-development-for-startups',
+    type: 'website',
+    images: [
+      {
+        url: 'https://elexcreatives.com/icons/ElexCreatives Logo - Website.png',
+        width: 1200,
+        height: 630,
+        alt: 'Elex Creatives - Mobile App Development for Startups',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mobile App Development for Startups | Elex Creatives',
+    description: 'Turn your startup idea into a production-ready mobile app in 8 weeks.',
+    images: ['https://elexcreatives.com/icons/ElexCreatives Logo - Website.png'],
   },
 }
 
 export default function MobileAppDevelopmentPage() {
+  const breadcrumbs = [
+    { name: 'Home', url: 'https://elexcreatives.com' },
+    { name: 'Services', url: 'https://elexcreatives.com/services' },
+    { name: 'Mobile App Development for Startups', url: 'https://elexcreatives.com/services/mobile-app-development-for-startups' }
+  ]
+
   return (
     <div className="min-h-screen bg-white">
       <ServiceSchema />
       <FAQSchema />
+      <BreadcrumbSchema items={breadcrumbs} />
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200">
