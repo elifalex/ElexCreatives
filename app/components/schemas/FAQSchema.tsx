@@ -22,7 +22,7 @@ export default function FAQSchema() {
     },
     {
       question: "I'm not building a business, just a personal project. Is that okay?",
-      answer: "More than okay! We love passion projects. Not every app needs to make money - if you want to build something for yourself or your community, we're excited to help."
+      answer: "Absolutely. Some of our favorite projects have been personal passions - apps built to solve a problem someone cared deeply about, or to bring a vision to life. Those projects often turn out the best because the passion shows."
     }
   ]
 

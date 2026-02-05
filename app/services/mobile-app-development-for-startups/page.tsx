@@ -175,7 +175,7 @@ export default function MobileAppDevelopmentPage() {
             <div className="bg-gray-50 p-6 rounded-lg">
               <h3 className="text-lg font-medium text-black mb-2">❌ A Business Plan</h3>
               <p className="text-gray-700 text-sm">
-                Passion projects are welcome. Not every app needs to be a business. If you just want to see your idea exist, that's reason enough.
+                Some of our best work has been passion projects. If you have a vision you care deeply about, that's all the reason we need.
               </p>
             </div>
           </div>
@@ -301,7 +301,7 @@ export default function MobileAppDevelopmentPage() {
             <div className="border-b border-gray-200 pb-6">
               <h3 className="text-xl font-medium text-black mb-2">I'm not trying to build a business. Is that okay?</h3>
               <p className="text-gray-700 leading-relaxed">
-                More than okay—we love passion projects. Not every app needs to make money. If you want to build something for yourself, your family, your community, or just because it should exist, we're excited to help.
+                Absolutely. Some of our favorite projects have been personal passions—apps built because someone cared deeply about an idea and wanted to see it exist. That kind of conviction often leads to the best results.
               </p>
             </div>
 
