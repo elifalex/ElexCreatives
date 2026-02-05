@@ -69,7 +69,7 @@ For startups and MVPs, we recommend **React Native with Expo**. Here's why:
 
 ## Budgeting for Your MVP
 
-Most agencies will quote you $50,000-$150,000 for a basic mobile app. But for a true MVP focused on validation, you can launch for significantly less with the right development partner.
+Agencies often quote eye-watering prices for mobile apps because of their overhead. But for a true MVP focused on validation, you can launch for significantly less with the right development partner—a lean team without the bloat.
 
 At Elex Creatives, we offer **fixed-price packages** starting at competitive rates, with unlimited revisions during the project. This eliminates the risk of scope creep and budget overruns.
 

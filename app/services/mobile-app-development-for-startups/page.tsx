@@ -92,9 +92,9 @@ export default function MobileAppDevelopmentPage() {
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-medium text-black mb-2">"Everyone Wants $50,000+"</h3>
+              <h3 className="text-xl font-medium text-black mb-2">"The Quotes Are Insane"</h3>
               <p className="text-gray-700 leading-relaxed">
-                Big agencies charge big-agency prices because they have big-agency overhead. We're a lean team with low overhead, which means we can build your app for a fraction of what the big guys charge—without cutting corners.
+                Agency prices reflect agency overhead—not the actual cost of building your app. We're a lean two-person team. You pay for the work, not for fancy offices and layers of management.
               </p>
             </div>
             <div>
@@ -256,21 +256,18 @@ export default function MobileAppDevelopmentPage() {
 
         {/* Pricing */}
         <section className="mb-16 bg-black text-white p-8 rounded-lg">
-          <h2 className="text-3xl font-light mb-6">Agency Quality, Without the Agency Price Tag</h2>
+          <h2 className="text-3xl font-light mb-6">Why Pay Agency Prices?</h2>
           <p className="leading-relaxed mb-4">
-            Big agencies are great if you have a big budget and want layers of account managers, project coordinators, and fancy proposals. But most of that overhead doesn't make your app better—it just makes it more expensive.
+            If you've shopped around, you've probably seen quotes that made your heart sink. Agencies charge premium rates because they have premium overhead—offices, sales teams, account managers, and layers of process between you and the people actually building your app.
           </p>
           <p className="leading-relaxed mb-4">
-            We're a small, hands-on studio. You work directly with the people building your app. No middlemen, no bloat, no inflated invoices. Just focused work and clear communication.
-          </p>
-          <p className="leading-relaxed mb-4">
-            The result? The same quality—often better, because we're more agile and personally invested—for a fraction of the cost.
+            We're a two-person studio. You work directly with us—the people designing and coding your app. No middlemen. No fluff. That's why we can deliver the same quality work for a fraction of what agencies charge.
           </p>
           <p className="leading-relaxed mb-6">
-            We use fixed pricing, so you'll know exactly what you're paying before we start. No hourly surprises, no scope creep.
+            Fixed pricing, so you know exactly what you're paying before we start. No hourly surprises, no scope creep.
           </p>
           <p className="leading-relaxed">
-            <Link href="/#contact" className="underline hover:text-gray-300">Tell us about your idea →</Link> and we'll send you a free, no-obligation quote within 48 hours.
+            <Link href="/#contact" className="underline hover:text-gray-300">Tell us about your idea →</Link> and we'll send you a quote within 48 hours. You might be surprised.
           </p>
         </section>
 

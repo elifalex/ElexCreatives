@@ -118,22 +118,20 @@ These don't need to be pretty. Stick figures and boxes are fine. The goal is to 
 
 Let's talk money.
 
-You've probably seen agencies quoting $50,000, $100,000, even $200,000 for app development. Those numbers are real—but they're not your only option.
+If you've requested quotes from agencies, you've probably experienced sticker shock. Those prices aren't made up—they reflect agency overhead: offices, sales teams, account managers, and layers of process between you and the developers.
 
-**Why agencies charge so much:**
+**But here's what most people don't realize:**
 
-Big agencies have overhead: offices, account managers, project coordinators, sales teams, and layers of process. That infrastructure costs money, and you pay for it. For large corporations with complex needs and big budgets, that model makes sense.
+You're not paying for better code. You're paying for the agency's infrastructure. The actual development work? A lean, focused team can deliver the same quality—often better—because you're working directly with the people building your app.
 
-But for individuals with a great idea? It's overkill.
-
-**The alternative:** Small, agile studios (like us) deliver the same quality—often better, because you work directly with the people building your app. No middlemen, no bloat. Just focused work at a fraction of the cost.
+Small studios don't have the overhead, so they don't need to charge for it.
 
 **Ways to keep costs down:**
 
 - Cut features ruthlessly (the #1 way to save money)
 - Start with an MVP to validate before going all-in
 - Keep the design clean and simple
-- Work with a lean team that doesn't charge for bureaucracy
+- Work with a small team that doesn't charge for bureaucracy
 
 ---
 
