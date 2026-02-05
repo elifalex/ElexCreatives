@@ -114,31 +114,26 @@ These don't need to be pretty. Stick figures and boxes are fine. The goal is to 
 
 ---
 
-## Step 6: Decide Your Budget (Honestly)
+## Step 6: Understand the Cost Landscape
 
 Let's talk money.
 
-Building a mobile app costs anywhere from $5,000 to $500,000. Why the huge range? Because "app" covers everything from a simple timer to Instagram.
+You've probably seen agencies quoting $50,000, $100,000, even $200,000 for app development. Those numbers are real—but they're not your only option.
 
-**What big agencies charge:**
+**Why agencies charge so much:**
 
-| Complexity | Examples | Agency Price |
-|------------|----------|--------------|
-| Simple | Timer, calculator, basic utility | $10,000 - $25,000 |
-| Moderate | App with user accounts, database, basic features | $25,000 - $75,000 |
-| Complex | Social features, real-time data, integrations | $75,000 - $150,000 |
-| Very Complex | Marketplace, payments, complex logic | $150,000+ |
+Big agencies have overhead: offices, account managers, project coordinators, sales teams, and layers of process. That infrastructure costs money, and you pay for it. For large corporations with complex needs and big budgets, that model makes sense.
 
-**But here's the thing:** Those prices are inflated by agency overhead—fancy offices, account managers, layers of bureaucracy. A lean team can deliver the same quality for a fraction of the cost.
+But for individuals with a great idea? It's overkill.
 
-At Elex Creatives, MVPs start from a few hundred dollars, and full production apps typically cost under $5,000. Same quality, no bloat.
+**The alternative:** Small, agile studios (like us) deliver the same quality—often better, because you work directly with the people building your app. No middlemen, no bloat. Just focused work at a fraction of the cost.
 
-**Ways to reduce costs:**
+**Ways to keep costs down:**
 
 - Cut features ruthlessly (the #1 way to save money)
-- Launch on one platform first (iPhone OR Android, not both)
-- Keep the design simple
-- Avoid features that require complex backend systems (user accounts, real-time updates, etc.)
+- Start with an MVP to validate before going all-in
+- Keep the design clean and simple
+- Work with a lean team that doesn't charge for bureaucracy
 
 ---
 
