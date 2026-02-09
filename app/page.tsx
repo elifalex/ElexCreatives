@@ -780,7 +780,7 @@ export default function Home() {
       )}
 
       {/* Apps Section */}
-      <section id="apps" className="max-w-5xl mx-auto px-6 pt-16 pb-10 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50">
+      <section id="apps" className={`max-w-5xl mx-auto px-6 ${heroHidden ? 'pt-28' : 'pt-16'} pb-10 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50`}>
         <h2 className="text-2xl font-light text-black mb-12 border-l-4 border-black pl-3 uppercase tracking-wider">App Portfolio</h2>
 
         {/* App Selector Cards - App Store Style */}
