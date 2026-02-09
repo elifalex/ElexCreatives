@@ -500,9 +500,12 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <ServiceSchema />
 
-      {/* Sticky Navigation Bar - Appears after hero */}
-      {heroHidden && (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm animate-fade-in">
+      {/* Sticky Navigation Bar - Always present, fades in after hero */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        heroHidden
+          ? 'bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm'
+          : 'bg-transparent border-b border-transparent'
+      }`}>
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               {/* Logo/Brand */}
@@ -637,7 +640,6 @@ export default function Home() {
             </div>
           </div>
         </nav>
-      )}
 
       {/* Notification Toast */}
       {notification.show && (
