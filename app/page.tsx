@@ -425,10 +425,10 @@ export default function Home() {
             // Hide hero after scroll animation completes
             setTimeout(() => {
               setHeroHidden(true);
-              // Reset scroll position to top now that hero is hidden
-              setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'auto' });
-              }, 50);
+              // Smoothly scroll to top now that hero is hidden
+              requestAnimationFrame(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              });
             }, 500);
             setScrollAttempt(0);
           }
@@ -465,10 +465,10 @@ export default function Home() {
               // Hide hero after scroll animation completes
               setTimeout(() => {
                 setHeroHidden(true);
-                // Reset scroll position to top now that hero is hidden
-                setTimeout(() => {
-                  window.scrollTo({ top: 0, behavior: 'auto' });
-                }, 50);
+                // Smoothly scroll to top now that hero is hidden
+                requestAnimationFrame(() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
               }, 500);
               document.removeEventListener('touchmove', handleTouchMove);
             }
@@ -783,10 +783,10 @@ export default function Home() {
               // Hide hero after scroll animation completes
               setTimeout(() => {
                 setHeroHidden(true);
-                // Reset scroll position to top now that hero is hidden
-                setTimeout(() => {
-                  window.scrollTo({ top: 0, behavior: 'auto' });
-                }, 50);
+                // Smoothly scroll to top now that hero is hidden
+                requestAnimationFrame(() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
               }, 500);
             }}
             className="flex flex-col items-center gap-2 text-gray-400 hover:text-black transition-all cursor-pointer group animate-bounce-slow"
@@ -839,7 +839,7 @@ export default function Home() {
       </section>
 
       {/* User Reviews Section */}
-      <section className="max-w-6xl mx-auto px-6 py-16 bg-gradient-to-b from-gray-50 to-white">
+      <section className={`max-w-6xl mx-auto px-6 ${heroHidden ? 'pt-0' : 'pt-16'} pb-16 bg-gradient-to-b from-gray-50 to-white`}>
         <h2 className="text-2xl font-light text-black mb-3 text-center uppercase tracking-wider">What Users Say</h2>
         <p className="text-center text-gray-600 mb-12 text-sm">Real feedback from SpeedDots players on App Store & Google Play</p>
 
