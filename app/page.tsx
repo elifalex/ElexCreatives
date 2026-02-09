@@ -654,9 +654,9 @@ export default function Home() {
       )}
 
       {/* Hero - Bold USP - Isolated Full Screen */}
-      <section className={`w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 transition-opacity duration-500 ${
-        heroHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'
-      }`} style={{ height: '100vh', minHeight: '100vh', maxHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+      <section className={`w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 transition-opacity duration-300 relative ${
+        heroHidden ? 'opacity-0 pointer-events-none -z-10' : 'opacity-100 z-50'
+      }`} style={{ height: '100vh', minHeight: '100vh', maxHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-[35%_65%] gap-0 items-center">
 
@@ -814,7 +814,7 @@ export default function Home() {
       </section>
 
       {/* User Reviews Section */}
-      <section className={`max-w-full mx-auto ${heroHidden ? 'pt-0' : 'pt-16'} pb-16 bg-gradient-to-b from-gray-50 to-white overflow-hidden`}>
+      <section className={`max-w-full mx-auto ${heroHidden ? 'pt-16' : 'pt-16'} pb-16 bg-gradient-to-b from-gray-50 to-white overflow-hidden`}>
         <div className="max-w-6xl mx-auto px-6 mb-8">
           <h2 className="text-xl font-medium text-black mb-2 text-center">What Users Say</h2>
           <p className="text-center text-gray-600 text-sm">Real feedback from App Store & Google Play</p>
