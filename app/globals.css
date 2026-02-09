@@ -125,7 +125,3 @@ body {
 .animate-scroll-left {
   animation: scroll-left 60s linear infinite;
 }
-
-.animate-scroll-left:hover {
-  animation-play-state: paused;
-}

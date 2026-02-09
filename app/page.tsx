@@ -655,7 +655,7 @@ export default function Home() {
 
       {/* Hero - Bold USP - Isolated Full Screen */}
       {!heroHidden && (
-        <section className="w-full bg-gradient-to-br from-gray-50 via-white to-blue-50" style={{ height: '100vh', minHeight: '100vh', maxHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+        <section className="w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 transition-opacity duration-500" style={{ height: '100vh', minHeight: '100vh', maxHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-[35%_65%] gap-0 items-center">
 
@@ -782,9 +782,9 @@ export default function Home() {
       )}
 
       {/* Trust Signals Stats Bar */}
-      <section className={`border-y border-gray-200 bg-white ${heroHidden ? 'pt-32 md:pt-36 pb-12' : 'py-12'}`}>
+      <section className={`border-y border-gray-200 bg-white ${heroHidden ? 'pt-24 md:pt-28' : 'pt-12'} pb-8`}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-6 md:gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-6 md:gap-8 text-center items-center">
             <div>
               <div className="text-3xl md:text-4xl font-bold text-black mb-2">5</div>
               <div className="text-sm text-gray-600">Projects Delivered</div>
@@ -815,16 +815,16 @@ export default function Home() {
 
       {/* User Reviews Section */}
       <section className={`max-w-full mx-auto ${heroHidden ? 'pt-0' : 'pt-16'} pb-16 bg-gradient-to-b from-gray-50 to-white overflow-hidden`}>
-        <div className="max-w-6xl mx-auto px-6 mb-12">
-          <h2 className="text-2xl font-light text-black mb-3 text-center uppercase tracking-wider">What Users Say</h2>
-          <p className="text-center text-gray-600 text-sm">Real feedback from our apps on App Store & Google Play</p>
+        <div className="max-w-6xl mx-auto px-6 mb-8">
+          <h2 className="text-xl font-medium text-black mb-2 text-center">What Users Say</h2>
+          <p className="text-center text-gray-600 text-sm">Real feedback from App Store & Google Play</p>
         </div>
 
         {/* Auto-scrolling carousel */}
         <div className="relative">
-          <div className="flex animate-scroll-left gap-6" style={{ width: 'max-content' }}>
+          <div className="flex animate-scroll-left gap-4" style={{ width: 'max-content' }}>
             {/* Mixed reviews from all apps */}
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
@@ -838,7 +838,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
@@ -852,7 +852,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
@@ -866,7 +866,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
@@ -880,7 +880,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(4)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
                 <span className="text-gray-300 text-lg">★</span>
@@ -895,7 +895,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
@@ -909,7 +909,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
@@ -923,7 +923,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(4)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
                 <span className="text-gray-300 text-lg">★</span>
@@ -938,7 +938,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
@@ -953,7 +953,7 @@ export default function Home() {
             </div>
 
             {/* Duplicate set for seamless loop */}
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
@@ -967,7 +967,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
@@ -981,7 +981,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
@@ -995,7 +995,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div className="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
