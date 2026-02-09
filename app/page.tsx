@@ -654,9 +654,9 @@ export default function Home() {
       )}
 
       {/* Hero - Bold USP - Isolated Full Screen */}
-      <section className={`w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 transition-opacity duration-300 relative ${
-        heroHidden ? 'opacity-0 pointer-events-none -z-10' : 'opacity-100 z-50'
-      }`} style={{ height: '100vh', minHeight: '100vh', maxHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+      <section className={`w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 transition-all duration-300 relative flex items-center justify-center overflow-hidden ${
+        heroHidden ? 'opacity-0 pointer-events-none -z-10 h-0 min-h-0 max-h-0' : 'opacity-100 z-50 h-screen min-h-screen max-h-screen'
+      }`}>
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-[35%_65%] gap-0 items-center">
 
