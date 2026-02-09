@@ -807,12 +807,16 @@ export default function Home() {
       )}
 
       {/* Trust Signals Stats Bar */}
-      <section className={`border-y border-gray-200 bg-white py-12 ${heroHidden ? 'pt-28 md:pt-32' : 'py-12'}`}>
+      <section className={`border-y border-gray-200 bg-white ${heroHidden ? 'pt-32 md:pt-36 pb-12' : 'py-12'}`}>
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-6 md:gap-8 text-center">
             <div>
               <div className="text-3xl md:text-4xl font-bold text-black mb-2">5</div>
-              <div className="text-sm text-gray-600">Apps Shipped & In Progress</div>
+              <div className="text-sm text-gray-600">Projects Delivered</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-black mb-2">10+</div>
+              <div className="text-sm text-gray-600">Code Audits</div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold text-black mb-2">300+</div>
@@ -826,7 +830,7 @@ export default function Home() {
               <div className="text-3xl md:text-4xl font-bold text-black mb-2">6-8</div>
               <div className="text-sm text-gray-600">Weeks to Launch</div>
             </div>
-            <div className="col-span-2 md:col-span-1">
+            <div>
               <div className="text-3xl md:text-4xl font-bold text-black mb-2">Week 2</div>
               <div className="text-sm text-gray-600">Revenue Generated</div>
             </div>
