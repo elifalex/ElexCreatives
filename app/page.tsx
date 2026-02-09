@@ -420,16 +420,7 @@ export default function Home() {
           // Release after enough scroll attempts (resistance)
           if (scrollAttempt > 100) {
             setIsScrollLocked(false);
-            // Smoothly scroll to just below hero to show App Portfolio
-            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-            // Hide hero after scroll animation completes
-            setTimeout(() => {
-              setHeroHidden(true);
-              // Smoothly scroll to top now that hero is hidden
-              requestAnimationFrame(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              });
-            }, 500);
+            setHeroHidden(true);
             setScrollAttempt(0);
           }
         }
@@ -460,16 +451,7 @@ export default function Home() {
               moveEvent.preventDefault();
             } else if (totalDiff >= 80) {
               setIsScrollLocked(false);
-              // Smoothly scroll to just below hero to show App Portfolio
-              window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-              // Hide hero after scroll animation completes
-              setTimeout(() => {
-                setHeroHidden(true);
-                // Smoothly scroll to top now that hero is hidden
-                requestAnimationFrame(() => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-              }, 500);
+              setHeroHidden(true);
               document.removeEventListener('touchmove', handleTouchMove);
             }
           }
@@ -503,8 +485,8 @@ export default function Home() {
       {/* Sticky Navigation Bar - Always present, fades in after hero */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         heroHidden
-          ? 'bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm'
-          : 'bg-transparent border-b border-transparent'
+          ? 'bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm opacity-100'
+          : 'bg-transparent border-b border-transparent opacity-0 pointer-events-none'
       }`}>
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
@@ -780,16 +762,7 @@ export default function Home() {
           <button
             onClick={() => {
               setIsScrollLocked(false);
-              // Smoothly scroll to just below hero to show App Portfolio
-              window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-              // Hide hero after scroll animation completes
-              setTimeout(() => {
-                setHeroHidden(true);
-                // Smoothly scroll to top now that hero is hidden
-                requestAnimationFrame(() => {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-              }, 500);
+              setHeroHidden(true);
             }}
             className="flex flex-col items-center gap-2 text-gray-400 hover:text-black transition-all cursor-pointer group animate-bounce-slow"
             aria-label="Scroll to portfolio"
