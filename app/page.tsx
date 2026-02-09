@@ -557,6 +557,12 @@ export default function Home() {
                 >
                   Contact
                 </a>
+                <a
+                  href="#contact"
+                  className="px-5 py-2.5 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
+                >
+                  Get in Touch
+                </a>
               </div>
 
               {/* Mobile Menu Button */}
@@ -620,6 +626,13 @@ export default function Home() {
                 >
                   Contact
                 </a>
+                <a
+                  href="#contact"
+                  onClick={() => document.getElementById('mobile-menu')?.classList.add('hidden')}
+                  className="inline-block px-5 py-2.5 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors mt-2"
+                >
+                  Get in Touch
+                </a>
               </div>
             </div>
           </div>
@@ -671,9 +684,17 @@ export default function Home() {
                 </h1>
 
                 {/* Secondary USP */}
-                <p className="text-base sm:text-lg lg:text-xl font-medium text-gray-600 leading-relaxed">
+                <p className="text-base sm:text-lg lg:text-xl font-medium text-gray-600 leading-relaxed mb-8">
                   Fixed Price, Unlimited Revisions Until You Are Satisfied.
                 </p>
+
+                {/* CTA Button */}
+                <a
+                  href="#contact"
+                  className="inline-block px-8 py-4 bg-black text-white text-base font-medium rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                >
+                  Let's Discuss Your App →
+                </a>
               </div>
             </div>
 
@@ -785,6 +806,34 @@ export default function Home() {
       </section>
       )}
 
+      {/* Trust Signals Stats Bar */}
+      <section className="border-y border-gray-200 bg-white py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-black mb-2">5</div>
+              <div className="text-sm text-gray-600">Apps Shipped & In Progress</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-black mb-2">300+</div>
+              <div className="text-sm text-gray-600">Active Users</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-black mb-2">5.0★</div>
+              <div className="text-sm text-gray-600">Average Rating</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-black mb-2">6-8</div>
+              <div className="text-sm text-gray-600">Weeks to Launch</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-black mb-2">Week 2</div>
+              <div className="text-sm text-gray-600">Revenue Generated</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Apps Section */}
       <section id="apps" className={`max-w-5xl mx-auto px-6 ${heroHidden ? 'pt-28' : 'pt-16'} pb-10 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50`}>
         <h2 className="text-2xl font-light text-black mb-12 border-l-4 border-black pl-3 uppercase tracking-wider">App Portfolio</h2>
@@ -869,7 +918,24 @@ export default function Home() {
                 {/* Top: Title and Description - Full Width */}
                 <div className="mb-6">
                   <h3 className="text-xl font-semibold text-black mb-2">Avid - Goal Tracker</h3>
-                  <p className="text-sm text-gray-500 mb-4">Productivity • &lt;8 weeks</p>
+                  <p className="text-sm text-gray-500 mb-4">Productivity • 6-8 weeks</p>
+
+                  {/* Results Bar */}
+                  <div className="flex flex-wrap gap-4 mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">⭐</span>
+                      <span className="text-sm font-semibold text-black">5.0 Rating</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">💰</span>
+                      <span className="text-sm font-semibold text-black">Revenue Week 2</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🚀</span>
+                      <span className="text-sm font-semibold text-black">7 Weeks to Launch</span>
+                    </div>
+                  </div>
+
                   <p className="text-gray-600 leading-relaxed text-sm">
                     Minimalistic wellness and goal tracker helping users build sustainable healthy habits through daily to-dos, meal planning, and gamification with streaks and achievement badges.
                   </p>
@@ -941,7 +1007,24 @@ export default function Home() {
                 {/* Top: Title and Description - Full Width */}
                 <div className="mb-6">
                   <h3 className="text-xl font-semibold text-black mb-2">SpeedDots - How fast are you ?</h3>
-                  <p className="text-sm text-gray-500 mb-4">Gaming • &lt;8 weeks</p>
+                  <p className="text-sm text-gray-500 mb-4">Gaming • 6-8 weeks</p>
+
+                  {/* Results Bar */}
+                  <div className="flex flex-wrap gap-4 mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">⭐</span>
+                      <span className="text-sm font-semibold text-black">5.0 Rating</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🎮</span>
+                      <span className="text-sm font-semibold text-black">iOS + Android</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🚀</span>
+                      <span className="text-sm font-semibold text-black">8 Weeks to Launch</span>
+                    </div>
+                  </div>
+
                   <p className="text-gray-600 leading-relaxed text-sm">
                     Arcade game testing reaction speed with global competition. Players tap dots as fast as possible across multiple game modes.
                   </p>
@@ -1022,7 +1105,24 @@ export default function Home() {
                 {/* Top: Title and Description - Full Width */}
                 <div className="mb-6">
                   <h3 className="text-xl font-semibold text-black mb-2">DailyIntentions</h3>
-                  <p className="text-sm text-gray-500 mb-4">Wellness - Lifestyle • &lt;8 weeks</p>
+                  <p className="text-sm text-gray-500 mb-4">Wellness - Lifestyle • 6-8 weeks</p>
+
+                  {/* Results Bar */}
+                  <div className="flex flex-wrap gap-4 mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">⭐</span>
+                      <span className="text-sm font-semibold text-black">5.0 Rating</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">📱</span>
+                      <span className="text-sm font-semibold text-black">iOS + Android</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🚀</span>
+                      <span className="text-sm font-semibold text-black">7 Weeks to Launch</span>
+                    </div>
+                  </div>
+
                   <p className="text-gray-600 leading-relaxed text-sm">
                     Manifestation and intention-setting app helping users align daily actions with long-term goals through guided prompts and journaling.
                   </p>
@@ -1105,7 +1205,7 @@ export default function Home() {
       <section id="services" className="max-w-5xl mx-auto px-6 py-16 border-t border-gray-200 bg-gradient-to-b from-white to-gray-50">
         <h2 className="text-2xl font-light text-black mb-6 border-l-4 border-black pl-3 uppercase tracking-wider">Our approach</h2>
         <p className="text-gray-600 leading-relaxed mb-12 max-w-3xl text-sm">
-          ElexCreatives is a one-stop mobile application development studio, offering a single solution to founders and individuals who need to turn ideas into functional products using the powerful React Native framework.
+          ElexCreatives is a product studio that partners with founders to design, build, and launch mobile apps that users love. From first concept to App Store launch, we handle design, development, and deployment — so you can focus on your vision.
         </p>
 
         {/* Problem/Solution Cards */}
@@ -1350,19 +1450,19 @@ export default function Home() {
 
         <div className="max-w-2xl">
           <p className="text-gray-600 leading-relaxed mb-4 text-sm">
-            ElexCreatives is a software development studio specializing in mobile app development for startups, entrepreneurs, and businesses.
+            ElexCreatives is a product studio that partners with founders to transform app ideas into successful products.
           </p>
           <p className="text-gray-600 leading-relaxed mb-4 text-sm">
-            We take pride in turning ideas into real-world products with clear design,
-            clean code, and apps that people actually want to use.
+            We specialize in building mobile apps that users love — combining clear design,
+            clean code, and strategic thinking to deliver products that drive real business results.
           </p>
           <p className="text-gray-600 leading-relaxed mb-4 text-sm">
-            Working remotely with clients worldwide, we build React Native apps from concept to launch.
-            Every project gets the same attention and focus on simplicity and functionality.
+            Working with startups and entrepreneurs worldwide, we handle everything from initial concept to App Store launch.
+            Every project gets our full attention, with unlimited revisions until you're completely satisfied.
           </p>
           <p className="text-gray-600 leading-relaxed text-sm">
-            If you're working on a project and need people who are agile and understand both the technical and
-            design side, ElexCreatives is probably a good fit.
+            If you have an app idea and need a partner who understands both the business and technical side,
+            ElexCreatives is built for you.
           </p>
         </div>
       </section>
