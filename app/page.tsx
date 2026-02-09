@@ -593,8 +593,8 @@ export default function Home() {
       )}
 
       {/* Hero - Bold USP - Isolated Full Screen */}
-      <section className={`w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 transition-all duration-300 relative flex items-center justify-center overflow-hidden ${
-        heroHidden ? 'opacity-0 pointer-events-none -z-10 h-0 min-h-0 max-h-0' : 'opacity-100 z-50 h-screen min-h-screen max-h-screen'
+      <section className={`w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 transition-opacity duration-500 fixed top-0 left-0 right-0 flex items-center justify-center overflow-hidden h-screen ${
+        heroHidden ? 'opacity-0 pointer-events-none -z-10' : 'opacity-100 z-40'
       }`}>
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-[35%_65%] gap-0 items-center">
@@ -718,6 +718,9 @@ export default function Home() {
           </button>
         </div>
       </section>
+
+      {/* Spacer to maintain hero height in document flow */}
+      <div className="h-screen"></div>
 
       {/* Trust Signals Stats Bar */}
       <section className={`border-y border-gray-200 bg-white ${heroHidden ? 'pt-24 md:pt-28' : 'pt-12'} pb-8`}>
