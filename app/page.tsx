@@ -508,9 +508,15 @@ export default function Home() {
               {/* Logo/Brand */}
               <button
                 onClick={scrollToTop}
-                className="text-xl font-light text-black hover:text-gray-600 transition-colors"
+                className="hover:opacity-70 transition-opacity"
               >
-                ElexCreatives
+                <Image
+                  src="/icons/ElexCreatives Logo - Website.png"
+                  alt="ElexCreatives"
+                  width={140}
+                  height={36}
+                  className="h-8 w-auto"
+                />
               </button>
 
               {/* Navigation Links */}
