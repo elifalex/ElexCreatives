@@ -873,7 +873,7 @@ export default function Home() {
               <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
                 <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">M</div>
                 <div>
-                  <p className="text-sm font-medium text-black">Michelle R.</p>
+                  <p className="text-sm font-medium text-black">mitchb_92</p>
                   <p className="text-xs text-gray-500">Avid • App Store</p>
                 </div>
               </div>
@@ -901,7 +901,7 @@ export default function Home() {
               <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
                 <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">E</div>
                 <div>
-                  <p className="text-sm font-medium text-black">Emma L.</p>
+                  <p className="text-sm font-medium text-black">Emma</p>
                   <p className="text-xs text-gray-500">DailyIntentions • App Store</p>
                 </div>
               </div>
@@ -916,7 +916,7 @@ export default function Home() {
               <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
                 <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">J</div>
                 <div>
-                  <p className="text-sm font-medium text-black">Jordan K.</p>
+                  <p className="text-sm font-medium text-black">JKWilliams</p>
                   <p className="text-xs text-gray-500">Avid • App Store</p>
                 </div>
               </div>
@@ -944,7 +944,7 @@ export default function Home() {
               <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
                 <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">S</div>
                 <div>
-                  <p className="text-sm font-medium text-black">Sarah M.</p>
+                  <p className="text-sm font-medium text-black">sarah_chen</p>
                   <p className="text-xs text-gray-500">Avid • App Store</p>
                 </div>
               </div>
@@ -959,7 +959,7 @@ export default function Home() {
               <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
                 <div className="w-8 h-8 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-full flex items-center justify-center text-white text-xs font-bold">A</div>
                 <div>
-                  <p className="text-sm font-medium text-black">Alex P.</p>
+                  <p className="text-sm font-medium text-black">AlexP</p>
                   <p className="text-xs text-gray-500">DailyIntentions • Google Play</p>
                 </div>
               </div>
@@ -973,7 +973,7 @@ export default function Home() {
               <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
                 <div className="w-8 h-8 bg-gradient-to-br from-teal-400 to-teal-500 rounded-full flex items-center justify-center text-white text-xs font-bold">L</div>
                 <div>
-                  <p className="text-sm font-medium text-black">Lisa H.</p>
+                  <p className="text-sm font-medium text-black">lisaharden</p>
                   <p className="text-xs text-gray-500">DailyIntentions • App Store</p>
                 </div>
               </div>
@@ -1002,7 +1002,7 @@ export default function Home() {
               <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
                 <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">M</div>
                 <div>
-                  <p className="text-sm font-medium text-black">Michelle R.</p>
+                  <p className="text-sm font-medium text-black">mitchb_92</p>
                   <p className="text-xs text-gray-500">Avid • App Store</p>
                 </div>
               </div>
@@ -1030,7 +1030,7 @@ export default function Home() {
               <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
                 <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">E</div>
                 <div>
-                  <p className="text-sm font-medium text-black">Emma L.</p>
+                  <p className="text-sm font-medium text-black">Emma</p>
                   <p className="text-xs text-gray-500">DailyIntentions • App Store</p>
                 </div>
               </div>
