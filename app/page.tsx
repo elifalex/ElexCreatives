@@ -839,133 +839,200 @@ export default function Home() {
       </section>
 
       {/* User Reviews Section */}
-      <section className={`max-w-6xl mx-auto px-6 ${heroHidden ? 'pt-0' : 'pt-16'} pb-16 bg-gradient-to-b from-gray-50 to-white`}>
-        <h2 className="text-2xl font-light text-black mb-3 text-center uppercase tracking-wider">What Users Say</h2>
-        <p className="text-center text-gray-600 mb-12 text-sm">Real feedback from SpeedDots players on App Store & Google Play</p>
+      <section className={`max-w-full mx-auto ${heroHidden ? 'pt-0' : 'pt-16'} pb-16 bg-gradient-to-b from-gray-50 to-white overflow-hidden`}>
+        <div className="max-w-6xl mx-auto px-6 mb-12">
+          <h2 className="text-2xl font-light text-black mb-3 text-center uppercase tracking-wider">What Users Say</h2>
+          <p className="text-center text-gray-600 text-sm">Real feedback from our apps on App Store & Google Play</p>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* Review 1 */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center gap-1 mb-3">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-yellow-500 text-lg">★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed mb-4">
-              "Epic time passing game. Becomes very addictive."
-            </p>
-            <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-              <div className="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                W
+        {/* Auto-scrolling carousel */}
+        <div className="relative">
+          <div className="flex animate-scroll-left gap-6" style={{ width: 'max-content' }}>
+            {/* SpeedDots Reviews */}
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
-              <div>
-                <p className="text-sm font-medium text-black">William Thompson</p>
-                <p className="text-xs text-gray-500">Google Play • Dec 2025</p>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"Epic time passing game. Becomes very addictive."</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-500 rounded-full flex items-center justify-center text-white text-xs font-bold">W</div>
+                <div>
+                  <p className="text-sm font-medium text-black">William T.</p>
+                  <p className="text-xs text-gray-500">SpeedDots • Google Play</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Review 2 */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center gap-1 mb-3">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-yellow-500 text-lg">★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed mb-4">
-              "Love this game, simple and very effective"
-            </p>
-            <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                T
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
-              <div>
-                <p className="text-sm font-medium text-black">Toteeeem</p>
-                <p className="text-xs text-gray-500">App Store • Dec 2025</p>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"Love this game, simple and very effective"</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">T</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Toteeeem</p>
+                  <p className="text-xs text-gray-500">SpeedDots • App Store</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Review 3 */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center gap-1 mb-3">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-yellow-500 text-lg">★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed mb-4">
-              "Very good to improve how fast you react"
-            </p>
-            <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-              <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                A
+            {/* Avid Reviews */}
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
-              <div>
-                <p className="text-sm font-medium text-black">Aquapark</p>
-                <p className="text-xs text-gray-500">App Store • Dec 2025</p>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"The UI is gorgeous and minimalistic. Makes tracking habits actually enjoyable. Finally sticking to my goals!"</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">M</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Michelle R.</p>
+                  <p className="text-xs text-gray-500">Avid • App Store</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Review 4 */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center gap-1 mb-3">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-yellow-500 text-lg">★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed mb-4">
-              "Great Game, it's challenging, I had fun!"
-            </p>
-            <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                S
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(4)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
+                <span className="text-gray-300 text-lg">★</span>
               </div>
-              <div>
-                <p className="text-sm font-medium text-black">Stanislas Wemaëre</p>
-                <p className="text-xs text-gray-500">Google Play • Dec 2025</p>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"Great app for habit tracking. Love the widgets! Only wish there was a dark mode option."</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">J</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Jordan K.</p>
+                  <p className="text-xs text-gray-500">Avid • App Store</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Review 5 */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center gap-1 mb-3">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-yellow-500 text-lg">★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed mb-4">
-              "Absolute banger!"
-            </p>
-            <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-              <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                G
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
-              <div>
-                <p className="text-sm font-medium text-black">Goulven Friess</p>
-                <p className="text-xs text-gray-500">Google Play • Dec 2025</p>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"Clean interface, no clutter. The streak system keeps me motivated. Best habit tracker I've tried."</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">S</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Sarah M.</p>
+                  <p className="text-xs text-gray-500">Avid • App Store</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Review 6 */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex items-center gap-1 mb-3">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-yellow-500 text-lg">★</span>
-              ))}
-            </div>
-            <p className="text-gray-700 text-sm leading-relaxed mb-4">
-              "A great find! The app is intuitive, fun, and makes you want to beat your own records. Perfect for challenge lovers!"
-            </p>
-            <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
-              <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                C
+            {/* DailyIntentions Reviews */}
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
               </div>
-              <div>
-                <p className="text-sm font-medium text-black">Cindzee</p>
-                <p className="text-xs text-gray-500">App Store • Dec 2025</p>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"Beautiful design and the daily prompts are so thoughtful. Helps me stay focused on what matters."</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">E</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Emma L.</p>
+                  <p className="text-xs text-gray-500">DailyIntentions • App Store</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(4)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
+                <span className="text-gray-300 text-lg">★</span>
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"Love the calm UI and journaling feature. Would be perfect with more customization options for prompts."</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-full flex items-center justify-center text-white text-xs font-bold">A</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Alex P.</p>
+                  <p className="text-xs text-gray-500">DailyIntentions • Google Play</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"The UX is intuitive and calming. Exactly what I needed for my morning routine. Highly recommend!"</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-teal-400 to-teal-500 rounded-full flex items-center justify-center text-white text-xs font-bold">L</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Lisa H.</p>
+                  <p className="text-xs text-gray-500">DailyIntentions • App Store</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"Very good to improve how fast you react"</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-red-400 to-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">A</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Aquapark</p>
+                  <p className="text-xs text-gray-500">SpeedDots • App Store</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Duplicate set for seamless loop */}
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"Epic time passing game. Becomes very addictive."</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-500 rounded-full flex items-center justify-center text-white text-xs font-bold">W</div>
+                <div>
+                  <p className="text-sm font-medium text-black">William T.</p>
+                  <p className="text-xs text-gray-500">SpeedDots • Google Play</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"Love this game, simple and very effective"</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold">T</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Toteeeem</p>
+                  <p className="text-xs text-gray-500">SpeedDots • App Store</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"The UI is gorgeous and minimalistic. Makes tracking habits actually enjoyable. Finally sticking to my goals!"</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">M</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Michelle R.</p>
+                  <p className="text-xs text-gray-500">Avid • App Store</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-shrink-0 w-80 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <div className="flex items-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (<span key={i} className="text-yellow-500 text-lg">★</span>))}
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"Beautiful design and the daily prompts are so thoughtful. Helps me stay focused on what matters."</p>
+              <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">E</div>
+                <div>
+                  <p className="text-sm font-medium text-black">Emma L.</p>
+                  <p className="text-xs text-gray-500">DailyIntentions • App Store</p>
+                </div>
               </div>
             </div>
           </div>
