@@ -392,91 +392,30 @@ export default function Home() {
     }, 50);
   };
 
-  const [isScrollLocked, setIsScrollLocked] = useState(true);
-  const [scrollAttempt, setScrollAttempt] = useState(0);
-
   // Reset scroll to top on page load
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, []);
 
-  // No longer need automatic hero hiding - it's handled by scroll resistance logic
-
+  // Simple scroll listener - hide hero and show nav when scrolling down
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
 
-    const handleWheel = (e: WheelEvent) => {
-      // Normalize deltaY for cross-browser compatibility (Firefox uses different values)
-      const normalizedDelta = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY; // DOM_DELTA_LINE = 1
-
-      // Only lock scroll when we're at the very top (in hero section) and hero is visible
-      if (window.scrollY <= 50 && !heroHidden) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        if (normalizedDelta > 0) { // Scrolling down
-          setScrollAttempt(prev => prev + Math.abs(normalizedDelta));
-
-          // Release after enough scroll attempts (resistance)
-          if (scrollAttempt > 100) {
-            setIsScrollLocked(false);
-            setHeroHidden(true);
-            setScrollAttempt(0);
-          }
-        }
-
-        // Reset scroll attempt after user stops scrolling
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-          setScrollAttempt(0);
-        }, 500);
+      // Hide hero and show nav when scrolled down more than 100px
+      if (scrollPosition > 100 && !heroHidden) {
+        setHeroHidden(true);
+      } else if (scrollPosition <= 100 && heroHidden) {
+        setHeroHidden(false);
       }
     };
 
-    const handleTouchStart = (e: TouchEvent) => {
-      // Only lock scroll when we're at the very top (in hero section) and hero is visible
-      if (window.scrollY <= 50 && !heroHidden) {
-        let startY = e.touches[0].clientY;
-        let totalDiff = 0;
-
-        const handleTouchMove = (moveEvent: TouchEvent) => {
-          const currentY = moveEvent.touches[0].clientY;
-          const diff = startY - currentY;
-
-          if (diff > 0) { // Swiping up
-            totalDiff += Math.abs(diff - totalDiff);
-
-            // Prevent default scroll until threshold is reached
-            if (totalDiff < 80) {
-              moveEvent.preventDefault();
-            } else if (totalDiff >= 80) {
-              setIsScrollLocked(false);
-              setHeroHidden(true);
-              document.removeEventListener('touchmove', handleTouchMove);
-            }
-          }
-        };
-
-        const handleTouchEnd = () => {
-          setTimeout(() => setScrollAttempt(0), 500);
-          document.removeEventListener('touchmove', handleTouchMove);
-          document.removeEventListener('touchend', handleTouchEnd);
-        };
-
-        document.addEventListener('touchmove', handleTouchMove, { passive: false });
-        document.addEventListener('touchend', handleTouchEnd);
-      }
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('touchstart', handleTouchStart);
-      clearTimeout(scrollTimeout);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [isScrollLocked, scrollAttempt, heroHidden]);
+  }, [heroHidden]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -762,8 +701,7 @@ export default function Home() {
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40">
           <button
             onClick={() => {
-              setIsScrollLocked(false);
-              setHeroHidden(true);
+              window.scrollTo({ top: window.innerHeight + 100, behavior: 'smooth' });
             }}
             className="flex flex-col items-center gap-2 text-gray-400 hover:text-black transition-all cursor-pointer group animate-bounce-slow"
             aria-label="Scroll to portfolio"
