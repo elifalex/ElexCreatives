@@ -320,6 +320,7 @@ export default function Home() {
     message: ''
   });
   const [heroHidden, setHeroHidden] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -387,9 +388,7 @@ export default function Home() {
 
   const scrollToTop = () => {
     setHeroHidden(false);
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 50);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Reset scroll to top on page load
@@ -397,25 +396,33 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, []);
 
-  // Simple scroll listener - hide hero and show nav when scrolling down
+  // Progressive scroll handler - hero fades proportionally as you scroll
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
+    let prevHidden = false;
 
-      // Hide hero and show nav when scrolled down more than 100px
-      if (scrollPosition > 100 && !heroHidden) {
-        setHeroHidden(true);
-      } else if (scrollPosition <= 100 && heroHidden) {
-        setHeroHidden(false);
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const fadeStart = 60;
+      const fadeEnd = window.innerHeight * 0.55;
+
+      const progress = Math.max(0, Math.min(1, (scrollY - fadeStart) / (fadeEnd - fadeStart)));
+      const opacity = 1 - progress;
+
+      if (heroRef.current) {
+        heroRef.current.style.opacity = String(opacity);
+        heroRef.current.style.transform = `scale(${1 - progress * 0.04}) translateY(${-progress * 30}px)`;
+      }
+
+      const shouldBeHidden = progress >= 1;
+      if (shouldBeHidden !== prevHidden) {
+        prevHidden = shouldBeHidden;
+        setHeroHidden(shouldBeHidden);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [heroHidden]);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -593,9 +600,9 @@ export default function Home() {
       )}
 
       {/* Hero - Bold USP - Isolated Full Screen */}
-      <section className={`w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 transition-opacity duration-500 fixed top-0 left-0 right-0 flex items-center justify-center overflow-hidden h-screen ${
-        heroHidden ? 'opacity-0 pointer-events-none -z-10' : 'opacity-100 z-40'
-      }`}>
+      <section ref={heroRef} className={`w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 fixed top-0 left-0 right-0 flex items-center justify-center overflow-hidden h-screen ${
+        heroHidden ? 'pointer-events-none -z-10' : 'z-40'
+      }`} style={{ willChange: 'opacity, transform' }}>
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-[35%_65%] gap-0 items-center">
 
