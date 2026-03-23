@@ -396,24 +396,23 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, []);
 
-  // Progressive scroll handler - hero fades proportionally as you scroll
+  // Slide hero upward as user scrolls — no transparency blending with content
   useEffect(() => {
     let prevHidden = false;
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const fadeStart = 60;
-      const fadeEnd = window.innerHeight * 0.55;
-
-      const progress = Math.max(0, Math.min(1, (scrollY - fadeStart) / (fadeEnd - fadeStart)));
-      const opacity = 1 - progress;
+      const vh = window.innerHeight;
 
       if (heroRef.current) {
-        heroRef.current.style.opacity = String(opacity);
-        heroRef.current.style.transform = `scale(${1 - progress * 0.04}) translateY(${-progress * 30}px)`;
+        // Slide hero up 1:1 with scroll so it exits viewport exactly when content arrives
+        heroRef.current.style.transform = `translateY(-${scrollY}px)`;
+        // Subtle fade only in the final 25% of travel (hero is mostly off-screen by then)
+        const fadeFraction = Math.max(0, (scrollY / vh - 0.75) / 0.25);
+        heroRef.current.style.opacity = String(1 - fadeFraction);
       }
 
-      const shouldBeHidden = progress >= 1;
+      const shouldBeHidden = scrollY >= vh;
       if (shouldBeHidden !== prevHidden) {
         prevHidden = shouldBeHidden;
         setHeroHidden(shouldBeHidden);
