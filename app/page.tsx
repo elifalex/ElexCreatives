@@ -405,11 +405,9 @@ export default function Home() {
       const vh = window.innerHeight;
 
       if (heroRef.current) {
-        // Slide hero up 1:1 with scroll so it exits viewport exactly when content arrives
+        // Slide hero up 1:1 with scroll — fully opaque the entire way
         heroRef.current.style.transform = `translateY(-${scrollY}px)`;
-        // Subtle fade only in the final 25% of travel (hero is mostly off-screen by then)
-        const fadeFraction = Math.max(0, (scrollY / vh - 0.75) / 0.25);
-        heroRef.current.style.opacity = String(1 - fadeFraction);
+        heroRef.current.style.opacity = '1';
       }
 
       const shouldBeHidden = scrollY >= vh;
